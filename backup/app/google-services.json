@@ -1,0 +1,156 @@
+{
+  "project_info": {
+    "project_number": "863416609944",
+    "firebase_url": "https://innwa-bank.firebaseio.com",
+    "project_id": "innwa-bank",
+    "storage_bucket": "innwa-bank.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863416609944:android:b42d6b926908ceee6474ed",
+        "android_client_info": {
+          "package_name": "com.mmsoftware100.moi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863416609944-5a12tom65m5akp9chu9gadhg75cu3a2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCZy_GSAbbs7yZ1tSqaM-fXBmdwYo11Os"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863416609944-5a12tom65m5akp9chu9gadhg75cu3a2d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863416609944:android:85d340e52af86cd06474ed",
+        "android_client_info": {
+          "package_name": "com.mmsoftware100.mm_cafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863416609944-5a12tom65m5akp9chu9gadhg75cu3a2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCZy_GSAbbs7yZ1tSqaM-fXBmdwYo11Os"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863416609944-5a12tom65m5akp9chu9gadhg75cu3a2d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863416609944:android:08935ea69a1ba5296474ed",
+        "android_client_info": {
+          "package_name": "com.mmsoftware100.imirror"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863416609944-5a12tom65m5akp9chu9gadhg75cu3a2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCZy_GSAbbs7yZ1tSqaM-fXBmdwYo11Os"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863416609944-5a12tom65m5akp9chu9gadhg75cu3a2d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863416609944:android:a0f2202da471a6856474ed",
+        "android_client_info": {
+          "package_name": "com.mmsoftware100.pos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863416609944-5a12tom65m5akp9chu9gadhg75cu3a2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCZy_GSAbbs7yZ1tSqaM-fXBmdwYo11Os"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863416609944-5a12tom65m5akp9chu9gadhg75cu3a2d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863416609944:android:26254649aecc0aad6474ed",
+        "android_client_info": {
+          "package_name": "com.teamcs.mm.innwabank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863416609944-5a12tom65m5akp9chu9gadhg75cu3a2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCZy_GSAbbs7yZ1tSqaM-fXBmdwYo11Os"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863416609944-5a12tom65m5akp9chu9gadhg75cu3a2d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

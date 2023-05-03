@@ -1,14 +1,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mmsoftware100.myanquizv2">
+    package="com.iadx.coffer">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
    <application
-        android:label="Myan Quiz"
+        android:label="iCoffer"
         android:name="${applicationName}"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/launcher_icon">
-
        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+       <!-- iCoffer ads app ID: ca-app-pub-4273229953550397~1883026334 -->
+       <!-- admob app ID : ca-app-pub-1287436497736484~7007986893 -->
        <meta-data
            android:name="com.google.android.gms.ads.APPLICATION_ID"
-           android:value="ca-app-pub-3940256099942544~3347511713"/>
+           android:value="ca-app-pub-1287436497736484~7007986893"/>
 
         <activity
             android:name=".MainActivity"

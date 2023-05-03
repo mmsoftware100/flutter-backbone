@@ -1,22 +1,18 @@
 
+
+import 'package:base/features/presentation/pages/user_account_page.dart';
+import 'package:base/features/presentation/pages/user_login_page.dart';
+import 'package:base/features/presentation/pages/user_register_page.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:myan_quiz/providers/game_play_provider.dart';
-import 'package:myan_quiz/providers/reward_provider.dart';
-import 'package:myan_quiz/providers/user_provider.dart';
-
-import 'package:myan_quiz/view/exchange/bills/bills_page.dart';
-import 'package:myan_quiz/view/exchange/bills/choose_operator_for_bill_page.dart';
-import 'package:myan_quiz/view/leader_board_page.dart';
-import 'package:myan_quiz/view/question_page_answer.dart';
-import 'package:myan_quiz/view/setting_page.dart';
-import 'package:myan_quiz/view/spin_whell_page.dart';
-import 'package:myan_quiz/view/splash_screen_page.dart';
-import 'package:myan_quiz/view/test_page.dart';
-import 'package:provider/provider.dart';
-
+import 'features/data/const/data.dart';
+import 'features/data/themes/news_theme.dart';
+import 'features/presentation/providers/user_provider.dart';
 import 'injection_container.dart' as di;
 
+import 'package:provider/provider.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel_martin', // id
@@ -27,52 +23,158 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
 
-void main()async{
+/*
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print("_firebaseMessagingBackgroundHandler");
+  print(message);
+  print(message.data.toString());
+  print("app_url");
+  print(message.data['app_url']);
+  await Firebase.initializeApp();
+  print('A bg message just showed up :  ${message.messageId}');
+}
 
-  print("main");
+ */
+
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
-  print("WidgetsFlutterBinding.ensureInitialized");
+
+  /*
+
+  if (Platform.isAndroid) {
+    // Android-specific code
+    // await Firebase.initializeApp();
+    FacebookAudienceNetwork.init(
+      // testingId: "37b1da9d-b48c-4103-a393-2e095e734bd6", //optional
+        iOSAdvertiserTrackingEnabled: true //default false
+    );
+
+    try{
+      await Firebase.initializeApp();
+      FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+      await flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+          ?.createNotificationChannel(channel);
+
+      await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+    }
+    catch(exp){
+      print("firebase init exp");
+      print(exp);
+    }
+
+    try{
+      // MobileAds.instance.initialize();
+    }
+    catch(exp){
+      print("MobileAds.instance.initialize init exp");
+      print(exp);
+    }
+
+  } else if (Platform.isIOS) {
+    // iOS-specific code
+  }
+
+   */
+
+
+
+  // Need to override H
+
+
+  /*
+  HttpProxy httpProxy = await HttpProxy.createHttpProxy();
+
+  //httpProxy.host = "mgtrick1:htethtetaung13@45.192.136.51";
+  //httpProxy.port = "5345";
+  httpProxy.host =  "${proxyDataSample.username}:${proxyDataSample.password}@${proxyDataSample.host}"; // "mgtrick1:htethtetaung13@45.192.136.51";
+  httpProxy.port = "${proxyDataSample.port}";
+
+  HttpOverrides.global=httpProxy;
+
+   */
+
+
+  /*
+  if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+    var proxyAvailable = await WebViewFeature.isFeatureSupported(WebViewFeature.PROXY_OVERRIDE);
+
+    if (proxyAvailable) {
+      ProxyController proxyController = ProxyController.instance();
+
+      await proxyController.clearProxyOverride();
+      await proxyController.setProxyOverride(
+          settings: ProxySettings(
+              proxyRules: [
+                ProxyRule(url: "https://myproxy.com")
+              ],
+              bypassRules: ["www.excluded.*"]
+          ));
+    }
+  }
+
+   */
+
+
 
   await di.init();
   runApp(
       MultiProvider(
           providers: [
-            ChangeNotifierProvider(create: (_) => UserProvider(
-              userLogin: di.sl(),
-              loginWithEmail: di.sl(),
-              loginWithGoogle: di.sl(),
-              userRegister: di.sl(),
-            )),
-            ChangeNotifierProvider(create: (_) => GamePlayProvider(
-              getRandomCategories: di.sl(),
-              getQuestionByCategoryId: di.sl(),
-              submitAnswer: di.sl()
-            )),
-            ChangeNotifierProvider(create: (_) => RewardProvider(
-              getTelephoneOperators: di.sl(),
-              getExchangeRates: di.sl(),
-              requestExchange: di.sl(),
-              getExchanges: di.sl()
+
+            ChangeNotifierProvider(create: (_) =>UserProvider(
+                userLogin: di.sl(),
+                userRegister: di.sl(),
+                localStorage: di.sl()
             )),
           ],
-          child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            home: SplashScreenPage(),
-            // home: TestPage(),
-          )
+          child: MyApp()
       )
   );
-  /*
-  runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SplashScreenPage(),
-      // home: ChooseOperatorBillPage(),
-      // home: LeaderBoardPage(),
-    )
-  );
-
-   */
-
 }
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: appName,
+      theme: newsTheme,
+      /*
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // Try running your application with "flutter run". You'll see the
+        // application has a blue toolbar. Then, without quitting the app, try
+        // changing the primarySwatch below to Colors.green and then invoke
+        // "hot reload" (press "r" in the console where you ran "flutter run",
+        // or simply save your changes to "hot reload" in a Flutter IDE).
+        // Notice that the counter didn't reset back to zero; the application
+        // is not restarted.
+        // primarySwatch: Colors.blue,
+        primaryColor: Color(0xFFF2EB91),
+
+      ),
+
+       */
+      initialRoute: UserLoginPage.routeName,
+      routes: {
+        UserLoginPage.routeName: (context) => UserLoginPage(),
+        UserRegisterPage.routeName: (context) => UserRegisterPage(),
+        UserAccountPage.routeName: (context) => UserAccountPage()
+
+      },
+    );
+  }
+}
+

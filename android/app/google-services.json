@@ -1,41 +1,91 @@
 {
   "project_info": {
-    "project_number": "92191459821",
-    "project_id": "myan-quiz",
-    "storage_bucket": "myan-quiz.appspot.com"
+    "project_number": "978100312721",
+    "project_id": "map-by-kmt",
+    "storage_bucket": "map-by-kmt.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:92191459821:android:a07ac7568c5de4e557ffe4",
+        "mobilesdk_app_id": "1:978100312721:android:ca3e281f9998759d837d30",
         "android_client_info": {
-          "package_name": "com.mmsoftware100.myanquizv2"
+          "package_name": "com.iadx.coffer"
         }
       },
       "oauth_client": [
         {
-          "client_id": "92191459821-q9hgjtbd231l7aupb8ce1a38qaqsv31q.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.mmsoftware100.myanquizv2",
-            "certificate_hash": "0d5bf43e0fda401652abc7e7118a1982729a78af"
-          }
-        },
-        {
-          "client_id": "92191459821-irtdhmr3kn3vabou9rpqab9s1uman3re.apps.googleusercontent.com",
+          "client_id": "978100312721-q0ona94vlkr8oacki85fvsfpn9rd457i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBdmPyhrQMdZIEZyGsGv_9Q5NuGx_thPg8"
+          "current_key": "AIzaSyC5AbOUlhheHX3QKO7Kxc4Rx_ziLpF4Xv0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "92191459821-irtdhmr3kn3vabou9rpqab9s1uman3re.apps.googleusercontent.com",
+              "client_id": "978100312721-q0ona94vlkr8oacki85fvsfpn9rd457i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978100312721:android:bb5f460623d1a5de837d30",
+        "android_client_info": {
+          "package_name": "com.icoffer.top"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "978100312721-q0ona94vlkr8oacki85fvsfpn9rd457i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5AbOUlhheHX3QKO7Kxc4Rx_ziLpF4Xv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "978100312721-q0ona94vlkr8oacki85fvsfpn9rd457i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978100312721:android:597122f46ecd9f36837d30",
+        "android_client_info": {
+          "package_name": "com.map.allinone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "978100312721-q0ona94vlkr8oacki85fvsfpn9rd457i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5AbOUlhheHX3QKO7Kxc4Rx_ziLpF4Xv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "978100312721-q0ona94vlkr8oacki85fvsfpn9rd457i.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

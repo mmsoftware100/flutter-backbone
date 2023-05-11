@@ -113,7 +113,7 @@ dependencies:
   # facebook_audience_network: ^1.0.1
   ## TODO package_info_plus: ^3.0.3
   encrypt: ^5.0.0
-  secure_content: ^0.0.11
+  #secure_content: ^0.0.11
   fluttertoast: ^8.2.1
 
 dependency_overrides:
@@ -159,6 +159,8 @@ flutter:
 
   assets:
     - assets/images/logo.png
+    - assets/icons/
+    - assets/logo/
   fonts:
     - family: MyanmarPhetsot
       fonts:

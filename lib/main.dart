@@ -1,7 +1,9 @@
 
 
+import 'package:base/features/presentation/pages/landing_page.dart';
+import 'package:base/features/presentation/pages/test_page.dart';
 import 'package:base/features/presentation/pages/user_account_page.dart';
-import 'package:base/features/presentation/pages/user_login_page.dart';
+import 'package:base/features/presentation/pages/user_login_test_page.dart';
 import 'package:base/features/presentation/pages/user_register_page.dart';
 
 
@@ -9,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'features/data/const/data.dart';
 import 'features/data/themes/news_theme.dart';
-import 'features/presentation/pages/user_login.dart';
+import 'features/presentation/pages/user_login_page.dart';
 import 'features/presentation/providers/user_provider.dart';
 import 'injection_container.dart' as di;
 
@@ -169,12 +171,14 @@ class MyApp extends StatelessWidget {
 
        */
       //initialRoute: UserLoginPage.routeName,
-      initialRoute: UserLogin.routeName,
+      initialRoute: TestPage.routeName,
       routes: {
+        TestPage.routeName: (context) => TestPage(),
+        UserLoginTestPage.routeName: (context) => UserLoginTestPage(),
         UserLoginPage.routeName: (context) => UserLoginPage(),
-        UserLogin.routeName: (context) => UserLogin(),
         UserRegisterPage.routeName: (context) => UserRegisterPage(),
-        UserAccountPage.routeName: (context) => UserAccountPage()
+        UserAccountPage.routeName: (context) => UserAccountPage(),
+        LandingPage.routeName: (context) => LandingPage(),
 
       },
     );

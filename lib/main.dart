@@ -1,5 +1,6 @@
 
 
+import 'package:base/features/presentation/pages/balance_page.dart';
 import 'package:base/features/presentation/pages/claim_point_page.dart';
 import 'package:base/features/presentation/pages/home_page.dart';
 import 'package:base/features/presentation/pages/landing_page.dart';
@@ -178,7 +179,7 @@ class MyApp extends StatelessWidget {
         TestPage.routeName: (context) => TestPage(),
         HomePage.routeName: (context) => HomePage(),
         ClaimPointPage.routeName: (context) => ClaimPointPage(),
-        ClaimPointPage.routeName: (context) => ClaimPointPage(),
+        BalancePage.routeName: (context) => BalancePage(),
         UserLoginTestPage.routeName: (context) => UserLoginTestPage(),
         UserLoginPage.routeName: (context) => UserLoginPage(),
         UserRegisterPage.routeName: (context) => UserRegisterPage(),

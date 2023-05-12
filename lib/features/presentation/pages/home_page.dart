@@ -160,19 +160,22 @@ class _HomePageState extends State<HomePage> {
         color: Colors.transparent
       ),
       child: Stack(
+        alignment: Alignment.center,
         children: [
           Container(
-            width: MediaQuery.of(context).size.width * 0.75,
+            width: MediaQuery.of(context).size.width * 0.90,
             height: MediaQuery.of(context).size.height * 0.2,
+            color: Colors.transparent,
           ),
           Positioned(
-              right: 0,
-              bottom: 0,
+              //right: 0,
+              //bottom: 0,
               child: _creditCard()
           ),
           Positioned(
-              child: _timeCircleCard()
-          ),
+              left: 0,
+              top: 0,
+              child: _timeCircleCard()),
         ],
       ),
     );
@@ -180,10 +183,13 @@ class _HomePageState extends State<HomePage> {
 
   Widget _timeCircleCard(){
     return Container(
-      padding: EdgeInsets.all(48.0),
+      padding: EdgeInsets.all(36.0),
       decoration: BoxDecoration(
         color: Colors.orangeAccent,
-        shape: BoxShape.circle
+        shape: BoxShape.circle,
+          boxShadow: [
+          BoxShadow(blurRadius: 3.0, spreadRadius: 1.0, color: Colors.black12, offset: Offset(0,0))
+        ]
       ),
       child: Text("21:05:25", style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),),
     );
@@ -196,7 +202,7 @@ class _HomePageState extends State<HomePage> {
           color: Colors.green,
           borderRadius: BorderRadius.circular(8.0),
           boxShadow: [
-            BoxShadow(blurRadius: 3.0, spreadRadius: 3.0, color: Colors.black12, offset: Offset(0,0))
+            BoxShadow(blurRadius: 3.0, spreadRadius: 1.0, color: Colors.black12, offset: Offset(3,3))
           ]
       ),
       child: Row(
@@ -215,6 +221,8 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
+                  SizedBox(height: 24.0,),
                   Text("Zayar05 (Level-1)", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                   SizedBox(height: 8.0,),
                   Text("**** **** **** 0104", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
@@ -264,6 +272,56 @@ class _HomePageState extends State<HomePage> {
     );
   }
   Widget _dataTable(){
-    return Placeholder(fallbackHeight: 300,);
+    return Container(
+      margin: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        color: Colors.black12,
+        borderRadius: BorderRadius.circular(8.0)
+      ),
+      child: Table(
+        columnWidths: {
+          0: FractionColumnWidth(0.05),
+          1: FractionColumnWidth(0.5),
+        },
+        children: [
+          TableRow(
+              children: [
+                Text("#", style: TextStyle(fontWeight: FontWeight.bold),),
+                Text(""),
+                Text("Price", style: TextStyle(fontWeight: FontWeight.bold),),
+                Text("Market Cap", style: TextStyle(fontWeight: FontWeight.bold),)
+              ]
+          ),
+          _dataTableRow(),
+          _dataTableRow(),
+          _dataTableRow(),
+          _dataTableRow(),
+          _dataTableRow(),
+          _dataTableRow(),
+        ],
+      ),
+    );
+  }
+
+  TableRow _dataTableRow(){
+    return TableRow(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Text("1"),
+            ),
+            Row(
+              children: [
+                Icon(Icons.currency_bitcoin),
+                Text("Bitcoin Core"),
+                SizedBox(width: 8.0,),
+                Text("BTC", style: TextStyle(color: Colors.grey),),
+              ],
+            ),
+            Text("\$8.328.54"),
+            Text("\$8.328.54"),
+          ]
+      );
   }
 }

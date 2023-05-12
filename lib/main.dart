@@ -1,5 +1,6 @@
 
 
+import 'package:base/features/presentation/pages/home_page.dart';
 import 'package:base/features/presentation/pages/landing_page.dart';
 import 'package:base/features/presentation/pages/test_page.dart';
 import 'package:base/features/presentation/pages/user_account_page.dart';
@@ -174,6 +175,7 @@ class MyApp extends StatelessWidget {
       initialRoute: TestPage.routeName,
       routes: {
         TestPage.routeName: (context) => TestPage(),
+        HomePage.routeName: (context) => HomePage(),
         UserLoginTestPage.routeName: (context) => UserLoginTestPage(),
         UserLoginPage.routeName: (context) => UserLoginPage(),
         UserRegisterPage.routeName: (context) => UserRegisterPage(),

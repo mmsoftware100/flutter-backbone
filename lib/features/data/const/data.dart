@@ -16,3 +16,4 @@ String image34AssetUrl = "assets/icons/Untitled-1-27.PNG";
 String image10AssetUrl = "assets/icons/Untitled-1-05.png";
 String pointBackgroundAssetUrl = "assets/icons/Untitled-1-03.png";
 String claimBackgroundAssetUrl = "assets/icons/Untitled-1-04.png";
+String friendImageAssetUrl = "assets/icons/Untitled-1-06.png";

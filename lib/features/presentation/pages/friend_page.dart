@@ -28,7 +28,8 @@ class _FriendPageState extends State<FriendPage> {
         children: [
           _balanceInfo(),
           _friendImage(),
-          _friendTable()
+          _friendTable(),
+          _inviteButton()
         ],
       ),
     );
@@ -140,5 +141,9 @@ class _FriendPageState extends State<FriendPage> {
         )
       ]
     );
+  }
+
+  Widget _inviteButton(){
+    return FloatingActionButton.extended(onPressed: (){}, label: Text("INVITE"), icon: Icon(Icons.person_add),);
   }
 }

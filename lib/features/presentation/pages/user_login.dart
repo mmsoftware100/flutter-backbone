@@ -1,3 +1,6 @@
+import 'package:base/features/presentation/pages/account_page.dart';
+import 'package:base/features/presentation/pages/payment_page.dart';
+import 'package:base/features/presentation/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 
 class UserLogin extends StatefulWidget {
@@ -9,6 +12,9 @@ class UserLogin extends StatefulWidget {
 }
 
 class _UserLoginState extends State<UserLogin> {
+
+  final bool checkedValue = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,16 +86,17 @@ class _UserLoginState extends State<UserLogin> {
                 ],
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(right: 40.0),
+                    padding: EdgeInsets.only(left: 170.0),
                     child: SizedBox(
                       width: 150,
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
                           debugPrint('ElevatedButton Clicked');
+                          Navigator.pushNamedAndRemoveUntil(context, SettingPage.routeName, (route) => false);
                         },
                         child: Text('Register',style: TextStyle(fontSize: 14),),
                         style: ElevatedButton.styleFrom(shape: StadiumBorder(),backgroundColor: Colors.green, foregroundColor: Colors.white, ),
@@ -122,26 +129,80 @@ class _UserLoginState extends State<UserLogin> {
                 ]),
               ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(right: 40.0),
+                padding: EdgeInsets.only(left: 170.0),
                 child: SizedBox(
                   width: 150,
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
                       debugPrint('ElevatedButton Clicked');
+                      Navigator.pushNamedAndRemoveUntil(context, PaymentPage.routeName, (route) => false);
                     },
-                    child: Text('Login',style: TextStyle(fontSize: 14),),
-                    style: ElevatedButton.styleFrom(shape: StadiumBorder(),backgroundColor: Colors.blue, foregroundColor: Colors.white, ),
+                    child: Text('Login',style: TextStyle(fontSize: 14,color: Colors.black),),
+                    style: ElevatedButton.styleFrom(shape: StadiumBorder(),backgroundColor: Colors.white, foregroundColor: Colors.white, ),
 
                   ),
                 ),
               )
             ],
           ),
+         SizedBox(
+           height: 5.0,
+         ),
+          Expanded(
+            child: Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[500],
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              // Instead of two different colors here I want to have the two other Linear gradients
+                              // with each having two other different colors that go from top to bottom
+                              Color(0xFFffffff),
+                              Color(0xff999999),
+                            ],
+                            stops: [0.5, 0.5],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            tileMode: TileMode.clamp,
+                          ),
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage('assets/icons/Untitled-1-05.png')
+                          ),
+                        ),
+                        ),
+                        Transform.scale(
+                          scale: 0.8,
+                          child: CheckboxListTile(
+                            title: Text("I have to agree to Terms and Privacy and conditions Policy."),
+                            value: checkedValue,
+                            onChanged: (newValue) {
 
+                            },
+                            controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+              ),
+            ),
+          ),
               ],
             )
     );

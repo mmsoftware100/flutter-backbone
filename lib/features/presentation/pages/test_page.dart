@@ -1,3 +1,4 @@
+import 'package:base/features/presentation/pages/claim_point_page.dart';
 import 'package:base/features/presentation/pages/home_page.dart';
 import 'package:base/features/presentation/pages/user_login_test_page.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class _TestPageState extends State<TestPage> {
           ListTile(title: Text("Landing Page"), onTap: (){ Navigator.pushNamed(context, UserLoginTestPage.routeName); },),
           ListTile(title: Text("Landing Page Two"), onTap: (){ Navigator.pushNamed(context, UserLoginTestPage.routeName); },),
           ListTile(title: Text("Home Page"), onTap: (){ Navigator.pushNamed(context, HomePage.routeName); },),
+          ListTile(title: Text("Claim Page"), onTap: (){ Navigator.pushNamed(context, ClaimPointPage.routeName); },),
         ],
       ),
     );

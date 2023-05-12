@@ -29,7 +29,9 @@ class _FriendPageState extends State<FriendPage> {
           _balanceInfo(),
           _friendImage(),
           _friendTable(),
-          _inviteButton()
+          SizedBox(height: 24.0,),
+          _inviteButton(),
+          SizedBox(height: 24.0,),
         ],
       ),
     );

@@ -173,7 +173,7 @@ class MyApp extends StatelessWidget {
 
        */
       //initialRoute: UserLoginPage.routeName,
-      initialRoute: UserLogin.routeName,
+      initialRoute: AccountPage.routeName,
       routes: {
         UserLoginPage.routeName: (context) => UserLoginPage(),
         UserLogin.routeName: (context) => UserLogin(),

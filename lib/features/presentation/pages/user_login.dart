@@ -96,7 +96,7 @@ class _UserLoginState extends State<UserLogin> {
                       child: ElevatedButton(
                         onPressed: () {
                           debugPrint('ElevatedButton Clicked');
-                          Navigator.pushNamedAndRemoveUntil(context, SettingPage.routeName, (route) => false);
+                          Navigator.pushNamed(context, AccountPage.routeName);
                         },
                         child: Text('Register',style: TextStyle(fontSize: 14),),
                         style: ElevatedButton.styleFrom(shape: StadiumBorder(),backgroundColor: Colors.green, foregroundColor: Colors.white, ),

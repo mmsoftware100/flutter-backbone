@@ -1,4 +1,5 @@
 import 'package:base/core/util/format_number.dart';
+import 'package:base/features/presentation/components/form_elements/our_drawer.dart';
 import 'package:base/features/presentation/components/form_elements/our_text_input.dart';
 import 'package:base/features/presentation/components/form_elements/our_submit_button.dart';
 import 'package:base/features/presentation/pages/user_login_page.dart';
@@ -30,6 +31,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
             child: _mainWidget(Provider.of<UserProvider>(context,listen: true).user)
         ),
       ),
+      drawer: MyDrawer(),
     );
   }
 

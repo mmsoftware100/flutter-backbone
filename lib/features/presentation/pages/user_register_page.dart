@@ -2,7 +2,7 @@
 
 import 'package:base/features/presentation/components/form_elements/our_text_input.dart';
 import 'package:base/features/presentation/components/form_elements/our_submit_button.dart';
-import 'package:base/features/presentation/pages/user_login_page.dart';
+import 'package:base/features/presentation/pages/user_login_test_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -91,7 +91,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
   }
 
   void _login()async{
-    Navigator.pushNamedAndRemoveUntil(context, UserLoginPage.routeName, (route) => false);
+    Navigator.pushNamedAndRemoveUntil(context, UserLoginTestPage.routeName, (route) => false);
   }
 
   void _register()async{

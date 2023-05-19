@@ -1,7 +1,8 @@
 import 'package:base/core/util/format_number.dart';
+import 'package:base/features/presentation/components/form_elements/our_drawer.dart';
 import 'package:base/features/presentation/components/form_elements/our_text_input.dart';
 import 'package:base/features/presentation/components/form_elements/our_submit_button.dart';
-import 'package:base/features/presentation/pages/user_login_page.dart';
+import 'package:base/features/presentation/pages/user_login_test_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -30,6 +31,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
             child: _mainWidget(Provider.of<UserProvider>(context,listen: true).user)
         ),
       ),
+      drawer: MyDrawer(),
     );
   }
 
@@ -42,7 +44,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
         Text("Login to see your points"),
         SizedBox(height: 8.0,),
         OurSubmitButton(callback: (){
-          Navigator.pushNamed(context, UserLoginPage.routeName);
+          Navigator.pushNamed(context, UserLoginTestPage.routeName);
         }, text: "Login",
           width: 0.8,
         )

@@ -12,8 +12,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'features/data/const/data.dart';
 import 'features/data/themes/news_theme.dart';
+import 'features/presentation/pages/balance_page.dart';
+import 'features/presentation/pages/claim_point_page.dart';
+import 'features/presentation/pages/friend_page.dart';
+import 'features/presentation/pages/home_page.dart';
 import 'features/presentation/pages/payment_page.dart';
+import 'features/presentation/pages/test_page.dart';
 import 'features/presentation/pages/user_login.dart';
+import 'features/presentation/pages/user_login_page.dart';
 import 'features/presentation/providers/user_provider.dart';
 import 'injection_container.dart' as di;
 
@@ -173,7 +179,7 @@ class MyApp extends StatelessWidget {
 
        */
       //initialRoute: UserLoginPage.routeName,
-      initialRoute: AccountPage.routeName,
+      initialRoute: TestPage.routeName,
       routes: {
         TestPage.routeName: (context) => TestPage(),
         HomePage.routeName: (context) => HomePage(),

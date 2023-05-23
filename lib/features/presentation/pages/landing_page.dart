@@ -1,6 +1,8 @@
 import 'package:base/features/presentation/pages/account_page.dart';
 import 'package:base/features/presentation/pages/payment_page.dart';
 import 'package:base/features/presentation/pages/setting_page.dart';
+import 'package:base/features/presentation/pages/user_login_test_page.dart';
+import 'package:base/features/presentation/pages/user_register_page.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatefulWidget {
@@ -96,7 +98,7 @@ class _UserLoginState extends State<LandingPage> {
                       child: ElevatedButton(
                         onPressed: () {
                           debugPrint('ElevatedButton Clicked');
-                          Navigator.pushNamed(context, AccountPage.routeName);
+                          Navigator.pushNamed(context, UserRegisterPage.routeName);
                         },
                         child: Text('Register',style: TextStyle(fontSize: 14),),
                         style: ElevatedButton.styleFrom(shape: StadiumBorder(),backgroundColor: Colors.green, foregroundColor: Colors.white, ),
@@ -139,7 +141,7 @@ class _UserLoginState extends State<LandingPage> {
                   child: ElevatedButton(
                     onPressed: () {
                       debugPrint('ElevatedButton Clicked');
-                      Navigator.pushNamedAndRemoveUntil(context, PaymentPage.routeName, (route) => false);
+                      Navigator.pushNamed(context, UserLoginPage.routeName);
                     },
                     child: Text('Login',style: TextStyle(fontSize: 14,color: Colors.black),),
                     style: ElevatedButton.styleFrom(shape: StadiumBorder(),backgroundColor: Colors.white, foregroundColor: Colors.white, ),

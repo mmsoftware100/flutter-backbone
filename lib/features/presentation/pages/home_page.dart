@@ -103,9 +103,57 @@ class _HomePageState extends State<HomePage> {
           _pageTitle(),
           _dashboardCard(),
           SizedBox(height: 8.0,),
+          _verticalListRow(),
           _dashboardRow(),
           _dataTable(),
       ],
+    );
+  }
+
+  Widget _verticalListRow(){
+    return Container(
+      margin: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black),
+        borderRadius: BorderRadius.circular(8.0)
+      ),
+      child: Column(
+        children: [
+          _buttonRow(),
+          _teamMembers(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buttonRow(){
+    return Row(
+      children: [
+        Text("Team 1/10"),
+        Expanded(child: Container()),
+        Text("Check")
+      ],
+    );
+  }
+
+  Widget _teamMembers(){
+    return Container(
+      height: 100,
+      child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) => Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircleAvatar(child: Icon(Icons.person)),
+              ),
+              Text("User $index")
+            ],
+          ),
+          separatorBuilder: (context, index) => Divider(),
+          itemCount: 10
+      ),
     );
   }
 

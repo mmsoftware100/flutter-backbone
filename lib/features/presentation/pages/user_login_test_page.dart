@@ -8,15 +8,15 @@ import 'package:provider/provider.dart';
 import '../providers/user_provider.dart';
 
 
-class UserLoginTestPage extends StatefulWidget {
+class UserLoginPage extends StatefulWidget {
   static String routeName = "/UserLoginPage";
-  const UserLoginTestPage({Key? key}) : super(key: key);
+  const UserLoginPage({Key? key}) : super(key: key);
 
   @override
-  State<UserLoginTestPage> createState() => _UserLoginTestPageState();
+  State<UserLoginPage> createState() => _UserLoginPageState();
 }
 
-class _UserLoginTestPageState extends State<UserLoginTestPage> {
+class _UserLoginPageState extends State<UserLoginPage> {
   TextEditingController emailTec = TextEditingController();
   TextEditingController passwordTec = TextEditingController();
   @override

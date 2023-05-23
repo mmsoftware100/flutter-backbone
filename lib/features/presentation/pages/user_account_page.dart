@@ -44,7 +44,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
         Text("Login to see your points"),
         SizedBox(height: 8.0,),
         OurSubmitButton(callback: (){
-          Navigator.pushNamed(context, UserLoginTestPage.routeName);
+          Navigator.pushNamed(context, UserLoginPage.routeName);
         }, text: "Login",
           width: 0.8,
         )

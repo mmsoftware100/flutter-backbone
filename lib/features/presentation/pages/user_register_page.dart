@@ -91,7 +91,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
   }
 
   void _login()async{
-    Navigator.pushNamedAndRemoveUntil(context, UserLoginTestPage.routeName, (route) => false);
+    Navigator.pushNamedAndRemoveUntil(context, UserLoginPage.routeName, (route) => false);
   }
 
   void _register()async{

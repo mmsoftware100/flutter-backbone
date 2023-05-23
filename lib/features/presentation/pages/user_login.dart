@@ -3,15 +3,15 @@ import 'package:base/features/presentation/pages/payment_page.dart';
 import 'package:base/features/presentation/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 
-class UserLogin extends StatefulWidget {
+class UserLoginPage extends StatefulWidget {
   static String routeName = "/UserLogin";
-  const UserLogin({Key? key}) : super(key: key);
+  const UserLoginPage({Key? key}) : super(key: key);
 
   @override
-  State<UserLogin> createState() => _UserLoginState();
+  State<UserLoginPage> createState() => _UserLoginState();
 }
 
-class _UserLoginState extends State<UserLogin> {
+class _UserLoginState extends State<UserLoginPage> {
 
   final bool checkedValue = false;
 

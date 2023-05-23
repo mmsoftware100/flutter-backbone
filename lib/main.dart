@@ -2,6 +2,8 @@
 
 
 import 'package:base/features/presentation/pages/account_page.dart';
+import 'package:base/features/presentation/pages/calculator_page.dart';
+import 'package:base/features/presentation/pages/myteam_page.dart';
 import 'package:base/features/presentation/pages/setting_page.dart';
 import 'package:base/features/presentation/pages/user_account_page.dart';
 import 'package:base/features/presentation/pages/user_login_test_page.dart';
@@ -20,6 +22,7 @@ import 'features/presentation/pages/payment_page.dart';
 import 'features/presentation/pages/test_page.dart';
 import 'features/presentation/pages/user_login.dart';
 import 'features/presentation/pages/user_login_page.dart';
+import 'features/presentation/pages/wallet_page.dart';
 import 'features/presentation/providers/user_provider.dart';
 import 'injection_container.dart' as di;
 
@@ -187,12 +190,15 @@ class MyApp extends StatelessWidget {
         BalancePage.routeName: (context) => BalancePage(),
         FriendPage.routeName: (context) => FriendPage(),
         UserLoginTestPage.routeName: (context) => UserLoginTestPage(),
-        UserLoginPage.routeName: (context) => UserLoginPage(),
         UserRegisterPage.routeName: (context) => UserRegisterPage(),
         UserAccountPage.routeName: (context) => UserAccountPage(),
         PaymentPage.routeName: (context) => PaymentPage(),
         AccountPage.routeName: (context) => AccountPage(),
-        SettingPage.routeName: (context) => SettingPage()
+        SettingPage.routeName: (context) => SettingPage(),
+        MyTeamPage.routeName: (context) => MyTeamPage(),
+        CalculatorPage.routeName:(context) => CalculatorPage(),
+        UserLoginPage.routeName:(context) => UserLoginPage(),
+        WalletPage.routeName:(context) => WalletPage()
       },
     );
   }

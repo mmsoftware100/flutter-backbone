@@ -244,8 +244,8 @@ class _PaymentPageState extends State<PaymentPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: 150,
+                width: MediaQuery.of(context).size.width * 0.95,
+                height: MediaQuery.of(context).size.height * 0.25,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   image: DecorationImage(

@@ -9,7 +9,8 @@ import 'package:base/features/presentation/pages/myteam_page.dart';
 import 'package:base/features/presentation/pages/payment_page.dart';
 import 'package:base/features/presentation/pages/setting_page.dart';
 import 'package:base/features/presentation/pages/user_account_page.dart';
-import 'package:base/features/presentation/pages/user_login.dart';
+import 'package:base/features/presentation/pages/landing_page.dart';
+import 'package:base/features/presentation/pages/user_login_page.dart';
 import 'package:base/features/presentation/pages/user_login_test_page.dart';
 import 'package:base/features/presentation/pages/user_register_page.dart';
 import 'package:base/features/presentation/pages/wallet_page.dart';
@@ -35,6 +36,9 @@ class _TestPageState extends State<TestPage> {
       ),
       body: ListView(
         children: [
+
+          ListTile(title: Text("Landing Page"), onTap: (){ Navigator.pushNamed(context, LandingPage.routeName); },),
+          ListTile(title: Text("User Login Page"), onTap: (){ Navigator.pushNamed(context, UserLoginPage.routeName); },),
           // ListTile(title: Text("Landing Page"), onTap: (){ Navigator.pushNamed(context, UserLoginTestPage.routeName); },),
           // ListTile(title: Text("Landing Page Two"), onTap: (){ Navigator.pushNamed(context, UserLoginTestPage.routeName); },),
           ListTile(title: Text("Home Page"), onTap: (){ Navigator.pushNamed(context, HomePage.routeName); },),
@@ -43,7 +47,7 @@ class _TestPageState extends State<TestPage> {
           ListTile(title: Text("Friend Page"), onTap: (){ Navigator.pushNamed(context, FriendPage.routeName); },),
           ListTile(title: Text("UserAccount"), onTap: (){ Navigator.pushNamed(context, UserAccountPage.routeName); },),
 
-          ListTile(title: Text("Login"), onTap: (){ Navigator.pushNamed(context, UserLoginPage.routeName); },),
+          ListTile(title: Text("Login"), onTap: (){ Navigator.pushNamed(context, LandingPage.routeName); },),
           ListTile(title: Text("Register"), onTap: (){ Navigator.pushNamed(context, UserRegisterPage.routeName); },),
 
           ListTile(title: Text("Account"), onTap: (){ Navigator.pushNamed(context, AccountPage.routeName); },),

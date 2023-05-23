@@ -1,96 +1,210 @@
-import 'package:base/features/data/const/data.dart';
+import 'package:base/features/presentation/pages/account_page.dart';
+import 'package:base/features/presentation/pages/payment_page.dart';
+import 'package:base/features/presentation/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatefulWidget {
-  static String routeName = "/LandingPage";
+  static String routeName = "/UserLogin";
   const LandingPage({Key? key}) : super(key: key);
 
   @override
-  State<LandingPage> createState() => _LandingPageState();
+  State<LandingPage> createState() => _UserLoginState();
 }
 
-class _LandingPageState extends State<LandingPage> {
+class _UserLoginState extends State<LandingPage> {
+
+  final bool checkedValue = false;
+
   @override
   Widget build(BuildContext context) {
-    return _mainWidget();
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        child: _mainWidget(),
+      ),
+    );
   }
 
   Widget _mainWidget(){
-    return Column(
-      children: [
-        _languageBar(),
-        _imageTwo(),
-        _imageThreeFour(),
-        _imageFive(),
-        _buttonRow(),
-        _imageTen(),
-        _tncRow()
-      ],
-    );
-  }
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(Icons.language),
+                  Text('EN'),
+                ],
+              ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 120,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage('assets/icons/Untitled-1-01.png')
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage('assets/icons/Untitled-1-27.PNG')
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage('assets/icons/Untitled-1-07.png')
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 170.0),
+                    child: SizedBox(
+                      width: 150,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          debugPrint('ElevatedButton Clicked');
+                          Navigator.pushNamed(context, AccountPage.routeName);
+                        },
+                        child: Text('Register',style: TextStyle(fontSize: 14),),
+                        style: ElevatedButton.styleFrom(shape: StadiumBorder(),backgroundColor: Colors.green, foregroundColor: Colors.white, ),
 
-  Widget _languageBar(){
-    return Placeholder(fallbackHeight: 50,);
-  }
-  Widget _imageTwo(){
-    return Image.asset(image2AssetUrl);
-  }
-  Widget _imageThreeFour(){
-    return Image.asset(image34AssetUrl);
-  }
-  Widget _imageFive(){
-    return Image.asset(image5AssetUrl);
-  }
-  Widget _buttonRow(){
-    return Row(
-      children: [
-        Container(),
-        Column(
-          children: [
-            _registerButton(),
-            _dividerRow(),
-            _loginLink()
-          ],
-        )
-      ],
-    );
-  }
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 130),
+                child: Row(children: <Widget>[
+                  Expanded(
+                    child: new Container(
+                        margin: const EdgeInsets.only(left: 60.0, right: 10.0),
+                        child: Divider(
+                          color: Colors.black,
+                          height: 36,
+                        )),
+                  ),
+                  Text("OR"),
+                  Expanded(
+                    child: new Container(
+                        margin: const EdgeInsets.only(left: 10.0, right: 60.0),
+                        child: Divider(
+                          color: Colors.black,
+                          height: 36,
+                        )),
+                  ),
+                ]),
+              ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 170.0),
+                child: SizedBox(
+                  width: 150,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      debugPrint('ElevatedButton Clicked');
+                      Navigator.pushNamedAndRemoveUntil(context, PaymentPage.routeName, (route) => false);
+                    },
+                    child: Text('Login',style: TextStyle(fontSize: 14,color: Colors.black),),
+                    style: ElevatedButton.styleFrom(shape: StadiumBorder(),backgroundColor: Colors.white, foregroundColor: Colors.white, ),
 
-  Widget _registerButton(){
-    return ElevatedButton(onPressed: (){}, child: Text("Register"));
-  }
+                  ),
+                ),
+              )
+            ],
+          ),
+         SizedBox(
+           height: 5.0,
+         ),
+          Expanded(
+            child: Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[500],
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              // Instead of two different colors here I want to have the two other Linear gradients
+                              // with each having two other different colors that go from top to bottom
+                              Color(0xFFffffff),
+                              Color(0xff999999),
+                            ],
+                            stops: [0.5, 0.5],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            tileMode: TileMode.clamp,
+                          ),
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage('assets/icons/Untitled-1-05.png')
+                          ),
+                        ),
+                        ),
+                        Transform.scale(
+                          scale: 0.8,
+                          child: CheckboxListTile(
+                            title: Text("I have to agree to Terms and Privacy and conditions Policy."),
+                            value: checkedValue,
+                            onChanged: (newValue) {
 
-  Widget _dividerRow(){
-    return Row(
-      children: [
-        // TODO: horizontal ruler
-        // hr : Divider is hr
-        Divider(),
-        Text("or"),
-        Divider(),
-        // hr
-      ],
-    );
-  }
-
-  Widget _loginLink(){
-    return TextButton(onPressed: (){}, child: Text("Login"));
-  }
-  Widget _imageTen(){
-    return Image.asset(image10AssetUrl);
-  }
-  Widget _tncRow(){
-    return Row(
-      children: [
-        // check box
-
-        // text
-        Text("I have to agree to Terms and Condition Policy"),
-
-        //
-        Container()
-
-      ],
+                            },
+                            controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+              ),
+            ),
+          ),
+              ],
+            )
     );
   }
 }

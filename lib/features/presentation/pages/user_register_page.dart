@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../providers/user_provider.dart';
 
 import '../../data/const/data.dart';
+import 'home_page.dart';
 class UserRegisterPage extends StatefulWidget {
   static String routeName = "/UserRegisterPage";
   const UserRegisterPage({Key? key}) : super(key: key);
@@ -61,6 +62,9 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
         children: [
           Container(width: double.infinity,),
 
+          Image.asset(image10AssetUrl),
+          Text("FUMO", style: Theme.of(context).textTheme.bodyLarge,),
+          Text("Welcome Back", style: Theme.of(context).textTheme.headlineLarge,),
           SizedBox(height: 8.0,),
           OurTextInput(label: "Name", placeHolder: "enter your name", textEditingController: nameTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.person,),
 
@@ -71,7 +75,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
           OurTextInput(label: "Password", placeHolder: "enter your password", textEditingController: passwordTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.password, password: true,),
 
           SizedBox(height: 8.0,),
-          OurTextInput(label: "Confirm Password", placeHolder: "re-enter your password", textEditingController: passwordConfirmTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.password, password: true),
+          OurTextInput(label: "Referral Code", placeHolder: "enter your referral code", textEditingController: passwordConfirmTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.password, password: true),
 
           SizedBox(height: 8.0,),
           OurSubmitButton(text:"Register", callback: _register, width: 0.8,),
@@ -91,7 +95,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
   }
 
   void _login()async{
-    Navigator.pushNamedAndRemoveUntil(context, UserLoginTestPage.routeName, (route) => false);
+    Navigator.pushNamedAndRemoveUntil(context, UserLoginPage.routeName, (route) => false);
   }
 
   void _register()async{
@@ -99,9 +103,17 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
     String password = passwordTec.text;
     String name = nameTec.text;
 
-    String status = await Provider.of<UserProvider>(context, listen:false).userRegisterPlz(password: password, email: email, name: name);
+    String status = "success" ; // await Provider.of<UserProvider>(context, listen:false).userRegisterPlz(password: password, email: email, name: name);
     // close loading dialog
-    Navigator.pop(context);
+    if(status == "success"){
+      Navigator.pushNamed(context, HomePage.routeName);
+    }
+    else{
+      // show error message
+      // showAlertDialog(context, "Login Fail", "Please check email , password and Try Again!", Colors.red, (){});
+      showAlertDialog(context, "Something went wrong", "Contact to facebook page for Approval!!", Colors.red, (){});
+    }
+    // Navigator.pop(context);
   }
 
 

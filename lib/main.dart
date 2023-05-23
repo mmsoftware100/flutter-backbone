@@ -21,7 +21,7 @@ import 'features/presentation/pages/friend_page.dart';
 import 'features/presentation/pages/home_page.dart';
 import 'features/presentation/pages/payment_page.dart';
 import 'features/presentation/pages/test_page.dart';
-import 'features/presentation/pages/user_login.dart';
+import 'features/presentation/pages/landing_page.dart';
 import 'features/presentation/pages/user_login_page.dart';
 import 'features/presentation/pages/wallet_page.dart';
 import 'features/presentation/providers/user_provider.dart';
@@ -186,11 +186,14 @@ class MyApp extends StatelessWidget {
       initialRoute: TestPage.routeName,
       routes: {
         TestPage.routeName: (context) => TestPage(),
+        LandingPage.routeName:(context) => LandingPage(),
+        UserLoginPage.routeName : (context) => UserLoginPage(),
+
         HomePage.routeName: (context) => HomePage(),
         ClaimPointPage.routeName: (context) => ClaimPointPage(),
         BalancePage.routeName: (context) => BalancePage(),
         FriendPage.routeName: (context) => FriendPage(),
-        UserLoginTestPage.routeName: (context) => UserLoginTestPage(),
+        UserLoginPage.routeName: (context) => UserLoginPage(),
         UserRegisterPage.routeName: (context) => UserRegisterPage(),
         UserAccountPage.routeName: (context) => UserAccountPage(),
         PaymentPage.routeName: (context) => PaymentPage(),
@@ -198,9 +201,13 @@ class MyApp extends StatelessWidget {
         SettingPage.routeName: (context) => SettingPage(),
         MyTeamPage.routeName: (context) => MyTeamPage(),
         CalculatorPage.routeName:(context) => CalculatorPage(),
+<<<<<<< HEAD
         UserLoginPage.routeName:(context) => UserLoginPage(),
         WalletPage.routeName:(context) => WalletPage(),
         AboutUsPage.routeName:(context) => AboutUsPage()
+=======
+        WalletPage.routeName:(context) => WalletPage()
+>>>>>>> 8c6bc6c0dbc7324c0d5aac61324e33b7bb767d43
       },
     );
   }

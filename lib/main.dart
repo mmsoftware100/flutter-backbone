@@ -1,6 +1,7 @@
 
 
 
+import 'package:base/features/presentation/pages/aboutus_page.dart';
 import 'package:base/features/presentation/pages/account_page.dart';
 import 'package:base/features/presentation/pages/calculator_page.dart';
 import 'package:base/features/presentation/pages/myteam_page.dart';
@@ -198,7 +199,8 @@ class MyApp extends StatelessWidget {
         MyTeamPage.routeName: (context) => MyTeamPage(),
         CalculatorPage.routeName:(context) => CalculatorPage(),
         UserLoginPage.routeName:(context) => UserLoginPage(),
-        WalletPage.routeName:(context) => WalletPage()
+        WalletPage.routeName:(context) => WalletPage(),
+        AboutUsPage.routeName:(context) => AboutUsPage()
       },
     );
   }

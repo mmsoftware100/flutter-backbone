@@ -1,3 +1,4 @@
+import 'package:base/features/presentation/pages/aboutus_page.dart';
 import 'package:base/features/presentation/pages/account_page.dart';
 import 'package:base/features/presentation/pages/balance_page.dart';
 import 'package:base/features/presentation/pages/calculator_page.dart';
@@ -51,6 +52,7 @@ class _TestPageState extends State<TestPage> {
           ListTile(title: Text("MyTeamPage"), onTap: (){ Navigator.pushNamed(context, MyTeamPage.routeName); },),
           ListTile(title: Text("CalculatorPage"), onTap: (){ Navigator.pushNamed(context, CalculatorPage.routeName); },),
           ListTile(title: Text("WalletPage"), onTap: (){ Navigator.pushNamed(context, WalletPage.routeName); },),
+          ListTile(title: Text("AboutUsPage"), onTap: (){ Navigator.pushNamed(context, AboutUsPage.routeName); },),
         ],
       ),
     );

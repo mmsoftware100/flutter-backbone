@@ -2,9 +2,11 @@ import 'dart:ui';
 
 import 'package:base/features/presentation/components/form_elements/our_text_input.dart';
 import 'package:base/features/presentation/components/form_elements/our_submit_button.dart';
+import 'package:base/features/presentation/pages/home_page.dart';
 import 'package:base/features/presentation/pages/user_register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../data/const/data.dart';
 import '../providers/user_provider.dart';
 
 
@@ -55,8 +57,9 @@ class _UserLoginPageState extends State<UserLoginPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(child: Container()),
-          Text("iCoffer", style: Theme.of(context).textTheme.bodyLarge,),
+          // Expanded(child: Container()),
+          Image.asset(image10AssetUrl),
+          Text("FUMO", style: Theme.of(context).textTheme.bodyLarge,),
           Text("Welcome Back", style: Theme.of(context).textTheme.headlineLarge,),
           SizedBox(height: 16,),
           OurTextInput(label: "Email", placeHolder: "enter your email", textEditingController: emailTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.email, password: false,),
@@ -110,11 +113,11 @@ class _UserLoginPageState extends State<UserLoginPage> {
 
 
 
-    String status = await Provider.of<UserProvider>(context, listen:false).userLoginPlz(email: email, password: password);
+    String status = "success"; // await Provider.of<UserProvider>(context, listen:false).userLoginPlz(email: email, password: password);
     // close loading dialog
     Navigator.pop(context);
     if(status == "success"){
-
+      Navigator.pushNamed(context, HomePage.routeName);
     }
     else{
       // show error message

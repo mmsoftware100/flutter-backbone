@@ -201,13 +201,10 @@ class MyApp extends StatelessWidget {
         SettingPage.routeName: (context) => SettingPage(),
         MyTeamPage.routeName: (context) => MyTeamPage(),
         CalculatorPage.routeName:(context) => CalculatorPage(),
-<<<<<<< HEAD
         UserLoginPage.routeName:(context) => UserLoginPage(),
         WalletPage.routeName:(context) => WalletPage(),
-        AboutUsPage.routeName:(context) => AboutUsPage()
-=======
+        AboutUsPage.routeName:(context) => AboutUsPage(),
         WalletPage.routeName:(context) => WalletPage()
->>>>>>> 8c6bc6c0dbc7324c0d5aac61324e33b7bb767d43
       },
     );
   }

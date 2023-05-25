@@ -1,6 +1,8 @@
 
 import 'package:base/features/presentation/components/form_elements/our_drawer.dart';
 import 'package:base/features/presentation/pages/friend_page.dart';
+import 'package:base/features/presentation/pages/myteam_page.dart';
+import 'package:base/features/presentation/pages/payment_page.dart';
 import 'package:base/features/presentation/pages/wallet_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -63,14 +65,17 @@ class _HomePageState extends State<HomePage> {
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),
       ),
-      navBarStyle: NavBarStyle.style15, // Choose the nav bar style with this property.
+      // navBarStyle: NavBarStyle.style15, // Choose the nav bar style with this property.
+      navBarStyle: NavBarStyle.style6,
     );
   }
   List<Widget> _buildScreens() {
     return [
       _mainWidget(),
-      FriendPage(),
-      ClaimPointPage(),
+      MyTeamPage(),
+      //FriendPage(),
+      //ClaimPointPage(),
+      PaymentPage(),
       CalculatorPage(),
       WalletPage()
     ];
@@ -92,9 +97,10 @@ class _HomePageState extends State<HomePage> {
       ),
 
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.currency_exchange, color: Colors.white,),
+        icon: Icon(Icons.currency_exchange,), //, color: Colors.white
         title: ("Earn"),
-        activeColorPrimary: CupertinoColors.activeGreen,
+        //activeColorPrimary: CupertinoColors.activeGreen,
+        activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
@@ -117,17 +123,21 @@ class _HomePageState extends State<HomePage> {
 
 
   Widget _mainWidget(){
-    return Column(
-      children: [
-          //_stackTest(),
-          //_stackTestTwo(),
-          _pageTitle(),
-          _dashboardCard(),
-          SizedBox(height: 8.0,),
-          _verticalListRow(),
-          _dashboardRow(),
-          _dataTable(),
-      ],
+    return Container(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+              //_stackTest(),
+              //_stackTestTwo(),
+              _pageTitle(),
+              _dashboardCard(),
+              SizedBox(height: 8.0,),
+              _verticalListRow(),
+              _dashboardRow(),
+              _dataTable(),
+          ],
+        ),
+      ),
     );
   }
 
@@ -460,8 +470,14 @@ class _HomePageState extends State<HomePage> {
                 Text("BTC", style: TextStyle(color: Colors.grey),),
               ],
             ),
-            Text("\$8.328.54"),
-            Text("\$8.328.54"),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Text("\$8.328.54"),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Text("\$8.328.54"),
+            ),
           ]
       );
   }

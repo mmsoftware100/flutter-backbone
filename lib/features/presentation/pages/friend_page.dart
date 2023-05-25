@@ -14,9 +14,12 @@ class _FriendPageState extends State<FriendPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /*
       appBar: AppBar(
         title: Text("FUMO"),
       ),
+
+       */
       body: _mainWidget(),
     );
   }

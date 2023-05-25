@@ -31,7 +31,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
             child: _mainWidget(Provider.of<UserProvider>(context,listen: true).user)
         ),
       ),
-      drawer: MyDrawer(),
+      drawer: OurDrawer(),
     );
   }
 

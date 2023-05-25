@@ -13,9 +13,11 @@ class _AccountPageState extends State<WalletPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: Text("FUMO",style: TextStyle(color: Colors.white),),),
+      // appBar: AppBar(title: Text("FUMO",style: TextStyle(color: Colors.white),),),
       body: SafeArea(
-        child: _mainWidget(),
+        child: SingleChildScrollView(
+            padding: EdgeInsets.all(8.0),
+            child: _mainWidget()),
       ),
     );
   }

@@ -41,7 +41,7 @@ class _TestPageState extends State<TestPage> {
           ListTile(title: Text("User Login Page"), onTap: (){ Navigator.pushNamed(context, UserLoginPage.routeName); },),
           // ListTile(title: Text("Landing Page"), onTap: (){ Navigator.pushNamed(context, UserLoginTestPage.routeName); },),
           // ListTile(title: Text("Landing Page Two"), onTap: (){ Navigator.pushNamed(context, UserLoginTestPage.routeName); },),
-          ListTile(title: Text("Home Page"), onTap: (){ Navigator.pushNamed(context, HomePage.routeName); },),
+          ListTile(title: Text("Home Page"), onTap: (){ Navigator.pushNamedAndRemoveUntil(context, HomePage.routeName, (route) => false); },),
           ListTile(title: Text("Claim Page"), onTap: (){ Navigator.pushNamed(context, ClaimPointPage.routeName); },),
           ListTile(title: Text("Balance Page"), onTap: (){ Navigator.pushNamed(context, BalancePage.routeName); },),
           ListTile(title: Text("Friend Page"), onTap: (){ Navigator.pushNamed(context, FriendPage.routeName); },),

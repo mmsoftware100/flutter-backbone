@@ -1,7 +1,13 @@
 
+import 'package:base/features/presentation/components/form_elements/our_drawer.dart';
+import 'package:base/features/presentation/pages/friend_page.dart';
+import 'package:base/features/presentation/pages/wallet_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+
+import 'calculator_page.dart';
+import 'claim_point_page.dart';
 
 class HomePage extends StatefulWidget {
   static String routeName = "/HomePage";
@@ -20,12 +26,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home Page"),
+        title: Text("FUMO"),
         actions: [
           IconButton(onPressed: (){}, icon: Icon(Icons.notifications))
         ],
       ),
       body: _bottomNavigation(),
+      drawer: OurDrawer()
     );
   }
 
@@ -62,13 +69,21 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildScreens() {
     return [
       _mainWidget(),
-      _mainWidget(),
-      _mainWidget()
+      FriendPage(),
+      ClaimPointPage(),
+      CalculatorPage(),
+      WalletPage()
     ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
+      PersistentBottomNavBarItem(
+        icon: Icon(Icons.home),
+        title: ("Home"),
+        activeColorPrimary: CupertinoColors.activeBlue,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.person_add),
         title: ("Referral"),
@@ -80,6 +95,12 @@ class _HomePageState extends State<HomePage> {
         icon: Icon(Icons.currency_exchange, color: Colors.white,),
         title: ("Earn"),
         activeColorPrimary: CupertinoColors.activeGreen,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(Icons.calculate),
+        title: ("Calculator"),
+        activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
 

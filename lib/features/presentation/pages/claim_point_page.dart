@@ -14,9 +14,12 @@ class _ClaimPointPageState extends State<ClaimPointPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /*
       appBar: AppBar(
         title: Text("FUMO"),
       ),
+
+       */
       body: _mainWidget(),
     );
   }

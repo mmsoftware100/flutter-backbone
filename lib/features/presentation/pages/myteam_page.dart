@@ -16,20 +16,17 @@ class _MyTeamState extends State<MyTeamPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: _mainWidget(),
-      ),
+      body: SafeArea(child: _mainWidget()),
     );
   }
 
   Widget _mainWidget(){
     return Container(
       color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisAlignment: MainAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 10,),
             Row(
@@ -122,24 +119,19 @@ class _MyTeamState extends State<MyTeamPage> {
                 ),
               ),
             ),
-            Expanded(
-              child: Align(
-                alignment: FractionalOffset.bottomCenter,
-                child: Padding(
-                    padding: EdgeInsets.only(bottom: 10.0),
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        debugPrint('ElevatedButton Clicked');
-                        // Navigator.pushNamedAndRemoveUntil(context, PaymentPage.routeName, (route) => false);
-                      },
-                      icon: Icon(Icons.add,color: Colors.amber,),  //icon data for elevated button
-                      label: Text("Invite Friends",style: TextStyle(color: Colors.amber),), //label text
-                      // style: ElevatedButton.styleFrom(shape: StadiumBorder(),backgroundColor: Colors.white, foregroundColor: Colors.white, ),
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.white, foregroundColor: Colors.white, ),
+            Padding(
+                padding: EdgeInsets.only(bottom: 20.0),
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    debugPrint('ElevatedButton Clicked');
+                    // Navigator.pushNamedAndRemoveUntil(context, PaymentPage.routeName, (route) => false);
+                  },
+                  icon: Icon(Icons.add,color: Colors.amber,),  //icon data for elevated button
+                  label: Text("Invite Friends",style: TextStyle(color: Colors.amber),), //label text
+                  // style: ElevatedButton.styleFrom(shape: StadiumBorder(),backgroundColor: Colors.white, foregroundColor: Colors.white, ),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.white, foregroundColor: Colors.white, ),
 
-                    ),
                 ),
-              ),
             ),
           ],
         ),

@@ -43,10 +43,10 @@ class UserRepositoryImpl implements UserRepository{
   }
 
   @override
-  Future<Either<Failure, User>> register({required String password, required String email, required String name}) async{
+  Future<Either<Failure, User>> register({required User user}) async{
     try{
-      User user =  await userRemoteDataSource.register(password: password, email: email, name: name);
-      return Right(user);
+      User registredUser =  await userRemoteDataSource.register(user: user);
+      return Right(registredUser);
     }
     catch(exp, stackTrace){
       // TODO: convert exception to failure with meaningful message

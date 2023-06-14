@@ -1,5 +1,6 @@
 
 
+import 'package:base/features/domain/entities/user.dart';
 import 'package:base/features/presentation/components/form_elements/our_text_input.dart';
 import 'package:base/features/presentation/components/form_elements/our_submit_button.dart';
 import 'package:base/features/presentation/pages/user_login_test_page.dart';
@@ -23,6 +24,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
   TextEditingController emailTec = TextEditingController();
   TextEditingController passwordTec = TextEditingController();
   TextEditingController passwordConfirmTec = TextEditingController();
+  TextEditingController refTec = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +77,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
           OurTextInput(label: "Password", placeHolder: "enter your password", textEditingController: passwordTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.password, password: true,),
 
           SizedBox(height: 8.0,),
-          OurTextInput(label: "Referral Code", placeHolder: "enter your referral code", textEditingController: passwordConfirmTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.password, password: true),
+          OurTextInput(label: "Referral Code", placeHolder: "enter your referral code", textEditingController: refTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.password, password: true),
 
           SizedBox(height: 8.0,),
           OurSubmitButton(text:"Register", callback: _register, width: 0.8,),
@@ -102,9 +104,33 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
     String email = emailTec.text;
     String password = passwordTec.text;
     String name = nameTec.text;
+    String ref = refTec.text;
 
-    String status = "success" ; // await Provider.of<UserProvider>(context, listen:false).userRegisterPlz(password: password, email: email, name: name);
+    print(email + " , " + password + " , " + name + " , " + ref);
+
+    User user = User(
+        id: 0,
+        name: name,
+        email: email,
+        password: password,
+        referCode: ref,
+        phone: "",
+        img: "",
+        address: "",
+        remark: "",
+        accessToken: "",
+        createdAt: "",
+        modifiedAt: ""
+    );
+
+
+    // create user
+    // call register method in User Provider
+    // User user = User(id: id, name: name, email: email, password: password, referCode: referCode, phone: phone, img: img, address: address, remark: remark, accessToken: accessToken, createdAt: createdAt, modifiedAt: modifiedAt)
+
+    String status = await Provider.of<UserProvider>(context, listen:false).userRegisterPlz(user: user);
     // close loading dialog
+
     if(status == "success"){
       Navigator.pushNamed(context, HomePage.routeName);
     }
@@ -113,6 +139,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
       // showAlertDialog(context, "Login Fail", "Please check email , password and Try Again!", Colors.red, (){});
       showAlertDialog(context, "Something went wrong", "Contact to facebook page for Approval!!", Colors.red, (){});
     }
+
     // Navigator.pop(context);
   }
 

@@ -37,14 +37,10 @@ class UserProvider extends ChangeNotifier {
       notifyListeners();
     }
     Future<String> userRegisterPlz({
-        required String password,
-      required String email,
-      required String name
+        required User user
    })async{
         final Either<Failure, User> userEither = await userRegister(UserRegisterParams(
-            password: password,
-            email: email,
-            name: name
+          user: user
         ));
         return userEither.fold(
             (failure)  {

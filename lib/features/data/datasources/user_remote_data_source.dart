@@ -8,7 +8,7 @@ import 'network_call.dart';
 
 abstract class UserRemoteDataSource {
   // register
-  Future<User> register({required String password, required String email, required String name});
+  Future<User> register({required User user});
   // login
   Future<User> login({required String email, required String password});
   // me
@@ -108,17 +108,17 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
   }
 
   @override
-  Future<User> register({required String password, required String email, required String name}) async{
+  Future<User> register({required User user}) async{
     try{
       String endPoint =  registerEndpoint;
       print("UserRemoteDataSourceImpl->register");
       print("endpoint is $endPoint");
       var data = {
-        "email" : email,
-        "password" : password,
-        "name" : name,
-        "password_confirm" : password
-      };
+        "name" : user.name,
+        "email" : user.email,
+        "password" : user.password,
+        "refer_code" : user.referCode,
+      } ; // UserModel.fromEntity(user).toJson();
       print(data);
 
       //final response = await client.post(endPoint, data: data);

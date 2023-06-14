@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 
 abstract class UserRepository {
   // register
-  Future<Either<Failure, User>> register({required String password, required String email, required String name});
+  Future<Either<Failure, User>> register({required User user});
   // login
   Future<Either<Failure, User>> login({required String email, required String password});
   // me

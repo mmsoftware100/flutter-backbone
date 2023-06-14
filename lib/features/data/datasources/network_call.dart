@@ -139,7 +139,7 @@ class NetworkCallImpl implements NetworkCall {
         client.options.headers["Authorization"] = "Bearer $bearerToken";
       }
       // do we need to encrypt?
-      Response<dynamic> response = await client.post(endPoint, data: cipher ? OurApiEncrypt.encrypt(json.encode(data)) : data);
+      Response<dynamic> response = await client.post(endPoint, data:  data); // cipher ? OurApiEncrypt.encrypt(json.encode(data)) :
       // do we need to decrypt?
       print("response.data, statusCode and statusMessage");
       print(response.data);

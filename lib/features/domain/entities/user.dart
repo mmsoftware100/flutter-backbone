@@ -3,23 +3,44 @@ class User{
   int id;
   String name;
   String email;
-  String phoneNo;
+  String password;
+  String referCode;
+  String phone;
+  String img;
+  String address;
+  String remark;
   String accessToken;
   String createdAt;
   String modifiedAt;
-  bool dev;
 
   User({
     required this.id,
     required this.name,
     required this.email,
-    required this.phoneNo,
+    required this.password,
+    required this.referCode,
+    required this.phone,
+    required this.img,
+    required this.address,
+    required this.remark,
     required this.accessToken,
     required this.createdAt,
-    required this.modifiedAt,
-    required this.dev,
+    required this.modifiedAt
   });
 
 
-  static User sample () => User(id: 0, name: "name", email: "email", phoneNo: "phoneNo", accessToken: "accessToken", createdAt: "createdAt", modifiedAt: "modifiedAt", dev: true);
+  static User sample () => User(
+      id: 0,
+      name: "name",
+      email: "email",
+      password: "password",
+      referCode: "referCode",
+      phone: "phone",
+      img: "img",
+      address: "address",
+      remark: "remark",
+      accessToken: "accessToken",
+      createdAt: "createdAt",
+      modifiedAt: "modifiedAt"
+  );
 }

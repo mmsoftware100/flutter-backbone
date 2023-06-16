@@ -43,6 +43,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
       // Map<String, dynamic> dataResponse = response.data;
       try{
         UserModel userModel = UserModel.fromJson(dataResponse["data"]);
+        userModel.accessToken = dataResponse["data"]["access_token"];
         return userModel.toEntity();
       }catch(innerExp, stackTrace){
         print('UserRemoteDataSourceImpl->login   serialization exception $innerExp');

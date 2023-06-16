@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:base/core/util/loading_dialog.dart';
 import 'package:base/features/presentation/components/form_elements/our_text_input.dart';
 import 'package:base/features/presentation/components/form_elements/our_submit_button.dart';
 import 'package:base/features/presentation/pages/home_page.dart';
@@ -105,6 +106,23 @@ class _UserLoginPageState extends State<UserLoginPage> {
     String password = passwordTec.text;
 
     print("$email and $password");
+    // show loading screen
+    LoadingDialog.show(context);
+    String str = await Provider.of<UserProvider>(context, listen: false).userLoginPlz(email: email, password: password);
+    // hide loading screen
+    LoadingDialog.hide(context);
+
+    print("str $str");
+
+    if(str == "success"){
+      Navigator.pushNamed(context, HomePage.routeName);
+    }
+    else{
+      // show error message
+      // showAlertDialog(context, "Login Fail", "Please check email , password and Try Again!", Colors.red, (){});
+      showAlertDialog(context, "Wrong Password", "Email နဲ့ Password ကိုက်ညီမှု မရှိပါ", Colors.red, (){});
+    }
+
 
     /*
 

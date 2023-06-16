@@ -104,6 +104,10 @@ class _UserLoginPageState extends State<UserLoginPage> {
     String email = emailTec.text;
     String password = passwordTec.text;
 
+    print("$email and $password");
+
+    /*
+
     if(isEmail(email) == false){
       showAlertDialog(context, "Invalid Email", "Check your email address", Colors.red, (){
         // Navigator.pushNamedAndRemoveUntil(context, HomePage.routeName, (route) => false);
@@ -124,6 +128,8 @@ class _UserLoginPageState extends State<UserLoginPage> {
       // showAlertDialog(context, "Login Fail", "Please check email , password and Try Again!", Colors.red, (){});
       showAlertDialog(context, "Need Approval / Wrong Password", "Contact to facebook page for Approval!!", Colors.red, (){});
     }
+
+     */
 
   }
 

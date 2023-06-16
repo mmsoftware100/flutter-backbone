@@ -117,8 +117,11 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
         "name" : user.name,
         "email" : user.email,
         "password" : user.password,
-        "refer_code" : user.referCode,
       } ; // UserModel.fromEntity(user).toJson();
+
+      if(user.referCode.isNotEmpty){
+        data["refer_code"] = user.referCode;
+      }
       print(data);
 
       //final response = await client.post(endPoint, data: data);

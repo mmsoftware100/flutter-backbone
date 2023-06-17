@@ -43,6 +43,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
       // Map<String, dynamic> dataResponse = response.data;
       try{
         UserModel userModel = UserModel.fromJson(dataResponse["data"]);
+        userModel.accessToken = dataResponse["data"]["access_token"];
         return userModel.toEntity();
       }catch(innerExp, stackTrace){
         print('UserRemoteDataSourceImpl->login   serialization exception $innerExp');
@@ -117,8 +118,11 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
         "name" : user.name,
         "email" : user.email,
         "password" : user.password,
-        "refer_code" : user.referCode,
       } ; // UserModel.fromEntity(user).toJson();
+
+      if(user.referCode.isNotEmpty){
+        data["refer_code"] = user.referCode;
+      }
       print(data);
 
       //final response = await client.post(endPoint, data: data);

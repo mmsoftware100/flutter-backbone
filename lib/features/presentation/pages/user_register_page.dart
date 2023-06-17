@@ -132,7 +132,9 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
     // close loading dialog
 
     if(status == "success"){
-      Navigator.pushNamed(context, HomePage.routeName);
+      // Navigator.pushNamed(context, HomePage.routeName);
+
+      showAlertDialog(context, "Verify Email", "Check your email inbox and click on verification link", Colors.red, (){});
     }
     else{
       // show error message

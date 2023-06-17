@@ -1,12 +1,16 @@
 
+import 'package:base/features/domain/entities/crypto.dart';
+import 'package:base/features/domain/usecases/currency_getdata.dart';
 import 'package:base/features/presentation/components/form_elements/our_drawer.dart';
 import 'package:base/features/presentation/pages/friend_page.dart';
 import 'package:base/features/presentation/pages/myteam_page.dart';
 import 'package:base/features/presentation/pages/payment_page.dart';
 import 'package:base/features/presentation/pages/wallet_page.dart';
+import 'package:base/features/presentation/providers/currency_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:provider/provider.dart';
 
 import 'calculator_page.dart';
 import 'claim_point_page.dart';
@@ -22,6 +26,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   PersistentTabController _controller = PersistentTabController(initialIndex: 0);
+
+  void _init(){
+    Provider.of<CurrencyProvider>(context, listen: false).currencyGetdata(CryptoGetdataParams(start: "1", limit: "50"));
+    print("_init");
+    //Provider.of<TaxProvider>(context, listen: false).getOurPaymentTypeList(1);
+  }
 
 
   @override

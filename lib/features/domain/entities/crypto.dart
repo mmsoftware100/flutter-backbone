@@ -28,4 +28,12 @@ class Crypto{
     }
     return data;
   }
+
+  // List<Crypto> toResponseList(List<dynamic> data) {
+  //   List<Crypto> value = <Crypto>[];
+  //   data.forEach((element) {
+  //     value.add(Crypto.fromJson(element));
+  //   });
+  //   return value ?? List<Crypto>.empty();
+  // }
 }

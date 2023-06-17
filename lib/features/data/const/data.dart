@@ -6,6 +6,7 @@ const String apiVersion = backendApiServer+'/api';
 const String loginEndpoint = apiVersion+'/login';
 const String meEndpoint = apiVersion+'/me';
 const String registerEndpoint = apiVersion+'/register';
+const String currencyEndpoint = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
 
 // assets urls
 // images

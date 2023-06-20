@@ -42,7 +42,7 @@ class InvestorWithdraw {
     if (json['admin'] != null) {
       admin = <Admin>[];
       json['admin'].forEach((v) {
-        admin!.add(new Admin.fromJson(v));
+        //admin!.add(new Admin.fromJson(v));
       });
     }
     if (json['agent'] != null) {
@@ -72,7 +72,7 @@ class InvestorWithdraw {
       data['level'] = this.level!.map((v) => v.toJson()).toList();
     }
     if (this.admin != null) {
-      data['admin'] = this.admin!.map((v) => v.toJson()).toList();
+      //data['admin'] = this.admin!.map((v) => v.toJson()).toList();
     }
     if (this.agent != null) {
       data['agent'] = this.agent!.map((v) => v.toJson()).toList();

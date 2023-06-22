@@ -1,4 +1,5 @@
 
+import 'package:base/features/domain/entities/crypto.dart';
 import 'package:base/features/presentation/components/form_elements/our_drawer.dart';
 import 'package:base/features/presentation/pages/friend_page.dart';
 import 'package:base/features/presentation/pages/myteam_page.dart';
@@ -37,12 +38,11 @@ class _HomePageState extends State<HomePage> {
 
 
 
-  void _init(){
-    // Provider.of<CurrencyProvider>(context, listen: false).currencyGetdata(CryptoGetdataParams(start: "1", limit: "50"));
+  void _init()async{
     print("_init");
-    //Provider.of<TaxProvider>(context, listen: false).getOurPaymentTypeList(1);
     String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
-    Provider.of<CryptoProvider>(context, listen: false).selectCryptoPlz(accessToken: accessToken, page: 1, limit: 50, convert: "USD");
+    String status = await Provider.of<CryptoProvider>(context, listen: false).selectCryptoPlz(accessToken: accessToken, page: 1, limit: 50, convert: "USD");
+    print("status is $status");
 
   }
 
@@ -56,8 +56,13 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: _bottomNavigation(),
-      drawer: OurDrawer()
+      drawer: OurDrawer(),
+      floatingActionButton: _fab(),
     );
+  }
+
+  Widget _fab(){
+    return FloatingActionButton(onPressed: _init, child: Icon(Icons.refresh),);
   }
 
   Widget _bottomNavigation(){
@@ -156,7 +161,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 8.0,),
               _verticalListRow(),
               _dashboardRow(),
-              _dataTable(),
+              _dataTable(cryptoList: Provider.of<CryptoProvider>(context, listen: true).cryptoList),
           ],
         ),
       ),
@@ -444,7 +449,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  Widget _dataTable(){
+  Widget _dataTable({required List<Crypto> cryptoList}){
     return Container(
       margin: EdgeInsets.all(8.0),
       padding: EdgeInsets.all(8.0),
@@ -466,39 +471,44 @@ class _HomePageState extends State<HomePage> {
                 Text("Market Cap", style: TextStyle(fontWeight: FontWeight.bold),)
               ]
           ),
+          ...List.generate(cryptoList.length, (index) => _dataTableRow(crypto: cryptoList[index], index: index))
+          /*
+
           _dataTableRow(),
           _dataTableRow(),
           _dataTableRow(),
           _dataTableRow(),
           _dataTableRow(),
           _dataTableRow(),
+
+           */
         ],
       ),
     );
   }
 
-  TableRow _dataTableRow(){
+  TableRow _dataTableRow({required Crypto crypto, required int index}){
     return TableRow(
           children: [
             Padding(
               padding: const EdgeInsets.all(4.0),
-              child: Text("1"),
+              child: Text(index.toString()),
             ),
             Row(
               children: [
                 Icon(Icons.currency_bitcoin),
-                Text("Bitcoin Core"),
+                Text(crypto.name),
                 SizedBox(width: 8.0,),
-                Text("BTC", style: TextStyle(color: Colors.grey),),
+                Text(crypto.symbol, style: TextStyle(color: Colors.grey),),
               ],
             ),
             Padding(
               padding: const EdgeInsets.all(4.0),
-              child: Text("\$8.328.54"),
+              child: Text("\$"+ crypto.price.toString()),
             ),
             Padding(
               padding: const EdgeInsets.all(4.0),
-              child: Text("\$8.328.54"),
+              child: Text("\$"+ crypto.marketCap.toString()),
             ),
           ]
       );

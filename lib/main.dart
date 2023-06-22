@@ -188,7 +188,7 @@ class MyApp extends StatelessWidget {
 
        */
       //initialRoute: UserLoginPage.routeName,
-      initialRoute: LandingPage.routeName,
+      initialRoute: HomePage.routeName,
       routes: {
         TestPage.routeName: (context) => TestPage(),
         LandingPage.routeName:(context) => LandingPage(),

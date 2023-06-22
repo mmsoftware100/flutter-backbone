@@ -11,7 +11,10 @@ import '../const/data.dart';
 abstract class NetworkCall {
   Future<dynamic> getRequest({required String url, required Map<
       String,
-      dynamic> data, String? bearerToken});
+      dynamic> data,
+    String? bearerToken,
+    Map<String, dynamic>? headers
+  });
 
   Future<dynamic> postRequest({required String url, required Map<
       String,
@@ -106,12 +109,27 @@ class NetworkCallImpl implements NetworkCall {
   }
 
   @override
-  Future<dynamic> getRequest({required String url, required Map<String,dynamic> data, String? bearerToken}) async{
+  Future<dynamic> getRequest({required String url, required Map<String,dynamic> data, String? bearerToken, Map<String, dynamic>? headers}) async{
     try{
       String endPoint = url;
       if(bearerToken != null){
         client.options.headers["Authorization"] = "Bearer $bearerToken";
       }
+      if(headers != null){
+        headers.forEach((key, value) {
+          client.options.headers[key] = value;
+        });
+      }
+      if(data != null){
+
+        endPoint = endPoint + "?";
+        data.forEach((key, value) {
+          endPoint = endPoint + key.toString() + "=" + value.toString() + "&";
+        });
+      }
+
+      print("final endpoint is $endPoint");
+
       Response<dynamic> response = await client.get(endPoint);
       print("response.data, statusCode and statusMessage");
       print(response.data);

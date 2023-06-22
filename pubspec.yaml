@@ -149,7 +149,7 @@ flutter_icons:
 flutter_native_splash:
   android: false
   color: "#0B8EE9"
-  image: assets/images/logo.png
+  image: assets/logo/Investment Logo-22.png
 # The following section is specific to Flutter.
 flutter:
 

@@ -9,6 +9,7 @@ import 'package:base/features/presentation/pages/setting_page.dart';
 import 'package:base/features/presentation/pages/user_account_page.dart';
 import 'package:base/features/presentation/pages/user_login_test_page.dart';
 import 'package:base/features/presentation/pages/user_register_page.dart';
+import 'package:base/features/presentation/providers/crpyto_provider.dart';
 
 
 import 'package:flutter/material.dart';
@@ -143,6 +144,10 @@ void main() async{
   runApp(
       MultiProvider(
           providers: [
+
+            ChangeNotifierProvider(create: (_) =>CryptoProvider(
+                selectCrypto: di.sl(),
+            )),
 
             ChangeNotifierProvider(create: (_) =>UserProvider(
                 userLogin: di.sl(),

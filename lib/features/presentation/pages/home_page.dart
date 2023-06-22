@@ -4,6 +4,8 @@ import 'package:base/features/presentation/pages/friend_page.dart';
 import 'package:base/features/presentation/pages/myteam_page.dart';
 import 'package:base/features/presentation/pages/payment_page.dart';
 import 'package:base/features/presentation/pages/wallet_page.dart';
+import 'package:base/features/presentation/providers/crpyto_provider.dart';
+import 'package:base/features/presentation/providers/user_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -24,12 +26,25 @@ class _HomePageState extends State<HomePage> {
 
   PersistentTabController _controller = PersistentTabController(initialIndex: 0);
 
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _init();
+  }
+
+
+
+
   void _init(){
     // Provider.of<CurrencyProvider>(context, listen: false).currencyGetdata(CryptoGetdataParams(start: "1", limit: "50"));
     print("_init");
     //Provider.of<TaxProvider>(context, listen: false).getOurPaymentTypeList(1);
-  }
+    String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
+    Provider.of<CryptoProvider>(context, listen: false).selectCryptoPlz(accessToken: accessToken, page: 1, limit: 50, convert: "USD");
 
+  }
 
   @override
   Widget build(BuildContext context) {

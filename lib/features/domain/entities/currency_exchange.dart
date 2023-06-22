@@ -13,7 +13,7 @@ class CurrencyExchange {
   CurrencyExchange(
       { required this.id,
         required this.name,
-        required this.email,
+        required this.symbol,
         required this.emailVerifiedAt,
         required this.phone,
         required this.img,

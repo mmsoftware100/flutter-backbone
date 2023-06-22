@@ -1,4 +1,5 @@
 import 'package:base/features/data/models/quote_model.dart';
+import 'package:base/features/domain/entities/crypto.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'crypto_model.g.dart';
@@ -67,4 +68,15 @@ class CryptoModel {
   factory CryptoModel.fromJson(Map<String, dynamic> json) => _$CryptoModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CryptoModelToJson(this);
+
+  Crypto toEntity(){
+    QuoteModel? quoteModel = quote[quote.keys.first];
+    return Crypto(
+        id: id,
+        name: name,
+        symbol: symbol,
+        price: quoteModel?.price ?? 0,
+        marketCap: quoteModel?.marketCap ?? 0
+    );
+  }
 }

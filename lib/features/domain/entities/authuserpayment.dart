@@ -13,6 +13,10 @@ class AuthUserPayment {
         required this.createdAt,
         required this.updatedAt});
 
+  static AuthUserPayment sample(){
+    return AuthUserPayment(id: 0, investerId: "investerId", paymentAccount: "paymentAccount", createdAt: "createdAt", updatedAt: "updatedAt");
+  }
+
   // AuthUserPayment.fromJson(Map<String, dynamic> json) {
   //   id = json['id'];
   //   investerId = json['invester_id'];

@@ -46,8 +46,8 @@ class InvestorDashboardModel {
   @JsonKey(name: 'deposit', defaultValue: [])
   List<DepositModel> deposit;
 
-  @JsonKey(name: 'level', defaultValue: null)
-  LevelModel? level;
+  @JsonKey(name: 'level', defaultValue: [])
+  List<LevelModel> level;
 
   @JsonKey(name: 'todayDate', defaultValue: "todayDate")
   String todayDate;
@@ -131,15 +131,16 @@ class InvestorDashboardModel {
         referFirstArray: referFirstArray,
       referSecondArray: referSecondArray, referThirdArray: referThirdArray,
       deposit: deposit.map((e) => e.toEntity()).toList(),
-        level: [], // level?.toEntity() ?? Level.sample(),
+        level: level.map((e) => e.toEntity()).toList(),
         todayDate: todayDate,
       depositProfit: depositProfit, payment: payment, sixmonth: sixmonth,
       withdrawAmount: withdrawAmount, threeMonthFivepercentIncreaseDate: threeMonthFivepercentIncreaseDate,
       sixMonthTenpercentIncreaseDate: sixMonthTenpercentIncreaseDate, nineMonthFifteenpercentIncreaseDate: nineMonthFifteenpercentIncreaseDate,
       twelveMonthIncreaseDate: twelveMonthIncreaseDate, authUserImage: authUserImage,
       authUserDeposit: [],
-        authUserPayment: authUserPayment?.toEntity(),
-      totalReferProfitAmount: totalReferProfitAmount, totalDepositProfitAmount: totalDepositProfitAmount,
+        authUserPayment: authUserPayment?.toEntity() ?? AuthUserPayment.sample(),
+      totalReferProfitAmount: totalReferProfitAmount,
+        totalDepositProfitAmount: totalDepositProfitAmount,
       totalDepositAmount: totalDepositAmount
     );
   }

@@ -57,6 +57,33 @@ class InvestorDashboard {
         required  this.totalDepositAmount
       });
 
+  static InvestorDashboard sample() {
+    return InvestorDashboard(
+        authId: 0,
+        refer: Refer.sample(),
+        referFirstArray: [],
+        referSecondArray: [],
+        referThirdArray: [],
+        deposit: [],
+        level: [],
+        todayDate: "todayDate",
+        depositProfit: 0,
+        payment: "payment",
+        sixmonth: "sixmonth",
+        withdrawAmount: 0,
+        threeMonthFivepercentIncreaseDate: "threeMonthFivepercentIncreaseDate",
+        sixMonthTenpercentIncreaseDate: "sixMonthTenpercentIncreaseDate",
+        nineMonthFifteenpercentIncreaseDate: "nineMonthFifteenpercentIncreaseDate",
+        twelveMonthIncreaseDate: "twelveMonthIncreaseDate",
+        authUser: AuthUser.sample(),
+        authUserImage: authUserImage,
+        authUserDeposit: authUserDeposit,
+        authUserPayment: authUserPayment,
+        totalReferProfitAmount: totalReferProfitAmount,
+        totalDepositProfitAmount: totalDepositProfitAmount,
+        totalDepositAmount: totalDepositAmount
+    );
+  }
   // InvestorDashboard.fromJson(Map<String, dynamic> json) {
   //   authId = json['auth_id'];
   //   refer = json['refer'] != null ? new Refer.fromJson(json['refer']) : null;

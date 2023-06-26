@@ -25,6 +25,22 @@ class AuthUser {
         required this.createdAt,
         required this.updatedAt});
 
+  static AuthUser sample(){
+    return AuthUser(
+        id: 0,
+        name: "name",
+        email: "email",
+        emailVerifiedAt: "emailVerifiedAt",
+        phone: "phone",
+        img: "img",
+        address: "address",
+        remark: "remark",
+        referCode: "referCode",
+        createdAt: "createdAt",
+        updatedAt: "updatedAt"
+    );
+  }
+
   // static AuthUser sample(){
   //   return AuthUser(id: id, name: name, email: email, emailVerifiedAt: emailVerifiedAt, phone: phone, img: img, address: address, remark: remark, referCode: referCode, createdAt: createdAt, updatedAt: updatedAt)
   // }

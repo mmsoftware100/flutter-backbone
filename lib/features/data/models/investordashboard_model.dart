@@ -19,6 +19,7 @@ import '../../domain/entities/agent.dart';
 import '../../domain/entities/authuserpayment.dart';
 import '../../domain/entities/deposit.dart';
 import '../../domain/entities/level.dart';
+import 'level_model.dart';
 
 
 //part 'investordashboard_model.g.dart';
@@ -30,10 +31,10 @@ class InvestorDashboardModel {
   @JsonKey(name: 'authId', defaultValue: 0)
   int authId;
 
-  @JsonKey(name: 'refer', defaultValue: {})
-  Refer refer;
+  @JsonKey(name: 'refer', defaultValue: null)
+  ReferModel? refer;
 
-  @JsonKey(name: 'referFirstArray', defaultValue: [])
+  @JsonKey(name: 'refer_first_array', defaultValue: [])
   List<int> referFirstArray;
 
   @JsonKey(name: 'referSecondArray', defaultValue: [])
@@ -42,11 +43,11 @@ class InvestorDashboardModel {
   @JsonKey(name: 'referThirdArray', defaultValue: [])
   List<int> referThirdArray;
 
-  @JsonKey(name: 'deposit', defaultValue: {})
+  @JsonKey(name: 'deposit', defaultValue: [])
   List<DepositModel> deposit;
 
-  @JsonKey(name: 'level', defaultValue: {})
-  Level level;
+  @JsonKey(name: 'level', defaultValue: null)
+  LevelModel? level;
 
   @JsonKey(name: 'todayDate', defaultValue: "todayDate")
   String todayDate;
@@ -84,8 +85,8 @@ class InvestorDashboardModel {
   @JsonKey(name: 'auth_user_deposit', defaultValue: [])
   List<AuthUserDepositModel> authUserDeposit;
 
-  @JsonKey(name: 'auth_user_payment', defaultValue: {})
-  AuthUserPaymentModel authUserPayment;
+  @JsonKey(name: 'auth_user_payment', defaultValue: null)
+  AuthUserPaymentModel? authUserPayment;
 
   @JsonKey(name: 'total_refer_profit_amount', defaultValue: 0)
   int totalReferProfitAmount;
@@ -122,22 +123,26 @@ class InvestorDashboardModel {
     required  this.totalDepositAmount
   });
 
-  // InvestorDashboard toEntity(){
-  //   return InvestorDashboard(
-  //     authId: authId,
-  //     authUser: authUser.toEntity(),
-  //     refer: refer, referFirstArray: referFirstArray,
-  //     referSecondArray: referSecondArray, referThirdArray: referThirdArray,
-  //     deposit: [], level: [], todayDate: todayDate,
-  //     depositProfit: depositProfit, payment: payment, sixmonth: sixmonth,
-  //     withdrawAmount: withdrawAmount, threeMonthFivepercentIncreaseDate: threeMonthFivepercentIncreaseDate,
-  //     sixMonthTenpercentIncreaseDate: sixMonthTenpercentIncreaseDate, nineMonthFifteenpercentIncreaseDate: nineMonthFifteenpercentIncreaseDate,
-  //     twelveMonthIncreaseDate: twelveMonthIncreaseDate, authUserImage: authUserImage,
-  //     authUserDeposit: [], authUserPayment: authUserPayment.toEntity(),
-  //     totalReferProfitAmount: totalReferProfitAmount, totalDepositProfitAmount: totalDepositProfitAmount,
-  //     totalDepositAmount: totalDepositAmount
-  //   );
-  // }
+  InvestorDashboard toEntity(){
+    return InvestorDashboard(
+      authId: authId,
+      authUser: authUser.toEntity(),
+      refer: refer?.toEntity() ?? Refer.sample() ,
+        referFirstArray: referFirstArray,
+      referSecondArray: referSecondArray, referThirdArray: referThirdArray,
+      deposit: deposit.map((e) => e.toEntity()).toList(),
+        level: [], // level?.toEntity() ?? Level.sample(),
+        todayDate: todayDate,
+      depositProfit: depositProfit, payment: payment, sixmonth: sixmonth,
+      withdrawAmount: withdrawAmount, threeMonthFivepercentIncreaseDate: threeMonthFivepercentIncreaseDate,
+      sixMonthTenpercentIncreaseDate: sixMonthTenpercentIncreaseDate, nineMonthFifteenpercentIncreaseDate: nineMonthFifteenpercentIncreaseDate,
+      twelveMonthIncreaseDate: twelveMonthIncreaseDate, authUserImage: authUserImage,
+      authUserDeposit: [],
+        authUserPayment: authUserPayment?.toEntity(),
+      totalReferProfitAmount: totalReferProfitAmount, totalDepositProfitAmount: totalDepositProfitAmount,
+      totalDepositAmount: totalDepositAmount
+    );
+  }
 
 
   // static InvestorDashboardModel fromEntity(InvestorDashboard admin){

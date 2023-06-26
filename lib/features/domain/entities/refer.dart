@@ -21,6 +21,9 @@ class Refer {
         required this.createdAt,
         required this.updatedAt});
 
+  static Refer sample() {
+    return Refer(id: 0, originalInvester: "originalInvester", referInvester: "referInvester", referCode: "referCode", first: "first", second: "second", third: "third", createdAt: "createdAt", updatedAt: "0");
+  }
   // Refer.fromJson(Map<String, dynamic> json) {
   //   id = json['id'];
   //   originalInvester = json['original_invester'];

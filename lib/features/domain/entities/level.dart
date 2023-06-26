@@ -17,6 +17,10 @@ class Level {
         required this.createdAt,
         required this.updatedAt});
 
+
+  static Level sample(){
+    return Level(id: 0, levelName: "levelName", point: "point", amount: "", remark: "remark", createdAt: "createdAt", updatedAt: "updatedAt");
+  }
   // Level.fromJson(Map<String, dynamic> json) {
   //   id = json['id'];
   //   levelName = json['level_name'];

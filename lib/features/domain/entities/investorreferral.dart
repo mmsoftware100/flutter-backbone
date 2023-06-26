@@ -4,32 +4,33 @@ import 'package:base/features/domain/entities/alllevel.dart';
 import 'package:base/features/domain/entities/refer.dart';
 
 class InvestorReferral {
-  int? authId;
-  String? authReferCode;
-  Refer? refer;
-  List<int>? referFirstArray;
-  List<int>? referSecondArray;
-  List<int>? referThirdArray;
-  List<AllInvester>? allInvester;
-  List<AllDeposit>? allDeposit;
-  List<AllLevel>? allLevel;
-  String? todayDate;
-  String? paymentAccount;
-  int? withdrawAmount;
+  int authId;
+  String authReferCode;
+  Refer refer;
+  List<int> referFirstArray;
+  List<int> referSecondArray;
+  List<int> referThirdArray;
+  List<AllInvester> allInvester;
+  List<AllDeposit> allDeposit;
+  List<AllLevel> allLevel;
+  String todayDate;
+  String paymentAccount;
+  int withdrawAmount;
 
   InvestorReferral(
-      {this.authId,
-        this.authReferCode,
-        this.refer,
-        this.referFirstArray,
-        this.referSecondArray,
-        this.referThirdArray,
-        this.allInvester,
-        this.allDeposit,
-        this.allLevel,
-        this.todayDate,
-        this.paymentAccount,
-        this.withdrawAmount});
+      {
+        required this.authId,
+        required this.authReferCode,
+        required this.refer,
+        required this.referFirstArray,
+        required this.referSecondArray,
+        required this.referThirdArray,
+        required this.allInvester,
+        required this.allDeposit,
+        required this.allLevel,
+        required this.todayDate,
+        required this.paymentAccount,
+        required this.withdrawAmount});
 
   // InvestorReferral.fromJson(Map<String, dynamic> json) {
   //   authId = json['auth_id'];

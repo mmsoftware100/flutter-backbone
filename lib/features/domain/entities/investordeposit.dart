@@ -5,20 +5,21 @@ import 'package:base/features/domain/entities/investor.dart';
 import 'package:base/features/domain/entities/level.dart';
 
 class InvestorDeposit {
-  List<Deposit>? deposit;
-  List<Level>? level;
-  List<Admin>? admin;
-  List<Agent>? agent;
-  List<Invester>? invester;
-  String? status;
+  List<Deposit> deposit;
+  List<Level> level;
+  List<Admin> admin;
+  List<Agent> agent;
+  List<Invester> invester;
+  String status;
 
   InvestorDeposit(
-      {this.deposit,
-        this.level,
-        this.admin,
-        this.agent,
-        this.invester,
-        this.status});
+      {
+        required this.deposit,
+       required this.level,
+       required this.admin,
+       required this.agent,
+       required this.invester,
+       required this.status});
 
   // InvestorDeposit.fromJson(Map<String, dynamic> json) {
   //   if (json['deposit'] != null) {

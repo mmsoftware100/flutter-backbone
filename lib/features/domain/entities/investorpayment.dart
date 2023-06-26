@@ -2,26 +2,27 @@ import 'package:base/features/domain/entities/allinvestor.dart';
 import 'package:base/features/domain/entities/alllevel.dart';
 
 class InvestorPayment {
-  int? authId;
-  String? authPaymentAccount;
-  List<AllInvester>? allInvester;
-  int? totalDepositAmount;
-  int? totalWithdrawAmount;
-  int? totalReferProfit;
-  int? totalDepositProfit;
-  List<AllLevel>? allLevel;
-  String? todayDate;
+  int authId;
+  String authPaymentAccount;
+  List<AllInvester> allInvester;
+  int totalDepositAmount;
+  int totalWithdrawAmount;
+  int totalReferProfit;
+  int totalDepositProfit;
+  List<AllLevel> allLevel;
+  String todayDate;
 
   InvestorPayment(
-      {this.authId,
-        this.authPaymentAccount,
-        this.allInvester,
-        this.totalDepositAmount,
-        this.totalWithdrawAmount,
-        this.totalReferProfit,
-        this.totalDepositProfit,
-        this.allLevel,
-        this.todayDate});
+      {
+        required this.authId,
+        required this.authPaymentAccount,
+        required this.allInvester,
+        required this.totalDepositAmount,
+        required this.totalWithdrawAmount,
+        required  this.totalReferProfit,
+        required this.totalDepositProfit,
+        required this.allLevel,
+        required this.todayDate});
 
   // InvestorPayment.fromJson(Map<String, dynamic> json) {
   //   authId = json['auth_id'];

@@ -76,12 +76,12 @@ class InvestorDashboard {
         nineMonthFifteenpercentIncreaseDate: "nineMonthFifteenpercentIncreaseDate",
         twelveMonthIncreaseDate: "twelveMonthIncreaseDate",
         authUser: AuthUser.sample(),
-        authUserImage: authUserImage,
-        authUserDeposit: authUserDeposit,
-        authUserPayment: authUserPayment,
-        totalReferProfitAmount: totalReferProfitAmount,
-        totalDepositProfitAmount: totalDepositProfitAmount,
-        totalDepositAmount: totalDepositAmount
+        authUserImage: "authUserImage",
+        authUserDeposit: [],
+        authUserPayment: AuthUserPayment.sample(),
+        totalReferProfitAmount: 0,
+        totalDepositProfitAmount: 0,
+        totalDepositAmount: 0
     );
   }
   // InvestorDashboard.fromJson(Map<String, dynamic> json) {

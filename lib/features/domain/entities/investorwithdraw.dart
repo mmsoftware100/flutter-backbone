@@ -6,22 +6,23 @@ import 'package:base/features/domain/entities/level.dart';
 import 'package:base/features/domain/entities/withdraw.dart';
 
 class InvestorWithdraw {
-  List<Withdraw>? withdraw;
-  AuthUser? authUser;
-  List<Level>? level;
-  List<Admin>? admin;
-  List<Agent>? agent;
-  List<Invester>? invester;
-  String? status;
+  List<Withdraw> withdraw;
+  AuthUser authUser;
+  List<Level> level;
+  List<Admin> admin;
+  List<Agent> agent;
+  List<Invester> invester;
+  String status;
 
   InvestorWithdraw(
-      {this.withdraw,
-        this.authUser,
-        this.level,
-        this.admin,
-        this.agent,
-        this.invester,
-        this.status});
+      {
+        required this.withdraw,
+        required this.authUser,
+        required this.level,
+        required this.admin,
+        required this.agent,
+        required this.invester,
+        required this.status});
 
   // InvestorWithdraw.fromJson(Map<String, dynamic> json) {
   //   if (json['withdraw'] != null) {

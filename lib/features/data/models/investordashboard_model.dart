@@ -22,7 +22,7 @@ import '../../domain/entities/level.dart';
 import 'level_model.dart';
 
 
-//part 'investordashboard_model.g.dart';
+part 'investordashboard_model.g.dart';
 @JsonSerializable(explicitToJson: true)
 
 
@@ -37,10 +37,10 @@ class InvestorDashboardModel {
   @JsonKey(name: 'refer_first_array', defaultValue: [])
   List<int> referFirstArray;
 
-  @JsonKey(name: 'referSecondArray', defaultValue: [])
+  @JsonKey(name: 'refer_second_array', defaultValue: [])
   List<int> referSecondArray;
 
-  @JsonKey(name: 'referThirdArray', defaultValue: [])
+  @JsonKey(name: 'refer_third_array', defaultValue: [])
   List<int> referThirdArray;
 
   @JsonKey(name: 'deposit', defaultValue: [])
@@ -76,8 +76,8 @@ class InvestorDashboardModel {
   @JsonKey(name: 'twelve_month_increase_date', defaultValue: "twelveMonthIncreaseDate")
   String twelveMonthIncreaseDate;
 
-  @JsonKey(name: 'auth_user', defaultValue: {})
-  AuthUserModel authUser;
+  @JsonKey(name: 'auth_user', defaultValue: null)
+  AuthUserModel? authUser;
 
   @JsonKey(name: 'auth_user_image', defaultValue: "authUserImage")
   String authUserImage;
@@ -126,7 +126,7 @@ class InvestorDashboardModel {
   InvestorDashboard toEntity(){
     return InvestorDashboard(
       authId: authId,
-      authUser: authUser.toEntity(),
+      authUser: authUser?.toEntity() ?? AuthUser.sample(),
       refer: refer?.toEntity() ?? Refer.sample() ,
         referFirstArray: referFirstArray,
       referSecondArray: referSecondArray, referThirdArray: referThirdArray,
@@ -137,7 +137,7 @@ class InvestorDashboardModel {
       withdrawAmount: withdrawAmount, threeMonthFivepercentIncreaseDate: threeMonthFivepercentIncreaseDate,
       sixMonthTenpercentIncreaseDate: sixMonthTenpercentIncreaseDate, nineMonthFifteenpercentIncreaseDate: nineMonthFifteenpercentIncreaseDate,
       twelveMonthIncreaseDate: twelveMonthIncreaseDate, authUserImage: authUserImage,
-      authUserDeposit: [],
+      authUserDeposit: authUserDeposit.map((e) => e.toEntity()).toList(),
         authUserPayment: authUserPayment?.toEntity() ?? AuthUserPayment.sample(),
       totalReferProfitAmount: totalReferProfitAmount,
         totalDepositProfitAmount: totalDepositProfitAmount,
@@ -149,8 +149,8 @@ class InvestorDashboardModel {
   // static InvestorDashboardModel fromEntity(InvestorDashboard admin){
   //   return InvestorDashboardModel(
   //     authId: admin.authId,
-  //     authUser: admin.authUser.,
-  //     refer: refer, referFirstArray: referFirstArray,
+  //     authUser: admin.authUser,
+  //     refer: admin.refer, referFirstArray: referFirstArray,
   //     referSecondArray: referSecondArray, referThirdArray: referThirdArray,
   //     deposit: [], level: [], todayDate: todayDate,
   //     depositProfit: depositProfit, payment: payment, sixmonth: sixmonth,
@@ -164,8 +164,8 @@ class InvestorDashboardModel {
   // }
 
 
-  // factory AllDepositModel.fromJson(Map<String, dynamic> json) =>  _$AllDepositModelFromJson(json);
-  //
-  // Map<String, dynamic> toJson() => _$AllDepositModelToJson(this);
+  factory InvestorDashboardModel.fromJson(Map<String, dynamic> json) =>  _$InvestorDashboardModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$InvestorDashboardModelToJson(this);
 
 }

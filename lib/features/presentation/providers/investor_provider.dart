@@ -48,9 +48,9 @@ class InvestorProvider extends ChangeNotifier {
           notifyListeners();
           return failure.toString();
         },
-            (investordashboardListUpdated)  async{
+            (investorDashboardListUpdated)  async{
           print("InvestorProvider->selectInvestorDashboardPlz->userData");
-          investordashboard = investordashboardListUpdated;
+          investordashboard = investorDashboardListUpdated;
           notifyListeners();
           return  "success";
         }
@@ -60,10 +60,10 @@ class InvestorProvider extends ChangeNotifier {
   Future<String> selectInvestorReferralPlz({
     required String accessToken
   })async{
-    final Either<Failure, List<InvestorReferral>> investorreferralEither = await selectInvestorReferral(SelectInvestorReferralParams(
+    final Either<Failure, List<InvestorReferral>> investorReferralEither = await selectInvestorReferral(SelectInvestorReferralParams(
         accessToken: accessToken
     ));
-    return investorreferralEither.fold(
+    return investorReferralEither.fold(
             (failure)  {
           // specify failure
           print("InvestorProvider->selectInvestorReferralPlz->failure");
@@ -83,10 +83,10 @@ class InvestorProvider extends ChangeNotifier {
   Future<String> selectInvestorPaymentPlz({
     required String accessToken
   })async{
-    final Either<Failure, List<InvestorPayment>> investorpaymentEither = await selectInvestorPayment(SelectInvestorPaymentParams(
+    final Either<Failure, List<InvestorPayment>> investorPaymentEither = await selectInvestorPayment(SelectInvestorPaymentParams(
         accessToken: accessToken
     ));
-    return investorpaymentEither.fold(
+    return investorPaymentEither.fold(
             (failure)  {
           // specify failure
           print("InvestorProvider->selectInvestorPaymentPlz->failure");
@@ -94,9 +94,9 @@ class InvestorProvider extends ChangeNotifier {
           notifyListeners();
           return failure.toString();
         },
-            (investordashboardListUpdated)  async{
+            (investorDashboardListUpdated)  async{
           print("InvestorProvider->selectInvestorPaymentPlz->userData");
-          investorpayment = investordashboardListUpdated;
+          investorpayment = investorDashboardListUpdated;
           notifyListeners();
           return  "success";
         }

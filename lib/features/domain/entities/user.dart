@@ -1,46 +1,32 @@
 
 class User{
-  int id;
-  String name;
+  String username;
   String email;
-  String password;
-  String referCode;
   String phone;
-  String img;
+  String profile_picture;
   String address;
   String remark;
+  String password;
+  String level;
   String accessToken;
-  String createdAt;
-  String modifiedAt;
-
+  String wallet_address;
+  String deposit_address;
+  String referCode;
   User({
-    required this.id,
-    required this.name,
+    required this.username,
     required this.email,
-    required this.password,
-    required this.referCode,
     required this.phone,
-    required this.img,
+    required this.profile_picture,
     required this.address,
     required this.remark,
+    required this.password,
+    required this.level,
     required this.accessToken,
-    required this.createdAt,
-    required this.modifiedAt
+    required this.wallet_address,
+    required this.deposit_address,
+    required this.referCode,
   });
 
 
-  static User sample () => User(
-      id: 0,
-      name: "name",
-      email: "email",
-      password: "password",
-      referCode: "referCode",
-      phone: "phone",
-      img: "img",
-      address: "address",
-      remark: "remark",
-      accessToken: "accessToken",
-      createdAt: "createdAt",
-      modifiedAt: "modifiedAt"
-  );
+  static User sample () => User(username: "username", email: "email", phone: "phone", profile_picture: "profile_picture", address: "address", remark: "remark", password: "password", level: "level", accessToken: "accessToken", wallet_address: "wallet_address", deposit_address: "deposit_address", referCode: "referCode");
 }

@@ -109,18 +109,15 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
     print(email + " , " + password + " , " + name + " , " + ref);
 
     User user = User(
-        id: 0,
-        name: name,
+        username: name,
         email: email,
         password: password,
         referCode: ref,
         phone: "",
-        img: "",
+        profile_picture: "",
         address: "",
         remark: "",
-        accessToken: "",
-        createdAt: "",
-        modifiedAt: ""
+        accessToken: "", level: '', wallet_address: '', deposit_address: ''
     );
 
 

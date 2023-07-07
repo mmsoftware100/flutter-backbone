@@ -8,6 +8,7 @@ import 'package:dartz/dartz.dart';
 class UserRepositoryImpl implements UserRepository{
 
   final UserRemoteDataSource userRemoteDataSource;
+
   UserRepositoryImpl({
     required this.userRemoteDataSource
   });
@@ -51,6 +52,21 @@ class UserRepositoryImpl implements UserRepository{
     catch(exp, stackTrace){
       // TODO: convert exception to failure with meaningful message
       print("UserRepositoryImpl->register exp");
+      print(exp);
+      print(stackTrace);
+      return Left(GeneralFailure(message: exp.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, User>> Update({required User user}) async{
+    try{
+      User registredUser =  await userRemoteDataSource.Update(user: user);
+      return Right(registredUser);
+    }
+    catch(exp, stackTrace){
+      // TODO: convert exception to failure with meaningful message
+      print("UserRepositoryImpl->Update exp");
       print(exp);
       print(stackTrace);
       return Left(GeneralFailure(message: exp.toString()));

@@ -32,6 +32,7 @@ Future<void> init() async {
           () => UserProvider(
           userLogin: sl(),
           userRegister: sl(),
+          userUpdate: sl(),
           localStorage: sl()
       )
   );
@@ -45,12 +46,12 @@ Future<void> init() async {
 
   // ဒါလည်း အတူတူပဲ
   /// Repositories
-  sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(userRemoteDataSource: sl()));
+  //sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(userRemoteDataSource: sl()));
   sl.registerLazySingleton<LocalStorage>(() => LocalStorageImpl(sharedPreferences: sl()));
   sl.registerLazySingleton<CryptoRepository>(() => CryptoRepositoryImpl(cryptoRemoteDataSource: sl()));
 
   // remote data source
-  sl.registerLazySingleton<UserRemoteDataSource>(() => UserRemoteDataSourceImpl(networkCall: sl()));
+  //sl.registerLazySingleton<UserRemoteDataSource>(() => UserRemoteDataSourceImpl(networkCall: sl()));
   sl.registerLazySingleton<CryptoRemoteDataSource>(() => CryptoRemoteDataSourceImpl(networkCall: sl()));
 
   // external

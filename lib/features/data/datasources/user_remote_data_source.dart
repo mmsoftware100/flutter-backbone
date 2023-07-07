@@ -13,6 +13,8 @@ abstract class UserRemoteDataSource {
   Future<User> login({required String email, required String password});
   // me
   Future<User> me({required String accessToken});
+  //Update
+  Future<User> Update({required User user});
 }
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource{
@@ -115,7 +117,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
       print("UserRemoteDataSourceImpl->register");
       print("endpoint is $endPoint");
       var data = {
-        "name" : user.name,
+        "name" : user.username,
         "email" : user.email,
         "password" : user.password,
       } ; // UserModel.fromEntity(user).toJson();
@@ -145,6 +147,56 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
     }
     catch(exp, stackTrace){
       print("UserRemoteDataSourceImpl->register throw exception");
+      if(exp is DioError){
+        print("error is DioError");
+        print(exp.response);
+      }
+      print(exp);
+      print(stackTrace);
+      rethrow;
+    }
+  }
+
+
+  @override
+  Future<User> Update({required User user}) async{
+    try{
+      String endPoint =  updateEndpoint;
+      print("UserRemoteDataSourceImpl->update");
+      print("endpoint is $endPoint");
+      // var data = {
+      //   "name" : user.username,
+      //   "email" : user.email,
+      //   "password" : user.password,
+      // } ; //
+
+      var data =  UserModel.fromEntity(user).toJson();
+
+      // if(user.referCode.isNotEmpty){
+      //   data["refer_code"] = user.referCode;
+      // }
+      print(data);
+
+      //final response = await client.post(endPoint, data: data);
+      final dataResponse = await networkCall.postRequest(url: endPoint, data: data);
+      print("UserRemoteDataSourceImpl->update dataResponse");
+      print(dataResponse);
+      //print('Response status: ${response.statusCode}');
+      //print('Response data: ${response.data}');
+
+      //Map<String, dynamic> dataResponse = response.data;
+      try{
+        UserModel userModel = UserModel.fromJson(dataResponse["data"]);
+        return userModel.toEntity();
+      }catch(innerExp, stackTrace){
+        print('UserRemoteDataSourceImpl->update   serialization exception $innerExp');
+        print(stackTrace);
+        rethrow;
+      }
+
+    }
+    catch(exp, stackTrace){
+      print("UserRemoteDataSourceImpl->update throw exception");
       if(exp is DioError){
         print("error is DioError");
         print(exp.response);

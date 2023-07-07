@@ -3,6 +3,7 @@
 import 'package:base/core/error/failures.dart';
 import 'package:base/features/domain/entities/user.dart';
 import 'package:base/features/domain/usecases/user_register.dart';
+import 'package:base/features/domain/usecases/user_update.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,7 @@ import '../../domain/usecases/user_login.dart';
 class UserProvider extends ChangeNotifier {
     final UserRegister userRegister;
     final UserLogin userLogin;
+    final UserUpdate userUpdate;
 
     // break the rule
     final LocalStorage localStorage;
@@ -21,6 +23,7 @@ class UserProvider extends ChangeNotifier {
     UserProvider({
         required this.userRegister,
         required this.userLogin,
+      required this.userUpdate,
       required this.localStorage
     });
 
@@ -91,7 +94,41 @@ class UserProvider extends ChangeNotifier {
         );
     }
 
+    Future<String> userUpdatePlz({
+      required String username,
+      required String email,
+      required String phone,
+      required String profile_picture,
+      required String address,
+      required String remark,
+      required String password,
+      required String level,
+      required String accessToken,
+      required String wallet_address,
+      required String deposit_address,
+      required String referCode,
+    })async{
+      final Either<Failure, User> userEither = await userUpdate(UserUpdateParams(user: User(username: username, email: email, phone: phone, profile_picture: profile_picture, address: address, remark: remark, password: password, level: level, accessToken: accessToken, wallet_address: wallet_address, deposit_address: deposit_address, referCode: referCode)));
+      return userEither.fold(
+              (failure)  {
+            // specify failure
+            print("UserProvider->userUpdatePlz->failure");
+            print(failure);
+            notifyListeners();
+            return failure.toString();
+          },
+              (userData)  async{
+            print("UserProvider->userUpdatePlz->userData");
 
+            user = userData;
+            // TODO: stored in shared preference
+
+            await localStorage.setString(string: user.accessToken, key: "accessTokenKey");
+            notifyListeners();
+            return  "success";
+          }
+      );
+    }
 
 
 

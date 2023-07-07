@@ -7,7 +7,6 @@ import 'package:dio/dio.dart';
 
 import '../../domain/entities/crypto.dart';
 import '../../domain/entities/user.dart';
-import '../models/user_model.dart';
 import 'network_call.dart';
 
 abstract class DepositRemoteDataSource {

@@ -6,7 +6,14 @@ const String apiVersion = backendApiServer+'/api';
 const String loginEndpoint = apiVersion+'/login';
 const String meEndpoint = apiVersion+'/me';
 const String registerEndpoint = apiVersion+'/register';
+const String updateEndpoint = apiVersion+'/user/update';
 const String currencyEndpoint = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
+const String depositaddresslistEndpoint = apiVersion+'/wallet/deposit-address-list';
+const String deposittransactionlistEndpoint = apiVersion+'/wallet/deposit-transaction-list';
+const String withdrawtransactionlistEndpoint = apiVersion+'/wallet/withdraw-transaction-list';
+const String deposittransactionEndpoint = apiVersion+'/wallet/request-deposit-transaction';
+const String withdrawtransactionEndpoint = apiVersion+'/wallet/request-withdraw-transaction';
+const String referrallistEndpoint = apiVersion+'/referral';
 
 // assets urls
 // images

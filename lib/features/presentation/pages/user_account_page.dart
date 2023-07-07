@@ -69,7 +69,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
         ListTile(
           leading: Icon(Icons.person_outline),
           title: Text("Name"),
-          trailing: Text(user.name),
+          trailing: Text(user.username),
         ),
 
         ListTile(

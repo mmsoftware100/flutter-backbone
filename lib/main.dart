@@ -152,6 +152,7 @@ void main() async{
             ChangeNotifierProvider(create: (_) =>UserProvider(
                 userLogin: di.sl(),
                 userRegister: di.sl(),
+                userUpdate: di.sl(),
                 localStorage: di.sl()
             )),
           ],

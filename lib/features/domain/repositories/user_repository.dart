@@ -4,6 +4,8 @@ import 'package:dartz/dartz.dart';
 
 
 abstract class UserRepository {
+  // Update
+  Future<Either<Failure, User>> Update({required User user});
   // register
   Future<Either<Failure, User>> register({required User user});
   // login

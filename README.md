@@ -1,5 +1,12 @@
 # FUMO
 
+## Provider နဲ့ UI Migration လုပ်ရမယ်။
+
+### Home Page
+- [ ] User Provider 
+- [ ] Crypto Provider
+
+
 - [ ] Screen (၉) ခု ရေးထားရန်။
 
 ## Splash Screen ပြောင်းရန်။

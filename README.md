@@ -7,6 +7,11 @@
 - [ ] Crypto Provider
 
 
+## Update Design Pattern
+
+- [ ] Provider -> API Call -> Model -> Entity
+- [ ] Screen -> Provider
+
 - [ ] Screen (၉) ခု ရေးထားရန်။
 
 ## Splash Screen ပြောင်းရန်။

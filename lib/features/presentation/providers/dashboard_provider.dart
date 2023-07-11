@@ -13,16 +13,19 @@ import '../../data/const/data.dart';
 import '../../data/datasources/local_storage.dart';
 import '../../domain/usecases/user_login.dart';
 class DashboardProvider extends ChangeNotifier {
-  final GetDashboard getDashboard;
+  //final GetDashboard getDashboard;
 
   // break the rule
   // final LocalStorage localStorage;
 
   Dashboard dashboard = Dashboard.sample();
 
+  /*
   DashboardProvider({
-    required this.getDashboard,
+    //required this.getDashboard,
   });
+
+   */
 
   // void logout()async{
   //   user = User.sample();
@@ -39,6 +42,8 @@ class DashboardProvider extends ChangeNotifier {
   Future<String> getDashboardPlz({
     required String accessToken
   })async{
+
+    /*
     final Either<Failure, Dashboard> dashboardEither = await getDashboard(GetDashboardParams(
         accessToken: accessToken
     ));
@@ -58,5 +63,9 @@ class DashboardProvider extends ChangeNotifier {
           return  "success";
         }
     );
+
+     */
+
+    throw UnImplementedFailure();
   }
 }

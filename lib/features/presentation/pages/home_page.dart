@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
+import '../../domain/entities/dashboard.dart';
 import '../../domain/entities/user.dart';
 import 'calculator_page.dart';
 import 'claim_point_page.dart';
@@ -42,9 +43,9 @@ class _HomePageState extends State<HomePage> {
 
   void _init()async{
     print("_init");
-    String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
-    String status = await Provider.of<CryptoProvider>(context, listen: false).selectCryptoPlz(accessToken: accessToken, page: 1, limit: 50, convert: "USD");
-    print("status is $status");
+   // String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
+    //String status = await Provider.of<CryptoProvider>(context, listen: false).selectCryptoPlz(accessToken: accessToken, page: 1, limit: 50, convert: "USD");
+   // print("status is $status");
 
   }
 
@@ -162,7 +163,7 @@ class _HomePageState extends State<HomePage> {
               _dashboardCard(),
               SizedBox(height: 8.0,),
               _verticalListRow(),
-              _dashboardRow(),
+              _dashboardRow(dashboard: Provider.of<DashboardProvider>(context, listen: true).dashboard),
               _dataTable(cryptoList: Provider.of<CryptoProvider>(context, listen: true).cryptoList),
           ],
         ),
@@ -350,7 +351,7 @@ class _HomePageState extends State<HomePage> {
           Positioned(
               //right: 0,
               //bottom: 0,
-              child: _creditCard(user: Provider.of<UserProvider>(context, listen: true).user)
+              child: _creditCard(user: User.sample())
           ),
           Positioned(
               left: 0,
@@ -403,7 +404,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
 
                   SizedBox(height: 24.0,),
-                  Text("${user.username} (${Provider.of<UserProvider>(context, listen: true).user.level})", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                  Text("{user.username} ({Provider.of<UserProvider>(context, listen: true).user.level})", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                   SizedBox(height: 8.0,),
                   Text("${user.wallet_address}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                   SizedBox(height: 8.0,),
@@ -416,13 +417,13 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  Widget _dashboardRow(){
+  Widget _dashboardRow({required Dashboard dashboard}){
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _revenueCard(title: "Revenue", amount: Provider.of<DashboardProvider>(context, listen: true).dashboard.deposit_amount),
-        _revenueCard(title: "Earning", amount: Provider.of<DashboardProvider>(context, listen: true).dashboard.deposit_profit_balance),
-        _revenueCard(title: "Total Amount", amount: Provider.of<DashboardProvider>(context, listen: true).dashboard.total_net_profit),
+        _revenueCard(title: "Revenue", amount: dashboard.deposit_amount),
+        _revenueCard(title: "Earning", amount: dashboard.deposit_profit_balance),
+        _revenueCard(title: "Total Amount", amount: dashboard.total_net_profit),
       ],
     );
   }

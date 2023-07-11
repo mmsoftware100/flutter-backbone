@@ -10,6 +10,7 @@ import 'package:base/features/presentation/pages/user_account_page.dart';
 import 'package:base/features/presentation/pages/user_login_test_page.dart';
 import 'package:base/features/presentation/pages/user_register_page.dart';
 import 'package:base/features/presentation/providers/crpyto_provider.dart';
+import 'package:base/features/presentation/providers/dashboard_provider.dart';
 
 
 import 'package:flutter/material.dart';
@@ -150,10 +151,17 @@ void main() async{
             )),
 
             ChangeNotifierProvider(create: (_) =>UserProvider(
-                //userLogin: di.sl(),
-                //userRegister: di.sl(),
-                //userUpdate: di.sl(),
-                //localStorage: di.sl()
+              //userLogin: di.sl(),
+              //userRegister: di.sl(),
+              //userUpdate: di.sl(),
+              //localStorage: di.sl()
+            )),
+
+            ChangeNotifierProvider(create: (_) =>DashboardProvider(
+              //userLogin: di.sl(),
+              //userRegister: di.sl(),
+              //userUpdate: di.sl(),
+              //localStorage: di.sl()
             )),
           ],
           child: MyApp()

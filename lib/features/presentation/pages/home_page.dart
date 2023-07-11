@@ -6,6 +6,7 @@ import 'package:base/features/presentation/pages/myteam_page.dart';
 import 'package:base/features/presentation/pages/payment_page.dart';
 import 'package:base/features/presentation/pages/wallet_page.dart';
 import 'package:base/features/presentation/providers/crpyto_provider.dart';
+import 'package:base/features/presentation/providers/dashboard_provider.dart';
 import 'package:base/features/presentation/providers/user_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -401,11 +402,11 @@ class _HomePageState extends State<HomePage> {
                 children: [
 
                   SizedBox(height: 24.0,),
-                  Text("Zayar05 (Level-1)", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                  Text("${Provider.of<UserProvider>(context, listen: true).user.username} (${Provider.of<UserProvider>(context, listen: true).user.level})", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                   SizedBox(height: 8.0,),
-                  Text("**** **** **** 0104", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                  Text("${Provider.of<UserProvider>(context, listen: true).user.wallet_address}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                   SizedBox(height: 8.0,),
-                  Text("\$ 10.2", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 36),)
+                  Text("\$ ${Provider.of<UserProvider>(context, listen: true).user.referCode}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 36),)
                 ],
               ),
             ),
@@ -418,9 +419,9 @@ class _HomePageState extends State<HomePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _revenueCard(title: "Revenue", amount: 10.0),
-        _revenueCard(title: "Earning", amount: 0.2),
-        _revenueCard(title: "Total Amount", amount: 10.2),
+        _revenueCard(title: "Revenue", amount: Provider.of<DashboardProvider>(context, listen: true).dashboard.deposit_amount),
+        _revenueCard(title: "Earning", amount: Provider.of<DashboardProvider>(context, listen: true).dashboard.deposit_profit_balance),
+        _revenueCard(title: "Total Amount", amount: Provider.of<DashboardProvider>(context, listen: true).dashboard.total_net_profit),
       ],
     );
   }

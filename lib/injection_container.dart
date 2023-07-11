@@ -25,15 +25,15 @@ Future<void> init() async {
   /// Providers
   sl.registerFactory(
           () => CryptoProvider(
-          selectCrypto: sl(),
+          // selectCrypto: sl(),
       )
   );
   sl.registerFactory(
           () => UserProvider(
-          userLogin: sl(),
-          userRegister: sl(),
-          userUpdate: sl(),
-          localStorage: sl()
+          //userLogin: sl(),
+          //userRegister: sl(),
+          //userUpdate: sl(),
+          //localStorage: sl()
       )
   );
 
@@ -49,10 +49,12 @@ Future<void> init() async {
   //sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(userRemoteDataSource: sl()));
   sl.registerLazySingleton<LocalStorage>(() => LocalStorageImpl(sharedPreferences: sl()));
   sl.registerLazySingleton<CryptoRepository>(() => CryptoRepositoryImpl(cryptoRemoteDataSource: sl()));
+  sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(userRemoteDataSource: sl() ));
 
   // remote data source
   //sl.registerLazySingleton<UserRemoteDataSource>(() => UserRemoteDataSourceImpl(networkCall: sl()));
   sl.registerLazySingleton<CryptoRemoteDataSource>(() => CryptoRemoteDataSourceImpl(networkCall: sl()));
+  sl.registerLazySingleton<UserRemoteDataSource>(() => UserRemoteDataSourceImpl(networkCall: sl()));
 
   // external
   // DIO က လည်း အမှန်တော့ Abstract တစ်ခု ခံပြီးသုံးသင့်တာ။

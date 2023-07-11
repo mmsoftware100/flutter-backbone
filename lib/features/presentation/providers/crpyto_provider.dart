@@ -13,11 +13,14 @@ import '../../data/datasources/local_storage.dart';
 import '../../domain/usecases/user_login.dart';
 class CryptoProvider extends ChangeNotifier {
   // use case
-  final SelectCrypto selectCrypto;
+  // final SelectCrypto selectCrypto;
 
+  /*
   CryptoProvider({
-    required this.selectCrypto
+    // required this.selectCrypto
   });
+
+   */
 
 
   List<Crypto> cryptoList = [];
@@ -28,6 +31,7 @@ class CryptoProvider extends ChangeNotifier {
     required int limit,
     required String convert
   })async{
+    /*
     final Either<Failure, List<Crypto>> cryptoListEither = await selectCrypto(SelectCryptoParams(
         accessToken: accessToken,
         page: page,
@@ -49,6 +53,10 @@ class CryptoProvider extends ChangeNotifier {
               return  "success";
             }
     );
+
+     */
+
+    throw UnImplementedFailure();
   }
 
 

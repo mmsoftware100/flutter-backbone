@@ -11,25 +11,28 @@ import '../../data/const/data.dart';
 import '../../data/datasources/local_storage.dart';
 import '../../domain/usecases/user_login.dart';
 class UserProvider extends ChangeNotifier {
-    final UserRegister userRegister;
-    final UserLogin userLogin;
-    final UserUpdate userUpdate;
+    //final UserRegister userRegister;
+    //final UserLogin userLogin;
+    //final UserUpdate userUpdate;
 
     // break the rule
-    final LocalStorage localStorage;
+    //final LocalStorage localStorage;
 
     User user = User.sample();
 
+    /*
     UserProvider({
-        required this.userRegister,
-        required this.userLogin,
-      required this.userUpdate,
-      required this.localStorage
+        //required this.userRegister,
+        //required this.userLogin,
+      //required this.userUpdate,
+      //required this.localStorage
     });
+
+     */
 
     void logout()async{
       user = User.sample();
-      await localStorage.setString(string: user.accessToken, key: "accessTokenKey");
+      //await localStorage.setString(string: user.accessToken, key: "accessTokenKey");
       notifyListeners();
     }
     bool isLogin(){
@@ -42,6 +45,7 @@ class UserProvider extends ChangeNotifier {
     Future<String> userRegisterPlz({
         required User user
    })async{
+      /*
         final Either<Failure, User> userEither = await userRegister(UserRegisterParams(
           user: user
         ));
@@ -57,11 +61,14 @@ class UserProvider extends ChangeNotifier {
                 print("UserProvider->userRegisterPlz->userData");
                 print(userData);
                 user = userData;
-                await localStorage.setString(string: user.accessToken, key: "accessTokenKey");
+                //await localStorage.setString(string: user.accessToken, key: "accessTokenKey");
                 notifyListeners();
                return  "success";
             }
         );
+
+       */
+      throw UnImplementedFailure();
     }
 
 
@@ -69,6 +76,8 @@ class UserProvider extends ChangeNotifier {
         required String email,
         required String password
     })async{
+
+      /*
         final Either<Failure, User> userEither = await userLogin(UserLoginParams(
             password: password,
             email: email
@@ -87,13 +96,20 @@ class UserProvider extends ChangeNotifier {
                 user = userData;
                 // TODO: stored in shared preference
 
-                await localStorage.setString(string: user.accessToken, key: "accessTokenKey");
+                //await localStorage.setString(string: user.accessToken, key: "accessTokenKey");
                 notifyListeners();
                 return  "success";
             }
         );
+
+       */
+
+
+      throw UnImplementedFailure();
     }
 
+
+    /*
     Future<String> userUpdatePlz({
       required String username,
       required String email,
@@ -129,6 +145,8 @@ class UserProvider extends ChangeNotifier {
           }
       );
     }
+
+     */
 
 
 

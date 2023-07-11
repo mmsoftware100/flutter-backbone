@@ -140,20 +140,20 @@ void main() async{
 
 
 
-  await di.init();
+  // await di.init();
   runApp(
       MultiProvider(
           providers: [
 
             ChangeNotifierProvider(create: (_) =>CryptoProvider(
-                selectCrypto: di.sl(),
+                //selectCrypto: di.sl(),
             )),
 
             ChangeNotifierProvider(create: (_) =>UserProvider(
-                userLogin: di.sl(),
-                userRegister: di.sl(),
-                userUpdate: di.sl(),
-                localStorage: di.sl()
+                //userLogin: di.sl(),
+                //userRegister: di.sl(),
+                //userUpdate: di.sl(),
+                //localStorage: di.sl()
             )),
           ],
           child: MyApp()

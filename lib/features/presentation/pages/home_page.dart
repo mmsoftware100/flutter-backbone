@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
+import '../../domain/entities/user.dart';
 import 'calculator_page.dart';
 import 'claim_point_page.dart';
 
@@ -33,7 +34,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _init();
+    // _init();
   }
 
 
@@ -349,7 +350,7 @@ class _HomePageState extends State<HomePage> {
           Positioned(
               //right: 0,
               //bottom: 0,
-              child: _creditCard()
+              child: _creditCard(user: Provider.of<UserProvider>(context, listen: true).user)
           ),
           Positioned(
               left: 0,
@@ -374,7 +375,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _creditCard(){
+  Widget _creditCard({required User user}){
     return Container(
       width: MediaQuery.of(context).size.width * 0.6,
       decoration: BoxDecoration(
@@ -402,11 +403,11 @@ class _HomePageState extends State<HomePage> {
                 children: [
 
                   SizedBox(height: 24.0,),
-                  Text("${Provider.of<UserProvider>(context, listen: true).user.username} (${Provider.of<UserProvider>(context, listen: true).user.level})", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                  Text("${user.username} (${Provider.of<UserProvider>(context, listen: true).user.level})", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                   SizedBox(height: 8.0,),
-                  Text("${Provider.of<UserProvider>(context, listen: true).user.wallet_address}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                  Text("${user.wallet_address}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                   SizedBox(height: 8.0,),
-                  Text("\$ ${Provider.of<UserProvider>(context, listen: true).user.referCode}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 36),)
+                  Text("\$ ${user.referCode}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 36),)
                 ],
               ),
             ),

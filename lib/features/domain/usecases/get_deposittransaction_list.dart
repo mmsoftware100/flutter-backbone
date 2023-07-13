@@ -18,7 +18,7 @@ import 'package:meta/meta.dart';
 import '../../../../core/error/failures.dart';
 import '../entities/user.dart';
 
-
+// ok
 class GetDepositTransactionList implements UseCase<List<DepositTransaction>, GetDepositTransactionListParams>{
   final WalletRepository walletRepository;
 

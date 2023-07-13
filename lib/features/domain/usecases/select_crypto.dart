@@ -9,7 +9,7 @@ import 'package:meta/meta.dart';
 import '../../../../core/error/failures.dart';
 import '../entities/user.dart';
 
-
+// ok
 class SelectCrypto implements UseCase<List<Crypto>, SelectCryptoParams>{
   final CryptoRepository cryptoRepository;
 

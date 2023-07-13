@@ -7,7 +7,7 @@ import 'package:meta/meta.dart';
 import '../../../../core/error/failures.dart';
 import '../entities/user.dart';
 
-
+// OK
 class UserLogin implements UseCase<User, UserLoginParams>{
   final UserRepository userRepository;
 

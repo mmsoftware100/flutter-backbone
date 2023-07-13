@@ -7,7 +7,7 @@ import 'package:meta/meta.dart';
 import '../../../../core/error/failures.dart';
 import '../entities/user.dart';
 
-
+// ok
 class UserUpdate implements UseCase<User, UserUpdateParams>{
   final UserRepository userRepository;
 

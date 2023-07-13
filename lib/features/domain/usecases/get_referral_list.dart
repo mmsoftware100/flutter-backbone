@@ -18,7 +18,7 @@ import 'package:meta/meta.dart';
 
 import '../../../../core/error/failures.dart';
 import '../entities/user.dart';
-
+// ok
 
 class GetReferralList implements UseCase<List<Referral>, GetReferralListParams>{
   final ReferralRepository referralRepository;

@@ -13,7 +13,7 @@ import 'package:meta/meta.dart';
 import '../../../../core/error/failures.dart';
 import '../entities/user.dart';
 
-
+// ok
 class GetDashboard implements UseCase<Dashboard, GetDashboardParams>{
   final DashboardRepository dashboardRepository;
 

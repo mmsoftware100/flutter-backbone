@@ -19,7 +19,7 @@ import 'package:meta/meta.dart';
 import '../../../../core/error/failures.dart';
 import '../entities/user.dart';
 
-
+// ok
 class GetWithdrawTransactionList implements UseCase<List<WithdrawTransaction>, GetWithdrawTransactionListParams>{
   final WalletRepository walletRepository;
 

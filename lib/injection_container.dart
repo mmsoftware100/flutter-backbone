@@ -30,10 +30,10 @@ Future<void> init() async {
   );
   sl.registerFactory(
           () => UserProvider(
-          //userLogin: sl(),
-          //userRegister: sl(),
-          //userUpdate: sl(),
-          //localStorage: sl()
+          userLogin: sl(),
+          userRegister: sl(),
+          userUpdate: sl(),
+          localStorage: sl()
       )
   );
 

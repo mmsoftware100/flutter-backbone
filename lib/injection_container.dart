@@ -9,6 +9,7 @@ import 'package:base/features/domain/repositories/user_repository.dart';
 import 'package:base/features/domain/usecases/select_crypto.dart';
 import 'package:base/features/domain/usecases/user_login.dart';
 import 'package:base/features/domain/usecases/user_register.dart';
+import 'package:base/features/domain/usecases/user_update.dart';
 import 'package:base/features/presentation/providers/crpyto_provider.dart';
 import 'package:base/features/presentation/providers/user_provider.dart';
 import 'package:dio/dio.dart';
@@ -41,6 +42,7 @@ Future<void> init() async {
   /// Use Cases
   sl.registerLazySingleton<UserLogin>(() =>  UserLogin(userRepository: sl()));
   sl.registerLazySingleton<UserRegister>(() =>  UserRegister(userRepository: sl()));
+  sl.registerLazySingleton<UserUpdate>(() =>  UserUpdate(userRepository: sl()));
   sl.registerLazySingleton<SelectCrypto>(() =>  SelectCrypto(cryptoRepository: sl()));
 
 

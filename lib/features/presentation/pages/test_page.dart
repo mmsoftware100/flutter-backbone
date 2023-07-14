@@ -14,7 +14,9 @@ import 'package:base/features/presentation/pages/user_login_page.dart';
 import 'package:base/features/presentation/pages/user_login_test_page.dart';
 import 'package:base/features/presentation/pages/user_register_page.dart';
 import 'package:base/features/presentation/pages/wallet_page.dart';
+import 'package:base/features/presentation/providers/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 import '../../domain/usecases/user_login.dart';
@@ -37,6 +39,8 @@ class _TestPageState extends State<TestPage> {
       body: ListView(
         children: [
 
+          ListTile(title: Text("Login Test"), onTap: _login,),
+          Divider(),
           ListTile(title: Text("Landing Page"), onTap: (){ Navigator.pushNamed(context, LandingPage.routeName); },),
           ListTile(title: Text("User Login Page"), onTap: (){ Navigator.pushNamed(context, UserLoginPage.routeName); },),
           // ListTile(title: Text("Landing Page"), onTap: (){ Navigator.pushNamed(context, UserLoginTestPage.routeName); },),
@@ -60,5 +64,9 @@ class _TestPageState extends State<TestPage> {
         ],
       ),
     );
+  }
+
+  void _login(){
+    Provider.of<UserProvider>(context, listen:false).userLoginPlz(email: "admin", password: "password");
   }
 }

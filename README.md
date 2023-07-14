@@ -1,5 +1,20 @@
 # FUMO
 
+## API Testing 
+
+- [ ] Login မှာ 
+
+```bash
+══╡ EXCEPTION CAUGHT BY GESTURE ╞═══════════════════════════════════════════════════════════════════
+The following assertion was thrown while handling a gesture:
+Object/factory with  type UserLogin is not registered inside GetIt.
+(Did you accidentally do GetIt sl=GetIt.instance(); instead of GetIt sl=GetIt.instance;
+Did you forget to register it?)
+'package:get_it/get_it_impl.dart':
+Failed assertion: line 372 pos 7: 'instanceFactory != null'
+```
+
+
 ## Provider နဲ့ UI Migration လုပ်ရမယ်။
 
 ### Home Page

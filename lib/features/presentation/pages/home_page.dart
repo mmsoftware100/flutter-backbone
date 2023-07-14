@@ -4,6 +4,7 @@ import 'package:base/features/presentation/components/form_elements/our_drawer.d
 import 'package:base/features/presentation/pages/friend_page.dart';
 import 'package:base/features/presentation/pages/myteam_page.dart';
 import 'package:base/features/presentation/pages/payment_page.dart';
+import 'package:base/features/presentation/pages/test_page.dart';
 import 'package:base/features/presentation/pages/wallet_page.dart';
 import 'package:base/features/presentation/providers/crpyto_provider.dart';
 import 'package:base/features/presentation/providers/dashboard_provider.dart';
@@ -43,9 +44,15 @@ class _HomePageState extends State<HomePage> {
 
   void _init()async{
     print("_init");
+    Navigator.pushNamed(context, TestPage.routeName);
    // String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
     //String status = await Provider.of<CryptoProvider>(context, listen: false).selectCryptoPlz(accessToken: accessToken, page: 1, limit: 50, convert: "USD");
    // print("status is $status");
+    // login
+
+    // register
+
+    // update
 
   }
 

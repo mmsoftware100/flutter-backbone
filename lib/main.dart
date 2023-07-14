@@ -141,7 +141,7 @@ void main() async{
 
 
 
-  // await di.init();
+  await di.init();
   runApp(
       MultiProvider(
           providers: [

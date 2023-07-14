@@ -1,11 +1,15 @@
 # FUMO
 
+## TO DO LIST
+
+- [ ] Splash Screen ပြောင်းရန်။
+
 ## API Testing 
 
 - [ ] Login မှာ 
 
 ```bash
-══╡ EXCEPTION CAUGHT BY GESTURE ╞═══════════════════════════════════════════════════════════════════
+
 The following assertion was thrown while handling a gesture:
 Object/factory with  type UserLogin is not registered inside GetIt.
 (Did you accidentally do GetIt sl=GetIt.instance(); instead of GetIt sl=GetIt.instance;
@@ -14,6 +18,8 @@ Did you forget to register it?)
 Failed assertion: line 372 pos 7: 'instanceFactory != null'
 ```
 
+
+// ငြိမ်းချမ်းဇော်  - ၃၃ - PSO - ဖားကန့် 
 
 ## Provider နဲ့ UI Migration လုပ်ရမယ်။
 

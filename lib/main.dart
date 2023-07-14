@@ -147,7 +147,7 @@ void main() async{
           providers: [
 
             ChangeNotifierProvider(create: (_) =>CryptoProvider(
-                //selectCrypto: di.sl(),
+                selectCrypto: di.sl(),
             )),
 
             ChangeNotifierProvider(create: (_) =>UserProvider(
@@ -158,10 +158,7 @@ void main() async{
             )),
 
             ChangeNotifierProvider(create: (_) =>DashboardProvider(
-              //userLogin: di.sl(),
-              //userRegister: di.sl(),
-              //userUpdate: di.sl(),
-              //localStorage: di.sl()
+               getDashboard: di.sl(),
             )),
           ],
           child: MyApp()

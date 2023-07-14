@@ -29,7 +29,7 @@ class DashboardRepositoryImpl implements DashboardRepository{
   @override
   Future<Either<Failure, Dashboard>> GetDashboard({required String accessToken})  async {
     try {
-      Dashboard depositData = await dashboardRemoteDataSource.GetDashboard(accessToken: accessToken);
+      Dashboard depositData = await dashboardRemoteDataSource.getDashboard(accessToken: accessToken);
       return Right(depositData);
     }
     catch (exp, stackTrace) {

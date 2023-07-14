@@ -71,4 +71,9 @@ class _TestPageState extends State<TestPage> {
     String password = "P@ssw0rd123";
     Provider.of<UserProvider>(context, listen:false).userLoginPlz(email: email, password: password);
   }
+
+  void _register(){
+    String email = "test1@email.com";
+    String password = "P@ssw0rd123";
+  }
 }

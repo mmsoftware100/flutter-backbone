@@ -1,6 +1,15 @@
 # FUMO
 
 
+## Wallet က Usecase 5 ခု ကို API Integration လုပ်ပြီးရင် backend  နဲ့ ကိစ္စ ပြီးပြီ။
+
+### Select (၃) ခုအရင်လုပ်မယ်။
+
+- [ ] Deposit Address Select
+- [ ] Deposit Transaction Select
+- [ ] Withdraw Transaction Select
+
+
 ## Get Refer List API Integration
 
 - dependency injection လုပ်ရမယ်။

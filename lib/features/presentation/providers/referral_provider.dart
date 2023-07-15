@@ -24,9 +24,9 @@ class ReferralProvider extends ChangeNotifier {
     required this.getReferralList,
   });
 
-  List<Referral> referrallist = [];
+  List<Referral> referralList = [];
 
-  Future<String> getReferrallistPlz({
+  Future<String> getReferralListPlz({
     required String accessToken
   })async{
     final Either<Failure, List<Referral>> referralListEither = await getReferralList(GetReferralListParams(
@@ -42,7 +42,7 @@ class ReferralProvider extends ChangeNotifier {
         },
             (referralListUpdated)  async{
           print("WalletProvider->getReferrallistPlz->referralListUpdated");
-          referrallist = referralListUpdated;
+          referralList = referralListUpdated;
           notifyListeners();
           return  "success";
         }

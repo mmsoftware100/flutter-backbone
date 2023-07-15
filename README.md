@@ -1,6 +1,8 @@
 # FUMO
 
 
+## Calculator Page ကို Webview နဲ့ ပြမယ်။
+
 
 ## Login က စပြီး API တွေ Home Page မှာ အကုန်ခေါ်ထားမယ်။
 

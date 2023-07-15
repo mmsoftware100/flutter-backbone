@@ -1,4 +1,12 @@
+import 'package:base/features/domain/entities/deposit_address.dart';
+import 'package:base/features/presentation/providers/dashboard_provider.dart';
+import 'package:base/features/presentation/providers/user_provider.dart';
+import 'package:base/features/presentation/providers/wallet_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../domain/entities/dashboard.dart';
+import '../../domain/entities/user.dart';
 
 class WalletPage extends StatefulWidget {
   static String routeName = "/WalletPage";
@@ -17,12 +25,16 @@ class _AccountPageState extends State<WalletPage> {
       body: SafeArea(
         child: SingleChildScrollView(
             padding: EdgeInsets.all(8.0),
-            child: _mainWidget()),
+            child: _mainWidget(
+              user: Provider.of<UserProvider>(context, listen: true).user,
+              dashboard: Provider.of<DashboardProvider>(context, listen: true).dashboard,
+              depositAddressList: Provider.of<WalletProvider>(context, listen: true).depositAddressList,
+            )),
       ),
     );
   }
 
-  Widget _mainWidget(){
+  Widget _mainWidget({required User user, required Dashboard dashboard, required List<DepositAddress> depositAddressList}){
     return Container(
       color: Colors.white,
       child: Column(
@@ -64,10 +76,10 @@ class _AccountPageState extends State<WalletPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(height: 35,),
-                      Text("Zayar07",style: TextStyle(fontSize: 30,color: Colors.white)),
-                      Text("zayarmin115@gmai.com",style: TextStyle(fontSize: 15,color: Colors.white)),
+                      Text(user.username,style: TextStyle(fontSize: 30,color: Colors.white)),
+                      Text(user.email,style: TextStyle(fontSize: 15,color: Colors.white)),
                       SizedBox(height: 40,),
-                      Text("Level-1",style: TextStyle(fontSize: 30,color: Colors.white,fontWeight: FontWeight.bold))
+                      Text(user.level,style: TextStyle(fontSize: 30,color: Colors.white,fontWeight: FontWeight.bold))
                     ],
                   ),
                 ),
@@ -134,7 +146,7 @@ class _AccountPageState extends State<WalletPage> {
                       children: [
                         Text("Total Amount",style: TextStyle(fontSize: 15,color: Colors.white),),
                         SizedBox(height: 10.0,),
-                        Text("\$ 10.2",style: TextStyle(fontSize: 40,color: Colors.white),)
+                        Text("\$ ${dashboard.total_net_profit}",style: TextStyle(fontSize: 40,color: Colors.white),)
                       ],
                     ),
                   ),
@@ -150,7 +162,7 @@ class _AccountPageState extends State<WalletPage> {
                       children: [
                         Text("Withdraw Amount",style: TextStyle(fontSize: 15,color: Colors.white),),
                         SizedBox(height: 10.0,),
-                        Text("\$ 10.2",style: TextStyle(fontSize: 40,color: Colors.white),)
+                        Text("\$ ${dashboard.withdraw_balance}",style: TextStyle(fontSize: 40,color: Colors.white),)
                       ],
                     ),
                   )
@@ -184,6 +196,9 @@ class _AccountPageState extends State<WalletPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                ...depositAddressList.map((e) => _depositAddress(depositAddress: e)),
+                /*
+
                 Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -292,6 +307,8 @@ class _AccountPageState extends State<WalletPage> {
                     Container(width:100,height:25,child: Text('bnb1hj8449vnm9cwdkaw60wuwlfck7mj2u',style: TextStyle(fontSize: 10),))
                   ],
                 ),
+
+                 */
               ],
             ),
           ),
@@ -318,7 +335,7 @@ class _AccountPageState extends State<WalletPage> {
                 padding: const EdgeInsets.only(left: 20.0),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.7,
-                  height: 30,
+                  // height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.grey,
@@ -331,7 +348,7 @@ class _AccountPageState extends State<WalletPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text("Wallet Address",style: TextStyle(fontSize: 13),textAlign: TextAlign.left,),
-                      Text("bnb1hj8449vnm9cwdkaw60wuwlfck7mj2u",style: TextStyle(fontSize: 12),textAlign: TextAlign.left,)
+                      Text(user.wallet_address,style: TextStyle(fontSize: 12),textAlign: TextAlign.left,)
                     ],
                   ),
                 ),
@@ -377,6 +394,45 @@ class _AccountPageState extends State<WalletPage> {
           // )
         ],
       ),
+    );
+  }
+
+  Widget _depositAddress({required DepositAddress depositAddress}){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          width: 100,
+          height: 20,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+              border: Border.all(
+                color: Colors.black,
+                width: 1,
+              )
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 5.0),
+            child: Center(child: Text(depositAddress.name)),
+          ),
+        ),
+        Container(
+          // width: MediaQuery.of(context).size.width * 0.95,
+          // height: MediaQuery.of(context).size.height * 0.25,
+          width: 80,
+          height: 80,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            image: DecorationImage(
+                fit: BoxFit.contain,
+                image: AssetImage('assets/images/qrimage.png')
+            ),
+          ),
+        ),
+        Container(width:100,height:25,child: Text(depositAddress.address,style: TextStyle(fontSize: 10),))
+      ],
     );
   }
 }

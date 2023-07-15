@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _bottomNavigation(),
       drawer: OurDrawer(),
-      floatingActionButton: _fab(),
+      // floatingActionButton: _fab(),
     );
   }
 

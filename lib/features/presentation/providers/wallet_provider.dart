@@ -110,10 +110,14 @@ class WalletProvider extends ChangeNotifier {
     );
   }
   Future<String> requestDepositTransactionPlz({
-    required String accessToken
+    required String accessToken,
+    required String link,
+    required double depositAmount,
   })async{
     final Either<Failure, DepositTransaction> depositTransactionEither = await requestDepositTransaction(RequestDepositTransactionParams(
-        accessToken: accessToken
+      accessToken: accessToken,
+      link: link,
+      depositAmount: depositAmount,
     ));
     return depositTransactionEither.fold(
             (failure)  {

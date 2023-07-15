@@ -13,6 +13,6 @@ abstract class WalletRepository {
   Future<Either<Failure, List<DepositAddress>>> getDepositAddressList({required String accessToken});
   Future<Either<Failure, List<DepositTransaction>>> getDepositTransactionList({required String accessToken});
   Future<Either<Failure, List<WithdrawTransaction>>> getWithdrawTransactionList({required String accessToken});
-  Future<Either<Failure, DepositTransaction>> requestDepositTransaction({required String accessToken});
+  Future<Either<Failure, DepositTransaction>> requestDepositTransaction({required String accessToken, required String link, required double depositAmount});
   Future<Either<Failure, WithdrawTransaction>> requestWithdrawTransaction({required String accessToken});
 }

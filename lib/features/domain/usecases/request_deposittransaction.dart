@@ -25,16 +25,20 @@ class RequestDepositTransaction implements UseCase<DepositTransaction, RequestDe
 
   @override
   Future<Either<Failure, DepositTransaction>> call(RequestDepositTransactionParams params) {
-    return walletRepository.requestDepositTransaction(accessToken: params.accessToken);
+    return walletRepository.requestDepositTransaction(accessToken: params.accessToken, link: params.link, depositAmount: params.depositAmount);
   }
 }
 
 class RequestDepositTransactionParams extends Equatable{
   final String accessToken;
+  final String link;
+  final double depositAmount;
 
   const RequestDepositTransactionParams({
     required this.accessToken,
+    required this.link,
+    required this.depositAmount
   });
   @override
-  List<Object> get props => [accessToken];
+  List<Object> get props => [accessToken, link, depositAmount];
 }

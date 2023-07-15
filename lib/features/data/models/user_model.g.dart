@@ -18,7 +18,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       accessToken: json['accessToken'] as String? ?? 'accessToken',
       wallet_address: json['wallet_address'] as String? ?? 'wallet_address',
       deposit_address: json['deposit_address'] as String? ?? 'deposit_address',
-      referCode: json['referCode'] as String? ?? 'referCode',
+      referCode: json['refer_code'] as String? ?? 'referCode',
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -33,5 +33,5 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'accessToken': instance.accessToken,
       'wallet_address': instance.wallet_address,
       'deposit_address': instance.deposit_address,
-      'referCode': instance.referCode,
+      'refer_code': instance.referCode,
     };

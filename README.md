@@ -1,6 +1,10 @@
 # FUMO
 
 
+
+## Login က စပြီး API တွေ Home Page မှာ အကုန်ခေါ်ထားမယ်။
+
+
 ## Wallet က Usecase 5 ခု ကို API Integration လုပ်ပြီးရင် backend  နဲ့ ကိစ္စ ပြီးပြီ။
 
 ### Select (၃) ခုအရင်လုပ်မယ်။

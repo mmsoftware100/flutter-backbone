@@ -8,7 +8,9 @@ import 'package:base/features/presentation/pages/test_page.dart';
 import 'package:base/features/presentation/pages/wallet_page.dart';
 import 'package:base/features/presentation/providers/crpyto_provider.dart';
 import 'package:base/features/presentation/providers/dashboard_provider.dart';
+import 'package:base/features/presentation/providers/referral_provider.dart';
 import 'package:base/features/presentation/providers/user_provider.dart';
+import 'package:base/features/presentation/providers/wallet_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -36,7 +38,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // _init();
+    _init();
   }
 
 
@@ -44,9 +46,15 @@ class _HomePageState extends State<HomePage> {
 
   void _init()async{
     print("_init");
-    Navigator.pushNamed(context, TestPage.routeName);
-   // String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
-    //String status = await Provider.of<CryptoProvider>(context, listen: false).selectCryptoPlz(accessToken: accessToken, page: 1, limit: 50, convert: "USD");
+    // Navigator.pushNamed(context, TestPage.routeName);
+   String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
+   Provider.of<CryptoProvider>(context, listen: false).selectCryptoPlz(accessToken: accessToken, page: 1, limit: 50, convert: "USD");
+    Provider.of<DashboardProvider>(context, listen: false).getDashboardPlz(accessToken: accessToken);
+    Provider.of<ReferralProvider>(context, listen: false).getReferralListPlz(accessToken: accessToken);
+    Provider.of<WalletProvider>(context, listen: false).getDepositAddressListPlz(accessToken: accessToken);
+    Provider.of<WalletProvider>(context, listen: false).getWithdrawTransactionListPlz(accessToken: accessToken);
+    Provider.of<WalletProvider>(context, listen: false).getDepositTransactionListPlz(accessToken: accessToken);
+
    // print("status is $status");
     // login
 
@@ -167,7 +175,7 @@ class _HomePageState extends State<HomePage> {
               //_stackTest(),
               //_stackTestTwo(),
               _pageTitle(),
-              _dashboardCard(),
+              _dashboardCard(user: Provider.of<UserProvider>(context, listen: true).user),
               SizedBox(height: 8.0,),
               _verticalListRow(),
               _dashboardRow(dashboard: Provider.of<DashboardProvider>(context, listen: true).dashboard),
@@ -342,7 +350,7 @@ class _HomePageState extends State<HomePage> {
         )
     );
   }
-  Widget _dashboardCard(){
+  Widget _dashboardCard({required User user}){
     return Container(
       decoration: BoxDecoration(
         color: Colors.transparent
@@ -358,7 +366,7 @@ class _HomePageState extends State<HomePage> {
           Positioned(
               //right: 0,
               //bottom: 0,
-              child: _creditCard(user: User.sample())
+              child: _creditCard(user: user)
           ),
           Positioned(
               left: 0,
@@ -411,11 +419,11 @@ class _HomePageState extends State<HomePage> {
                 children: [
 
                   SizedBox(height: 24.0,),
-                  Text("{user.username} ({Provider.of<UserProvider>(context, listen: true).user.level})", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                  Text("${user.username} (${user.level})", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                   SizedBox(height: 8.0,),
                   Text("${user.wallet_address}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                   SizedBox(height: 8.0,),
-                  Text("\$ ${user.referCode}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 36),)
+                  Text("${user.referCode}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 36),)
                 ],
               ),
             ),

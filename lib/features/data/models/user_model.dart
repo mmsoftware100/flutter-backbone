@@ -49,7 +49,7 @@ class UserModel {
   @JsonKey(name: 'deposit_address', defaultValue: "deposit_address")
   String deposit_address;
 
-  @JsonKey(name: 'referCode', defaultValue: "referCode")
+  @JsonKey(name: 'refer_code', defaultValue: "referCode")
   String referCode;
 
   UserModel({

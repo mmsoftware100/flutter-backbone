@@ -12,6 +12,7 @@ import 'package:base/features/presentation/pages/user_register_page.dart';
 import 'package:base/features/presentation/providers/crpyto_provider.dart';
 import 'package:base/features/presentation/providers/dashboard_provider.dart';
 import 'package:base/features/presentation/providers/referral_provider.dart';
+import 'package:base/features/presentation/providers/wallet_provider.dart';
 
 
 import 'package:flutter/material.dart';
@@ -164,6 +165,14 @@ void main() async{
 
             ChangeNotifierProvider(create: (_) =>ReferralProvider(
               getReferralList: di.sl(),
+            )),
+
+            ChangeNotifierProvider(create: (_) =>WalletProvider(
+              getDepositAddressList: di.sl(),
+              getDepositTransactionList: di.sl(),
+              getWithdrawTransactionList: di.sl(),
+              requestDepositTransaction: di.sl(),
+              requestWithdrawTransaction: di.sl(),
             )),
           ],
           child: MyApp()

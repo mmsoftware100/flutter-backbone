@@ -37,19 +37,19 @@ class WalletProvider extends ChangeNotifier {
     required this.requestWithdrawTransaction
   });
 
-  List<DepositAddress> depositaddresslist = [];
-  List<DepositTransaction> deposittransactionlist = [];
-  List<WithdrawTransaction> withdrawtransactionlist = [];
+  List<DepositAddress> depositAddressList = [];
+  List<DepositTransaction> depositTransactionList = [];
+  List<WithdrawTransaction> withdrawTransactionList = [];
   DepositTransaction depositTransaction = DepositTransaction.sample();
   WithdrawTransaction withdrawTransaction = WithdrawTransaction.sample();
 
-  Future<String> getDepositAddresslistPlz({
+  Future<String> getDepositAddressListPlz({
     required String accessToken
   })async{
-    final Either<Failure, List<DepositAddress>> depositaddressListEither = await getDepositAddressList(GetDepositAddressListParams(
+    final Either<Failure, List<DepositAddress>> depositAddressListEither = await getDepositAddressList(GetDepositAddressListParams(
         accessToken: accessToken
     ));
-    return depositaddressListEither.fold(
+    return depositAddressListEither.fold(
             (failure)  {
           // specify failure
           print("WalletProvider->getDepositAddresslistPlz->failure");
@@ -59,13 +59,13 @@ class WalletProvider extends ChangeNotifier {
         },
             (depositaddressListUpdated)  async{
           print("WalletProvider->getDepositAddresslistPlz->depositaddresslistData");
-          depositaddresslist = depositaddressListUpdated;
+          depositAddressList = depositaddressListUpdated;
           notifyListeners();
           return  "success";
         }
     );
   }
-  Future<String> getDepositTransactionlistPlz({
+  Future<String> getDepositTransactionListPlz({
     required String accessToken
   })async{
     final Either<Failure, List<DepositTransaction>> deposittransactionListEither = await getDepositTransactionList(GetDepositTransactionListParams(
@@ -81,13 +81,13 @@ class WalletProvider extends ChangeNotifier {
         },
             (deposittransactionListUpdated)  async{
           print("WalletProvider->getDepositTransactionlistPlz->deposittransactionlistData");
-          deposittransactionlist = deposittransactionListUpdated;
+          depositTransactionList = deposittransactionListUpdated;
           notifyListeners();
           return  "success";
         }
     );
   }
-  Future<String> getWithdrawTransactionlistPlz({
+  Future<String> getWithdrawTransactionListPlz({
     required String accessToken
   })async{
     final Either<Failure, List<WithdrawTransaction>> withdrawtransactionListEither = await getWithdrawTransactionList(GetWithdrawTransactionListParams(
@@ -103,7 +103,7 @@ class WalletProvider extends ChangeNotifier {
         },
             (withdrawtransactionListUpdated)  async{
           print("WalletProvider->getWithdrawTransactionlistPlz->withdrawtransactionlistData");
-          withdrawtransactionlist = withdrawtransactionListUpdated;
+          withdrawTransactionList = withdrawtransactionListUpdated;
           notifyListeners();
           return  "success";
         }

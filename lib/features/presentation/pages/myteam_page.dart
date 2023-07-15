@@ -71,6 +71,7 @@ class _MyTeamState extends State<MyTeamPage> {
               ],
             ),
             SizedBox(height: 20,),
+            /*
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -93,6 +94,9 @@ class _MyTeamState extends State<MyTeamPage> {
                 Text("Friend Details",style: TextStyle(fontSize: 20,color: Colors.amber,))
               ],
             ),
+
+             */
+            if(referralList.isEmpty) Text("No Referral Data"),
             Container(
               height: 300,
               color: Colors.white,
@@ -112,7 +116,7 @@ class _MyTeamState extends State<MyTeamPage> {
                         ],
                         rows: [
                           ...referralList.map((e) => _getReferralRow(referral: e)),
-                          DataRow( cells: [ DataCell(Container(width:20,child: Icon(Icons.account_circle,color: Colors.green,)),),DataCell(Text('Myowin99',style: TextStyle(color: Colors.green),)),DataCell(Text('Level-1',style: TextStyle(color: Colors.green),)),DataCell(Text('myowin98@gmail.com',style: TextStyle(color: Colors.green),)),DataCell(Text('+5%',style: TextStyle(color: Colors.green),)),DataCell(Text('\$ xxx',style: TextStyle(color: Colors.green),))]),
+                          // DataRow( cells: [ DataCell(Container(width:20,child: Icon(Icons.account_circle,color: Colors.green,)),),DataCell(Text('Myowin99',style: TextStyle(color: Colors.green),)),DataCell(Text('Level-1',style: TextStyle(color: Colors.green),)),DataCell(Text('myowin98@gmail.com',style: TextStyle(color: Colors.green),)),DataCell(Text('+5%',style: TextStyle(color: Colors.green),)),DataCell(Text('\$ xxx',style: TextStyle(color: Colors.green),))]),
                           // DataRow( cells: [ DataCell(Container(width:20,child: Icon(Icons.account_circle,color: Colors.green,))),DataCell(Text('Myowin99',style: TextStyle(color: Colors.green),)),DataCell(Text('Level-1',style: TextStyle(color: Colors.green),)),DataCell(Text('myowin98@gmail.com',style: TextStyle(color: Colors.green),)),DataCell(Text('+5%',style: TextStyle(color: Colors.green),)),DataCell(Text('\$ xxx',style: TextStyle(color: Colors.green),))]),
                           // DataRow( cells: [ DataCell(Container(width:20,child: Icon(Icons.account_circle,color: Colors.green,))),DataCell(Text('Myowin99',style: TextStyle(color: Colors.green),)),DataCell(Text('Level-1',style: TextStyle(color: Colors.green),)),DataCell(Text('myowin98@gmail.com',style: TextStyle(color: Colors.green),)),DataCell(Text('+5%',style: TextStyle(color: Colors.green),)),DataCell(Text('\$ xxx',style: TextStyle(color: Colors.green),))]),
                           // DataRow( cells: [ DataCell(Icon(Icons.account_circle,color: Colors.green,)),DataCell(Text('Myowin99',style: TextStyle(color: Colors.green),)),DataCell(Text('Level-1',style: TextStyle(color: Colors.green),)),DataCell(Text('myowin98@gmail.com',style: TextStyle(color: Colors.green),)),DataCell(Text('+5%',style: TextStyle(color: Colors.green),)),DataCell(Text('\$ xxx',style: TextStyle(color: Colors.green),))]),
@@ -146,6 +150,6 @@ class _MyTeamState extends State<MyTeamPage> {
   }
 
   DataRow _getReferralRow({required Referral referral}){
-    return DataRow( cells: [ DataCell(Container(width:20,child: Icon(Icons.account_circle,color: Colors.green,)),),DataCell(Text('Myowin99',style: TextStyle(color: Colors.green),)),DataCell(Text('Level-1',style: TextStyle(color: Colors.green),)),DataCell(Text('myowin98@gmail.com',style: TextStyle(color: Colors.green),)),DataCell(Text('+5%',style: TextStyle(color: Colors.green),)),DataCell(Text('\$ xxx',style: TextStyle(color: Colors.green),))]);
+    return DataRow( cells: [ DataCell(Container(width:20,child: Icon(Icons.account_circle,color: Colors.green,)),),DataCell(Text(referral.name,style: TextStyle(color: Colors.green),)),DataCell(Text(referral.email,style: TextStyle(color: Colors.green),)),DataCell(Text(referral.deposit.toString(),style: TextStyle(color: Colors.green),)),DataCell(Text(referral.percentage.toString(),style: TextStyle(color: Colors.green),)),DataCell(Text('\$ ${referral.revenue}',style: TextStyle(color: Colors.green),))]);
   }
 }

@@ -8,14 +8,17 @@ import 'package:base/features/data/repositories/dashboard_repository_impl.dart';
 import 'package:base/features/data/repositories/user_repository_impl.dart';
 import 'package:base/features/domain/repositories/crypto_repository.dart';
 import 'package:base/features/domain/repositories/dashboard_repository.dart';
+import 'package:base/features/domain/repositories/referral_repository.dart';
 import 'package:base/features/domain/repositories/user_repository.dart';
 import 'package:base/features/domain/usecases/get_dashboard.dart';
+import 'package:base/features/domain/usecases/get_referral_list.dart';
 import 'package:base/features/domain/usecases/select_crypto.dart';
 import 'package:base/features/domain/usecases/user_login.dart';
 import 'package:base/features/domain/usecases/user_register.dart';
 import 'package:base/features/domain/usecases/user_update.dart';
 import 'package:base/features/presentation/providers/crpyto_provider.dart';
 import 'package:base/features/presentation/providers/dashboard_provider.dart';
+import 'package:base/features/presentation/providers/referral_provider.dart';
 import 'package:base/features/presentation/providers/user_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -47,6 +50,11 @@ Future<void> init() async {
         getDashboard: sl(),
       )
   );
+  sl.registerFactory(
+          () => ReferralProvider(
+        getReferralList: sl(),
+      )
+  );
 
   // ဒီကောင်က implement လုပ်ထားတဲ့ class
   /// Use Cases
@@ -55,6 +63,7 @@ Future<void> init() async {
   sl.registerLazySingleton<UserUpdate>(() =>  UserUpdate(userRepository: sl()));
   sl.registerLazySingleton<SelectCrypto>(() =>  SelectCrypto(cryptoRepository: sl()));
   sl.registerLazySingleton<GetDashboard>(() =>  GetDashboard(dashboardRepository: sl()));
+  sl.registerLazySingleton<GetReferralList>(() =>  GetReferralList(referralRepository: sl()));
 
 
   // ဒါလည်း အတူတူပဲ
@@ -64,6 +73,7 @@ Future<void> init() async {
   sl.registerLazySingleton<CryptoRepository>(() => CryptoRepositoryImpl(cryptoRemoteDataSource: sl()));
   sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(userRemoteDataSource: sl() ));
   sl.registerLazySingleton<DashboardRepository>(() => DashboardRepositoryImpl( dashboardRemoteDataSource: sl() ));
+  sl.registerLazySingleton<ReferralRepository>(() => ReferralRepositoryImpl( dashboardRemoteDataSource: sl() ));
 
   // remote data source
   //sl.registerLazySingleton<UserRemoteDataSource>(() => UserRemoteDataSourceImpl(networkCall: sl()));

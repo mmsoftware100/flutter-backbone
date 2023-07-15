@@ -11,6 +11,7 @@ import 'package:base/features/presentation/pages/user_login_test_page.dart';
 import 'package:base/features/presentation/pages/user_register_page.dart';
 import 'package:base/features/presentation/providers/crpyto_provider.dart';
 import 'package:base/features/presentation/providers/dashboard_provider.dart';
+import 'package:base/features/presentation/providers/referral_provider.dart';
 
 
 import 'package:flutter/material.dart';
@@ -158,7 +159,11 @@ void main() async{
             )),
 
             ChangeNotifierProvider(create: (_) =>DashboardProvider(
-               getDashboard: di.sl(),
+              getDashboard: di.sl(),
+            )),
+
+            ChangeNotifierProvider(create: (_) =>ReferralProvider(
+              getReferralList: di.sl(),
             )),
           ],
           child: MyApp()

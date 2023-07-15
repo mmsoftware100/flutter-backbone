@@ -26,16 +26,20 @@ class RequestWithdrawTransaction implements UseCase<WithdrawTransaction, Request
 
   @override
   Future<Either<Failure, WithdrawTransaction>> call(RequestWithdrawTransactionParams params) {
-    return walletRepository.requestWithdrawTransaction(accessToken:  params.accessToken);
+    return walletRepository.requestWithdrawTransaction(accessToken:  params.accessToken, withdrawAddress: params.withdrawAddress, withdrawAmount: params.withdrawAmount);
   }
 }
 
 class RequestWithdrawTransactionParams extends Equatable{
   final String accessToken;
+  final String withdrawAddress;
+  final double withdrawAmount;
 
   const RequestWithdrawTransactionParams({
     required this.accessToken,
+    required this.withdrawAddress,
+    required this.withdrawAmount,
   });
   @override
-  List<Object> get props => [accessToken];
+  List<Object> get props => [accessToken, withdrawAmount, withdrawAmount];
 }

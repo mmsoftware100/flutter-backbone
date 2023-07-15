@@ -138,10 +138,14 @@ class WalletProvider extends ChangeNotifier {
   }
 
   Future<String> requestWithdrawTransactionPlz({
-    required String accessToken
+    required String accessToken,
+    required String withdrawAddress,
+    required double withdrawAmount
   })async{
     final Either<Failure, WithdrawTransaction> withdrawTransactionEither = await requestWithdrawTransaction(RequestWithdrawTransactionParams(
-        accessToken: accessToken
+        accessToken: accessToken,
+        withdrawAddress: withdrawAddress,
+        withdrawAmount: withdrawAmount
     ));
     return withdrawTransactionEither.fold(
             (failure)  {

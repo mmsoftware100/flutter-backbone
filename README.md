@@ -5,9 +5,17 @@
 
 ### Select (၃) ခုအရင်လုပ်မယ်။
 
-- [ ] Deposit Address Select
-- [ ] Deposit Transaction Select
-- [ ] Withdraw Transaction Select
+- [x] Deposit Address Select
+- [x] Deposit Transaction Select
+- [x] Withdraw Transaction Select
+
+
+Request Deposit မှာ link နဲ့ deposit_amount field နှစ်ခု လိုနေတယ်။
+
+## To DO
+
+- [ ] User Update ကို Backend API မှာပဲ wallet address နဲ့ deposit address ပြင်နိုင်အောင် သွားလုပ်ရမယ်
+
 
 
 ## Get Refer List API Integration

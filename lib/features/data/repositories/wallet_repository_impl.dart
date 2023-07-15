@@ -19,6 +19,7 @@ import 'package:base/features/domain/repositories/investordashboard_repository.d
 import 'package:base/features/domain/repositories/user_repository.dart';
 import 'package:base/features/domain/usecases/add_depositdata.dart';
 import 'package:dartz/dartz.dart';
+import 'package:intl/intl.dart';
 
 import '../../domain/repositories/wallet_repository.dart';
 
@@ -31,11 +32,6 @@ class WalletRepositoryImpl implements WalletRepository{
 
 
 
-  @override
-  Future<Either<Failure, List<InvestorDashboard>>> select({required String accessToken}) {
-    // TODO: implement select
-    throw UnimplementedError();
-  }
 
   @override
   Future<Either<Failure, List<DepositAddress>>> getDepositAddressList({required String accessToken}) async {
@@ -83,9 +79,9 @@ class WalletRepositoryImpl implements WalletRepository{
   }
 
   @override
-  Future<Either<Failure, DepositTransaction>> requestDepositTransaction({required String accessToken}) async {
+  Future<Either<Failure, DepositTransaction>> requestDepositTransaction({required String accessToken, required String link, required double depositAmount}) async {
     try{
-      DepositTransaction depositTransaction =  await walletRemoteDataSource.RequestDepositTransaction(accessToken: accessToken);
+      DepositTransaction depositTransaction =  await walletRemoteDataSource.requestDepositTransaction(accessToken: accessToken, link: link, depositAmount: depositAmount);
       return Right(depositTransaction);
     }
     catch(exp, stackTrace){
@@ -98,9 +94,9 @@ class WalletRepositoryImpl implements WalletRepository{
   }
 
   @override
-  Future<Either<Failure, WithdrawTransaction>> requestWithdrawTransaction({required String accessToken}) async {
+  Future<Either<Failure, WithdrawTransaction>> requestWithdrawTransaction({required String accessToken, required String withdrawAddress, required double withdrawAmount}) async {
     try{
-      WithdrawTransaction withdrawTransaction =  await walletRemoteDataSource.RequestWithdrawTransaction(accessToken: accessToken);
+      WithdrawTransaction withdrawTransaction =  await walletRemoteDataSource.requestWithdrawTransaction(accessToken: accessToken, withdrawAddress: withdrawAddress, withdrawAmount: withdrawAmount);
       return Right(withdrawTransaction);
     }
     catch(exp, stackTrace){

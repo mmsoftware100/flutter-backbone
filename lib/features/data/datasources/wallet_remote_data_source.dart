@@ -24,10 +24,10 @@ abstract class WalletRemoteDataSource {
   Future<List<WithdrawTransaction>> getWithdrawTransactionList({required String accessToken});
 
   //Request Deposit Transaction
-  Future<DepositTransaction> RequestDepositTransaction({required String  accessToken});
+  Future<DepositTransaction> requestDepositTransaction({required String  accessToken, required String link, required double depositAmount});
 
   //Request Withdraw Transaction
-  Future<WithdrawTransaction> RequestWithdrawTransaction({required String  accessToken});
+  Future<WithdrawTransaction> requestWithdrawTransaction({required String  accessToken, required String withdrawAddress, required double withdrawAmount});
 
 }
 
@@ -206,18 +206,16 @@ class WalletRemoteDataSourceImpl implements WalletRemoteDataSource{
   }
 
   @override
-  Future<DepositTransaction> RequestDepositTransaction({required String accessToken}) async {
+  Future<DepositTransaction> requestDepositTransaction({required String accessToken, required String link, required double depositAmount}) async {
       try{
         String endPoint =  deposittransactionEndpoint;
         print("WalletRemoteDataSource->RequestDepositTransaction");
         print("endpoint is $endPoint");
 
         Map<String,dynamic> data = {
-          // "access_token" : accessToken
+          "link" : link,
+          "depositAmount" : depositAmount.toString(),
         };
-
-        // client.options.headers["Authorization"] = "Bearer $accessToken";
-        // final response = await client.post(endPoint, data: data);
 
         final dataResponse = await networkCall.postRequest( data: data, url: endPoint, bearerToken: accessToken);
         print("WalletRemoteDataSource->RequestDepositTransaction response");
@@ -250,26 +248,21 @@ class WalletRemoteDataSourceImpl implements WalletRemoteDataSource{
   }
 
   @override
-  Future<WithdrawTransaction> RequestWithdrawTransaction({required String accessToken}) async {
+  Future<WithdrawTransaction> requestWithdrawTransaction({required String accessToken, required String withdrawAddress, required double withdrawAmount}) async {
     try{
       String endPoint =  withdrawtransactionEndpoint;
       print("WalletRemoteDataSource->RequestWithdrawTransaction");
       print("endpoint is $endPoint");
 
       Map<String,dynamic> data = {
-        // "access_token" : accessToken
+        "withdraw_address" : withdrawAddress,
+        "withdraw_amount" : withdrawAmount,
       };
-
-      // client.options.headers["Authorization"] = "Bearer $accessToken";
-      // final response = await client.post(endPoint, data: data);
 
       final dataResponse = await networkCall.postRequest( data: data, url: endPoint, bearerToken: accessToken);
       print("WalletRemoteDataSource->RequestWithdrawTransaction response");
       print(dataResponse);
-      //print('Response status: ${response.statusCode}');
-      //print('Response data: ${response.data}');
 
-      //Map<String, dynamic> dataResponse = response.data;
       try{
         WithdrawTransactionModel withdrawTransactionModel = WithdrawTransactionModel.fromJson(dataResponse["data"]);
         return withdrawTransactionModel.toEntity();

@@ -3,7 +3,7 @@
 
 ## Get Refer List API Integration
 
-- 
+- dependency injection လုပ်ရမယ်။
 ## TO DO LIST
 
 - [ ] Splash Screen ပြောင်းရန်။

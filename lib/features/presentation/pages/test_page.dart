@@ -16,6 +16,7 @@ import 'package:base/features/presentation/pages/user_register_page.dart';
 import 'package:base/features/presentation/pages/wallet_page.dart';
 import 'package:base/features/presentation/providers/crpyto_provider.dart';
 import 'package:base/features/presentation/providers/dashboard_provider.dart';
+import 'package:base/features/presentation/providers/referral_provider.dart';
 import 'package:base/features/presentation/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -44,6 +45,7 @@ class _TestPageState extends State<TestPage> {
           ListTile(title: Text("Login Test"), onTap: _login,),
           ListTile(title: Text("Get Currency List"), onTap: _getCurrency,),
           ListTile(title: Text("Get Dashboard"), onTap: _getDashboard,),
+          ListTile(title: Text("Get Referral List"), onTap: _getReferralList,),
           Divider(),
           ListTile(title: Text("Landing Page"), onTap: (){ Navigator.pushNamed(context, LandingPage.routeName); },),
           ListTile(title: Text("User Login Page"), onTap: (){ Navigator.pushNamed(context, UserLoginPage.routeName); },),
@@ -85,6 +87,12 @@ class _TestPageState extends State<TestPage> {
     String accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5OTI1OTA2Zi00NjAwLTQyMzAtOTJlMS05OWIwZGQwYjRkYjMiLCJqdGkiOiJlMTM4MzU3M2I2MWY4ODMxMzU3ZDFmMzc5ZDkwNWQ0NzVmNzMwMGNiM2Y4MGY1ZWI2NWJjNjBiZTE3YTA4NDgxODhmOTY3ZTMxOTdhYjJhYSIsImlhdCI6MTY4OTMwMTAyOC44NDEzMjIsIm5iZiI6MTY4OTMwMTAyOC44NDEzMywiZXhwIjoxNzIwOTIzNDI4LjgzNzk5OCwic3ViIjoiMTQ1Iiwic2NvcGVzIjpbXX0.N38fOSNnYQLU4hoU5Gu-qr3chJOuc2qSW70W_QoWA8wL7wmtvtZ5BBvsdpnCRUTZygN4NcUMg14Qocpw0L3PlsSygaSwrTqRVgchBGft6JQE2x0jScpHHFOnuYWR7TvpNcg2ARtflS-dxYTj5WylUDkVAwwcXDcapZ0hXQ3Bwcl_e3EGmunFDc3-g2-ljVK9VuYSSn3aTK4jGdJBAyJqn4BsZJw2-SnwLTeraaCjX2urBFNRVs_ExWNs0IBKbfRB5RhglldFbeSwJ8gPgMuRZ1C_q77hea1z3BzxTgYLrF8zHmcVz5UeOtvgxJ6QS2yzH-AKM8H0vEyaF2sbYLnVqkM_jfBgyJsv4oumjCXycstRrIcV1ZDoHFKQ8ySot_yELhZl4paWX4Y-Gm44n6mnwuWECUC8-7-hkplhfgRhHjJDVfUldBQeDsSMh0wWNm221HE2BGc-i_EIebPRfaMqW-8p_18qRnFBeRV7oYM7OQP4KB3vssQm2zvw03FvH70QfuRcX4_OFnWDxSl2m7SFubyx9TofZwDJpS7EmttIfyLLZBuhGvlVl0qAHFypZpNJ0lDZPsWn30QKhJ5oKHQTgSzawcqAi2RSnfgsfGaeAIfs9-j0Zx5vS0sBCmPy8gz5ko3_Sbl5X3ULGyzUWXOCsNVL1yVOvL5sxKYCU2LZdkw";
 
     Provider.of<DashboardProvider>(context, listen:false).getDashboardPlz(accessToken: accessToken);
+  }
+  // get referral list
+  void _getReferralList(){
+    String accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5OTI1OTA2Zi00NjAwLTQyMzAtOTJlMS05OWIwZGQwYjRkYjMiLCJqdGkiOiJlMTM4MzU3M2I2MWY4ODMxMzU3ZDFmMzc5ZDkwNWQ0NzVmNzMwMGNiM2Y4MGY1ZWI2NWJjNjBiZTE3YTA4NDgxODhmOTY3ZTMxOTdhYjJhYSIsImlhdCI6MTY4OTMwMTAyOC44NDEzMjIsIm5iZiI6MTY4OTMwMTAyOC44NDEzMywiZXhwIjoxNzIwOTIzNDI4LjgzNzk5OCwic3ViIjoiMTQ1Iiwic2NvcGVzIjpbXX0.N38fOSNnYQLU4hoU5Gu-qr3chJOuc2qSW70W_QoWA8wL7wmtvtZ5BBvsdpnCRUTZygN4NcUMg14Qocpw0L3PlsSygaSwrTqRVgchBGft6JQE2x0jScpHHFOnuYWR7TvpNcg2ARtflS-dxYTj5WylUDkVAwwcXDcapZ0hXQ3Bwcl_e3EGmunFDc3-g2-ljVK9VuYSSn3aTK4jGdJBAyJqn4BsZJw2-SnwLTeraaCjX2urBFNRVs_ExWNs0IBKbfRB5RhglldFbeSwJ8gPgMuRZ1C_q77hea1z3BzxTgYLrF8zHmcVz5UeOtvgxJ6QS2yzH-AKM8H0vEyaF2sbYLnVqkM_jfBgyJsv4oumjCXycstRrIcV1ZDoHFKQ8ySot_yELhZl4paWX4Y-Gm44n6mnwuWECUC8-7-hkplhfgRhHjJDVfUldBQeDsSMh0wWNm221HE2BGc-i_EIebPRfaMqW-8p_18qRnFBeRV7oYM7OQP4KB3vssQm2zvw03FvH70QfuRcX4_OFnWDxSl2m7SFubyx9TofZwDJpS7EmttIfyLLZBuhGvlVl0qAHFypZpNJ0lDZPsWn30QKhJ5oKHQTgSzawcqAi2RSnfgsfGaeAIfs9-j0Zx5vS0sBCmPy8gz5ko3_Sbl5X3ULGyzUWXOCsNVL1yVOvL5sxKYCU2LZdkw";
+
+    Provider.of<ReferralProvider>(context, listen:false).getReferralListPlz(accessToken: accessToken);
   }
 
 }

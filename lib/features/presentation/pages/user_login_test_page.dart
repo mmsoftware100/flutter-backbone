@@ -102,11 +102,11 @@ class _UserLoginPageState extends State<UserLoginPage> {
 
   void _login()async{
     print("UserLoginPage->_login");
-    // String email = emailTec.text;
-    // String password = passwordTec.text;
+    String email = emailTec.text;
+    String password = passwordTec.text;
 
-    String email = "vocebe9500@nasskar.com";
-    String password = "P@ssw0rd123";
+    // String email = "vocebe9500@nasskar.com";
+    // String password = "P@ssw0rd123";
 
     print("$email and $password");
     // show loading screen

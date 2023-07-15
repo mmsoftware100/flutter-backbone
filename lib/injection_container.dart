@@ -2,6 +2,7 @@ import 'package:base/features/data/const/data.dart';
 import 'package:base/features/data/datasources/crypto_remote_data_source.dart';
 import 'package:base/features/data/datasources/dashboard_remote_data_source.dart';
 import 'package:base/features/data/datasources/network_call.dart';
+import 'package:base/features/data/datasources/referral_remote_data_source.dart';
 import 'package:base/features/data/datasources/user_remote_data_source.dart';
 import 'package:base/features/data/repositories/crypto_repository_impl.dart';
 import 'package:base/features/data/repositories/dashboard_repository_impl.dart';
@@ -26,6 +27,7 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'features/data/datasources/local_storage.dart';
+import 'features/data/repositories/referral_repository_impl.dart';
 
 final sl = GetIt.instance;
 
@@ -73,13 +75,14 @@ Future<void> init() async {
   sl.registerLazySingleton<CryptoRepository>(() => CryptoRepositoryImpl(cryptoRemoteDataSource: sl()));
   sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(userRemoteDataSource: sl() ));
   sl.registerLazySingleton<DashboardRepository>(() => DashboardRepositoryImpl( dashboardRemoteDataSource: sl() ));
-  sl.registerLazySingleton<ReferralRepository>(() => ReferralRepositoryImpl( dashboardRemoteDataSource: sl() ));
+  sl.registerLazySingleton<ReferralRepository>(() => ReferralRepositoryImpl( referralRemoteDataSource: sl() ));
 
   // remote data source
   //sl.registerLazySingleton<UserRemoteDataSource>(() => UserRemoteDataSourceImpl(networkCall: sl()));
   sl.registerLazySingleton<CryptoRemoteDataSource>(() => CryptoRemoteDataSourceImpl(networkCall: sl()));
   sl.registerLazySingleton<UserRemoteDataSource>(() => UserRemoteDataSourceImpl(networkCall: sl()));
   sl.registerLazySingleton<DashboardRemoteDataSource>(() => DashboardRemoteDataSourceImpl(networkCall: sl()));
+  sl.registerLazySingleton<ReferralRemoteDataSource>(() => ReferralRemoteDataSourceImpl(networkCall: sl()));
 
   // external
   // DIO က လည်း အမှန်တော့ Abstract တစ်ခု ခံပြီးသုံးသင့်တာ။

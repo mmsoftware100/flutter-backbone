@@ -4,6 +4,27 @@
 ## Get Refer List API Integration
 
 - dependency injection လုပ်ရမယ်။
+
+/api/v1/refer API မှာ Referral မရှိရင် အောက်ကလိုမျိုး empty array ပဲ ပြန်ပေးပါ။
+
+```json
+{
+    "status": true,
+    "message": "ReferralApiController->getReferralList success",
+    "data": []
+}
+```
+
+
+အခုက ဒါမျိုး ပြန်နေတယ်။
+```json
+{
+    "status": "True",
+    "auth_id": 145,
+    "auth_refer_code": "mOSgqerKLq",
+    "all_refer": "No Refer User"
+}
+```
 ## TO DO LIST
 
 - [ ] Splash Screen ပြောင်းရန်။

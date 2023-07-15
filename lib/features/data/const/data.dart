@@ -7,6 +7,7 @@ const String loginEndpoint = apiVersion+'/user/login';
 const String meEndpoint = apiVersion+'/me';
 const String registerEndpoint = apiVersion+'/register';
 const String updateEndpoint = apiVersion+'/user/update';
+const String dashboardEndpoint = apiVersion+'/dashboard';
 const String currencyEndpoint = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
 const String depositaddresslistEndpoint = apiVersion+'/wallet/deposit-address-list';
 const String deposittransactionlistEndpoint = apiVersion+'/wallet/deposit-transaction-list';

@@ -1,6 +1,7 @@
 
 import 'package:base/features/data/const/data.dart';
 import 'package:base/features/data/models/crypto_model.dart';
+import 'package:base/features/data/models/dashboard_model.dart';
 import 'package:base/features/domain/entities/dashboard.dart';
 import 'package:base/features/domain/entities/depositdata.dart';
 import 'package:base/features/domain/entities/walletinfo.dart';
@@ -25,31 +26,19 @@ class DashboardRemoteDataSourceImpl implements DashboardRemoteDataSource{
   @override
   Future<Dashboard> getDashboard({required String accessToken}) async{
     try{
-      String endPoint =  currencyEndpoint;
+      String endPoint =  dashboardEndpoint;
       print("DashboardRemoteDataSourceImpl->getDashboard");
       print("endpoint is $endPoint");
-      final dataResponse = await networkCall.getRequest( data: data, url: endPoint, headers: headers);
-      print("CryptoRemoteDataSourceImpl->select response");
+      final dataResponse = await networkCall.getRequest( data: {}, url: endPoint, bearerToken: accessToken);
+      print("DashboardRemoteDataSourceImpl->getDashboard response");
       print(dataResponse);
       try{
-        // get list of crypto json list
-        List<dynamic> cryptoJsonList = dataResponse['data'];
-        List<Crypto> cryptoList = [];
-        for(int i=0; i < cryptoJsonList.length; i++){
-          try{
-            CryptoModel cryptoModel = CryptoModel.fromJson(cryptoJsonList[i]);
-            cryptoList.add(cryptoModel.toEntity());
-          }
-          catch(innerExp, stackTrace){
-            print('CryptoRemoteDataSourceImpl->select   serialization exception $innerExp');
-            print(stackTrace);
-            rethrow;
-          }
-        }
-        return cryptoList;
+        DashboardModel dashboardModel = DashboardModel.fromJson(dataResponse['data']);
+
+        return dashboardModel.toEntity();
       }
       catch(innerExp, stackTrace){
-        print('UserRemoteDataSourceImpl->login   serialization exception $innerExp');
+        print('DashboardRemoteDataSourceImpl->getDashboard   serialization exception $innerExp');
         print(stackTrace);
         rethrow;
       }

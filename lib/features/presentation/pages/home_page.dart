@@ -177,7 +177,7 @@ class _HomePageState extends State<HomePage> {
               _pageTitle(),
               _dashboardCard(user: Provider.of<UserProvider>(context, listen: true).user),
               SizedBox(height: 8.0,),
-              _verticalListRow(),
+              // _verticalListRow(),
               _dashboardRow(dashboard: Provider.of<DashboardProvider>(context, listen: true).dashboard),
               _dataTable(cryptoList: Provider.of<CryptoProvider>(context, listen: true).cryptoList),
           ],

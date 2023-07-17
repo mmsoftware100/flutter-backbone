@@ -30,11 +30,14 @@ class ReferralModel {
   @JsonKey(name: 'email', defaultValue: "email")
   String email;
 
+  @JsonKey(name: 'level', defaultValue: "level")
+  String level;
+
   @JsonKey(name: 'deposit', defaultValue: 0)
   double deposit;
 
-  @JsonKey(name: 'percentage', defaultValue: 0)
-  double percentage;
+  @JsonKey(name: 'percentage', defaultValue: "percentage")
+  String percentage;
 
   @JsonKey(name: 'revenue', defaultValue: 0)
   double revenue;
@@ -43,18 +46,19 @@ class ReferralModel {
     required this.profile,
     required this.name,
     required this.email,
+    required this.level,
     required this.deposit,
     required this.percentage,
     required this.revenue
   });
 
   Referral toEntity(){
-    return Referral(profile: profile, name: name, email: email, deposit: deposit, percentage: percentage, revenue: revenue);
+    return Referral(profile: profile, name: name, email: email,level: level, deposit: deposit, percentage: percentage, revenue: revenue);
   }
 
 
   static ReferralModel fromEntity(Referral referral){
-      return ReferralModel(profile: referral.profile, name: referral.name, email: referral.email, deposit: referral.deposit, percentage: referral.percentage, revenue: referral.revenue) ;
+      return ReferralModel(profile: referral.profile, name: referral.name, email: referral.email,level: referral.level, deposit: referral.deposit, percentage: referral.percentage, revenue: referral.revenue) ;
   }
 
 

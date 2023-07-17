@@ -43,7 +43,7 @@ class ReferralRemoteDataSourceImpl implements ReferralRemoteDataSource{
       // client.options.headers["Authorization"] = "Bearer $accessToken";
       // final response = await client.post(endPoint, data: data);
 
-      final dataResponse = await networkCall.getRequest( data: data, url: endPoint, bearerToken: accessToken);
+      final dataResponse = await networkCall.getRequest( data: {}, url: endPoint, bearerToken: accessToken);
       print("WalletRemoteDataSourceImpl->getReferralList response");
       print(dataResponse);
       //print('Response status: ${response.statusCode}');

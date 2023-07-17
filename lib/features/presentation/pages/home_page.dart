@@ -169,19 +169,26 @@ class _HomePageState extends State<HomePage> {
 
   Widget _mainWidget(){
     return Container(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-              //_stackTest(),
-              //_stackTestTwo(),
-              _pageTitle(),
-              _dashboardCard(user: Provider.of<UserProvider>(context, listen: true).user),
-              SizedBox(height: 8.0,),
-              // _verticalListRow(),
-              _dashboardRow(dashboard: Provider.of<DashboardProvider>(context, listen: true).dashboard),
-              _dataTable(cryptoList: Provider.of<CryptoProvider>(context, listen: true).cryptoList),
-          ],
-        ),
+      child: Column(
+        children: [
+            //_stackTest(),
+            //_stackTestTwo(),
+            _pageTitle(),
+            _dashboardCard(user: Provider.of<UserProvider>(context, listen: true).user,dashboard: Provider.of<DashboardProvider>(context, listen: true).dashboard),
+            SizedBox(height: 8.0,),
+            // _verticalListRow(),
+            _dashboardRow(dashboard: Provider.of<DashboardProvider>(context, listen: true).dashboard),
+
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  _dataTable(cryptoList: Provider.of<CryptoProvider>(context, listen: true).cryptoList),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -350,7 +357,7 @@ class _HomePageState extends State<HomePage> {
         )
     );
   }
-  Widget _dashboardCard({required User user}){
+  Widget _dashboardCard({required User user,required Dashboard dashboard}){
     return Container(
       decoration: BoxDecoration(
         color: Colors.transparent
@@ -366,10 +373,10 @@ class _HomePageState extends State<HomePage> {
           Positioned(
               //right: 0,
               //bottom: 0,
-              child: _creditCard(user: user)
+              child: _creditCard(user: user,dashboard: dashboard)
           ),
           Positioned(
-              left: 0,
+              left: 5,
               top: 0,
               child: _timeCircleCard()),
         ],
@@ -381,19 +388,27 @@ class _HomePageState extends State<HomePage> {
     return Container(
       padding: EdgeInsets.all(36.0),
       decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/user.png"),
+            fit: BoxFit.fill,
+          ),
         color: Colors.orangeAccent,
         shape: BoxShape.circle,
           boxShadow: [
-          BoxShadow(blurRadius: 3.0, spreadRadius: 1.0, color: Colors.black12, offset: Offset(0,0))
+          BoxShadow(blurRadius: 3.0, spreadRadius: 3.0, color: Colors.black12, offset: Offset(0,0))
         ]
       ),
-      child: Text("21:05:25", style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),),
+      child: null
+      // child: Image.asset('assets/images/user.png',width: 40,
+      //     height: 40,
+      //     fit:BoxFit.fill )
+      //child: Text("21:05:25", style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),),
     );
   }
 
-  Widget _creditCard({required User user}){
+  Widget _creditCard({required User user,required Dashboard dashboard}){
     return Container(
-      width: MediaQuery.of(context).size.width * 0.6,
+      width: MediaQuery.of(context).size.width * 0.65,
       decoration: BoxDecoration(
           color: Colors.green,
           borderRadius: BorderRadius.circular(8.0),
@@ -423,7 +438,7 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(height: 8.0,),
                   Text("${user.wallet_address}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                   SizedBox(height: 8.0,),
-                  Text("${user.referCode}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 36),)
+                  Text("\$ ${dashboard.total_net_profit}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 36),)
                 ],
               ),
             ),
@@ -477,8 +492,10 @@ class _HomePageState extends State<HomePage> {
       ),
       child: Table(
         columnWidths: {
-          0: FractionColumnWidth(0.05),
+          0: FractionColumnWidth(0.1),
           1: FractionColumnWidth(0.5),
+          2: FractionColumnWidth(0.2),
+          3: FractionColumnWidth(0.2),
         },
         children: [
           TableRow(
@@ -510,23 +527,23 @@ class _HomePageState extends State<HomePage> {
           children: [
             Padding(
               padding: const EdgeInsets.all(4.0),
-              child: Text(index.toString()),
+              child: Text((index + 1).toString()),
             ),
             Row(
               children: [
                 Icon(Icons.currency_bitcoin),
-                Text(crypto.name),
+                Text(crypto.name,style: TextStyle(fontSize: 11.0,fontWeight: FontWeight.bold),),
                 SizedBox(width: 8.0,),
                 Text(crypto.symbol, style: TextStyle(color: Colors.grey),),
               ],
             ),
             Padding(
               padding: const EdgeInsets.all(4.0),
-              child: Text("\$"+ crypto.price.toString()),
+              child: Text("\$"+ crypto.price.toStringAsFixed(3)),
             ),
             Padding(
               padding: const EdgeInsets.all(4.0),
-              child: Text("\$"+ crypto.marketCap.toString()),
+              child: Text("\$"+ crypto.marketCap.toStringAsFixed(3)),
             ),
           ]
       );

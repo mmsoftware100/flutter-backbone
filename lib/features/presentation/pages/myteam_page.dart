@@ -150,6 +150,6 @@ class _MyTeamState extends State<MyTeamPage> {
   }
 
   DataRow _getReferralRow({required Referral referral}){
-    return DataRow( cells: [ DataCell(Container(width:20,child: Icon(Icons.account_circle,color: Colors.green,)),),DataCell(Text(referral.name,style: TextStyle(color: Colors.green),)),DataCell(Text(referral.email,style: TextStyle(color: Colors.green),)),DataCell(Text(referral.deposit.toString(),style: TextStyle(color: Colors.green),)),DataCell(Text(referral.percentage.toString(),style: TextStyle(color: Colors.green),)),DataCell(Text('\$ ${referral.revenue}',style: TextStyle(color: Colors.green),))]);
+    return DataRow( cells: [ DataCell(Container(width:10,child: Icon(Icons.account_circle,color: Colors.green,)),),DataCell(Text(referral.name,style: TextStyle(color: Colors.green),)),DataCell(Text(referral.email,style: TextStyle(color: Colors.green),)),DataCell(Text(referral.deposit.toString(),style: TextStyle(color: Colors.green),)),DataCell(Text(referral.percentage.toString(),style: TextStyle(color: Colors.green),)),DataCell(Text('\$ ${referral.revenue}',style: TextStyle(color: Colors.green),))]);
   }
 }

@@ -11,8 +11,9 @@ ReferralModel _$ReferralModelFromJson(Map<String, dynamic> json) =>
       profile: json['profile'] as String? ?? 'profile',
       name: json['name'] as String? ?? 'name',
       email: json['email'] as String? ?? 'email',
+      level: json['level'] as String? ?? 'level',
       deposit: (json['deposit'] as num?)?.toDouble() ?? 0,
-      percentage: (json['percentage'] as num?)?.toDouble() ?? 0,
+      percentage: json['percentage'] as String? ?? 'percentage',
       revenue: (json['revenue'] as num?)?.toDouble() ?? 0,
     );
 
@@ -21,6 +22,7 @@ Map<String, dynamic> _$ReferralModelToJson(ReferralModel instance) =>
       'profile': instance.profile,
       'name': instance.name,
       'email': instance.email,
+      'level': instance.level,
       'deposit': instance.deposit,
       'percentage': instance.percentage,
       'revenue': instance.revenue,

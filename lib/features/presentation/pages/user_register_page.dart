@@ -1,5 +1,6 @@
 
 
+import 'package:base/core/util/loading_dialog.dart';
 import 'package:base/features/domain/entities/user.dart';
 import 'package:base/features/presentation/components/form_elements/our_text_input.dart';
 import 'package:base/features/presentation/components/form_elements/our_submit_button.dart';
@@ -124,16 +125,18 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
     // create user
     // call register method in User Provider
     // User user = User(id: id, name: name, email: email, password: password, referCode: referCode, phone: phone, img: img, address: address, remark: remark, accessToken: accessToken, createdAt: createdAt, modifiedAt: modifiedAt)
-
+    LoadingDialog.show(context);
     String status = await Provider.of<UserProvider>(context, listen:false).userRegisterPlz(user: user);
     // close loading dialog
-
+    LoadingDialog.hide(context);
     if(status == "success"){
       // Navigator.pushNamed(context, HomePage.routeName);
 
       showAlertDialog(context, "Verify Email", "Check your email inbox and click on verification link", Colors.red, (){});
     }
     else{
+      print('Status is -->');
+      print(status);
       // show error message
       // showAlertDialog(context, "Login Fail", "Please check email , password and Try Again!", Colors.red, (){});
       showAlertDialog(context, "Something went wrong", "Contact to facebook page for Approval!!", Colors.red, (){});

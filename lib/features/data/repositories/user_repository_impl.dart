@@ -1,4 +1,7 @@
 
+
+
+import 'package:base/core/error/exceptions.dart';
 import 'package:base/core/error/failures.dart';
 import 'package:base/features/data/datasources/user_remote_data_source.dart';
 import 'package:base/features/domain/entities/user.dart';
@@ -52,7 +55,11 @@ class UserRepositoryImpl implements UserRepository{
     catch(exp, stackTrace){
       // TODO: convert exception to failure with meaningful message
       print("UserRepositoryImpl->register exp");
-      print(exp);
+      // if(exp is ServerException) {
+      //   print(exp[0]);
+      // }
+      print(exp.toString());
+      print("UserRepositoryImpl->register stackTrace");
       print(stackTrace);
       return Left(GeneralFailure(message: exp.toString()));
     }

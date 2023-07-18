@@ -2,6 +2,7 @@ import 'package:base/features/presentation/providers/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:provider/provider.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class CalculatorPage extends StatefulWidget {
   static String routeName = "/CalculatorPage";
@@ -45,9 +46,15 @@ class _CalculatorPageState extends State<CalculatorPage> {
     if(code != "en"){
       url += "/"+code;
     }
+    final WebViewController controller = WebViewController();
+    controller.loadRequest(Uri.parse(url));
+    return WebViewWidget(controller: controller);
+    /*
     return InAppWebView(
       initialUrlRequest: URLRequest(url: Uri.parse(url)),
     );
+
+     */
   }
 
   Widget _mainWidget2(){

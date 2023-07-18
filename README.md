@@ -5,8 +5,8 @@
 
 - [ ] App Icon and Name Update
 - [ ] Error Message တွေကို API က ပြတဲ့အတိုင်း ပြန်ပေးရန်။
-- [ ] Language Menu ထည့်ရန် ( EN / CH / JP ) 
-- [ ] Calculator က Webview ခေါ်ရန်။  ( Lanugae အလိုက် ခေါ်တဲ့ URL ပြောင်းရန်)
+- [x] Language Menu ထည့်ရန် ( EN / CH / JP ) 
+- [x] Calculator က Webview ခေါ်ရန်။  ( Lanugae အလိုက် ခေါ်တဲ့ URL ပြောင်းရန်)
 - [ ] API Call တိုင်းမှာ Loading Screen ပြန်ရန်
 
 - [ ] Deposit မှာ QR Code တွေအပေါ်  longPress => Dialog Withdraw Form

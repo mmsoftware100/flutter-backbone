@@ -1,4 +1,7 @@
+import 'package:base/features/presentation/providers/language_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:provider/provider.dart';
 
 class CalculatorPage extends StatefulWidget {
   static String routeName = "/CalculatorPage";
@@ -37,6 +40,17 @@ class _CalculatorPageState extends State<CalculatorPage> {
   }
 
   Widget _mainWidget(){
+    String url = "https://fumoinvest.org/profit_calculator";
+    String code = Provider.of<LanguageProvider>(context, listen:false).appLanguage.code;
+    if(code != "en"){
+      url += "/"+code;
+    }
+    return InAppWebView(
+      initialUrlRequest: URLRequest(url: Uri.parse(url)),
+    );
+  }
+
+  Widget _mainWidget2(){
     return Container(
       color: Colors.white,
       child: SingleChildScrollView(

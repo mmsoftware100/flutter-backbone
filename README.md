@@ -1,5 +1,17 @@
 # FUMO
 
+## 2023-07-18 To Do List
+
+
+- [ ] Error Message တွေကို API က ပြတဲ့အတိုင်း ပြန်ပေးရန်။
+- [ ] Language Menu ထည့်ရန် ( EN / CH / JP ) 
+- [ ] Calculator က Webview ခေါ်ရန်။  ( Lanugae အလိုက် ခေါ်တဲ့ URL ပြောင်းရန်)
+- [ ] Referral List ကို Home Page မှာ ပြရန်
+- [ ] API Call တိုင်းမှာ Loading Screen ပြန်ရန်
+- [ ] Deposit မှာ QR Code တွေအပေါ်  longPress => Dialog Withdraw Form
+- [ ] Deposit မှာ  QR Code တွေအပေါ် onTap => Copy Text
+- [ ] Withdraw မှာ onTap => Copy Text
+- [ ] Withdraw မှာ longPress => Dialog Withdraw Form
 
 
 ## Calculator Page ကို Webview နဲ့ ပြမယ်။

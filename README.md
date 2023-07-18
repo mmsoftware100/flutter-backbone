@@ -3,11 +3,12 @@
 ## 2023-07-18 To Do List
 
 
-- [ ] App Icon and Name Update
-- [ ] Error Message တွေကို API က ပြတဲ့အတိုင်း ပြန်ပေးရန်။
+- [x] App Icon and Name Update
+- [x] Error Message တွေကို API က ပြတဲ့အတိုင်း ပြန်ပေးရန်။
 - [x] Language Menu ထည့်ရန် ( EN / CH / JP ) 
 - [x] Calculator က Webview ခေါ်ရန်။  ( Lanugae အလိုက် ခေါ်တဲ့ URL ပြောင်းရန်)
-- [ ] API Call တိုင်းမှာ Loading Screen ပြန်ရန်
+- [x] API Call တိုင်းမှာ Loading Screen ပြန်ရန်
+- [ ] App မှာ ပါတဲ့ စာအားလုံး ဘာသာစကားပြောင်းရန်
 
 - [ ] Deposit မှာ QR Code တွေအပေါ်  longPress => Dialog Withdraw Form
 - [ ] Deposit မှာ  QR Code တွေအပေါ် onTap => Copy Text

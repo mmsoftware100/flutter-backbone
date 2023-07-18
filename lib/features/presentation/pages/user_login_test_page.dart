@@ -126,6 +126,9 @@ class _UserLoginPageState extends State<UserLoginPage> {
     else{
       // show error message
       // showAlertDialog(context, "Login Fail", "Please check email , password and Try Again!", Colors.red, (){});
+      if(str == "null"){
+        str = "No Internet Connection";
+      }
       showAlertDialog(context, "Something Went Wrong", str, Colors.red, (){});
     }
 

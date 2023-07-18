@@ -27,6 +27,9 @@ class UserRepositoryImpl implements UserRepository{
       print("UserRepositoryImpl->login exp");
       print(exp);
       print(stackTrace);
+      if(exp is GeneralException){
+        return Left(GeneralFailure(message: exp.message));
+      }
       return Left(GeneralFailure(message: exp.toString()));
     }
   }

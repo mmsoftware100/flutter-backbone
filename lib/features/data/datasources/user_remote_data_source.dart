@@ -66,7 +66,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
       print(exp);
       print(stackTrace);
       // need to throw meaningful exception
-      throw GeneralException(message: exp.toString());
+      //throw GeneralException(message: exp.toString());
       rethrow;
     }
   }

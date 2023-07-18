@@ -88,6 +88,9 @@ class UserProvider extends ChangeNotifier {
                 print("UserProvider->userLoginPlz->failure");
                 print(failure);
                 notifyListeners();
+                if(failure is GeneralFailure){
+                  return failure.message;
+                }
                 return failure.toString();
             },
                 (userData)  async{

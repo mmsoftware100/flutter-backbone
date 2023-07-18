@@ -1,3 +1,8 @@
+
+
+
+import '../../domain/entities/app_language.dart';
+
 const String appName = "App Name";
 const String appIconUrl = "https://i.ibb.co/HhxKg1c/logo.png"; //"https://i.ibb.co/HhxKg1c/logo.png";
 const String backendApiServer = 'https://fumoinvest.org';

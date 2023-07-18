@@ -1,4 +1,5 @@
 
+
 import 'package:base/features/domain/entities/crypto.dart';
 import 'package:base/features/presentation/components/form_elements/our_drawer.dart';
 import 'package:base/features/presentation/pages/friend_page.dart';
@@ -8,6 +9,7 @@ import 'package:base/features/presentation/pages/test_page.dart';
 import 'package:base/features/presentation/pages/wallet_page.dart';
 import 'package:base/features/presentation/providers/crpyto_provider.dart';
 import 'package:base/features/presentation/providers/dashboard_provider.dart';
+import 'package:base/features/presentation/providers/language_provider.dart';
 import 'package:base/features/presentation/providers/referral_provider.dart';
 import 'package:base/features/presentation/providers/user_provider.dart';
 import 'package:base/features/presentation/providers/wallet_provider.dart';
@@ -16,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
+import '../../domain/entities/app_language.dart';
 import '../../domain/entities/dashboard.dart';
 import '../../domain/entities/user.dart';
 import 'calculator_page.dart';
@@ -64,13 +67,51 @@ class _HomePageState extends State<HomePage> {
 
   }
 
+
+  Widget _languageDropdown(){
+    return DropdownButton<String>(
+      value: Provider.of<LanguageProvider>(context, listen: true).appLanguage.code,
+      icon: const Icon(Icons.arrow_downward),
+      elevation: 16,
+      style: const TextStyle(color: Colors.deepPurple),
+      underline: Container(
+        height: 2,
+        color: Colors.deepPurpleAccent,
+      ),
+      onChanged: (String? value) {
+        // This is called when the user selects an item.
+        switch (value) {
+          case 'en':
+            Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "English", code: "en", flag: "https://fumoinvest.org/img/eng_flag.png"));
+            break;
+          case 'ch':
+            Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "China", code: "ch", flag: "https://fumoinvest.org/img/ch_flag.png"));
+            break;
+          case 'OPEN':
+            Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "Japan", code: "jp", flag: "https://fumoinvest.org/img/jp_flag.png"));
+            break;
+          default:
+
+        }
+
+      },
+      items: Provider.of<LanguageProvider>(context, listen: true).appLanguageList.map<DropdownMenuItem<String>>((AppLanguage appLanguage) {
+        return DropdownMenuItem<String>(
+          value: appLanguage.code,
+          child: Text(appLanguage.name),
+        );
+      }).toList(),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("FUMO"),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.notifications))
+          IconButton(onPressed: (){}, icon: Icon(Icons.notifications)),
+          _languageDropdown()
+          // language drop down in action
         ],
       ),
       body: _bottomNavigation(),

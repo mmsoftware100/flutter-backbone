@@ -11,6 +11,7 @@ import 'package:base/features/presentation/pages/user_login_test_page.dart';
 import 'package:base/features/presentation/pages/user_register_page.dart';
 import 'package:base/features/presentation/providers/crpyto_provider.dart';
 import 'package:base/features/presentation/providers/dashboard_provider.dart';
+import 'package:base/features/presentation/providers/language_provider.dart';
 import 'package:base/features/presentation/providers/referral_provider.dart';
 import 'package:base/features/presentation/providers/wallet_provider.dart';
 
@@ -174,6 +175,9 @@ void main() async{
               requestDepositTransaction: di.sl(),
               requestWithdrawTransaction: di.sl(),
             )),
+
+
+            ChangeNotifierProvider(create: (_) =>LanguageProvider()),
           ],
           child: MyApp()
       )

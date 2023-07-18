@@ -1,4 +1,5 @@
 
+import 'package:base/core/error/exceptions.dart';
 import 'package:base/features/data/const/data.dart';
 import 'package:dio/dio.dart';
 
@@ -60,9 +61,12 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
       if(exp is DioError){
         print("error is DioError");
         print(exp.response);
+        throw GeneralException(message: exp.response.toString());
       }
       print(exp);
       print(stackTrace);
+      // need to throw meaningful exception
+      throw GeneralException(message: exp.toString());
       rethrow;
     }
   }
@@ -150,6 +154,9 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
       if(exp is DioError){
         print("error is DioError");
         print(exp.response);
+        print("response runtime type is ");
+        print(exp.response.runtimeType);
+        throw GeneralException(message: exp.response.toString());
       }
       print(exp);
       print(stackTrace);

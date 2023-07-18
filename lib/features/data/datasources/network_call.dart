@@ -202,6 +202,7 @@ class NetworkCallImpl implements NetworkCall {
       if(exp is DioError){
         print("exp is DioError");
         print(exp.response);
+        throw GeneralException(message: exp.response.toString());
       }
       print(exp);
       print(stackTrace);

@@ -53,6 +53,10 @@ class UserProvider extends ChangeNotifier {
                 print("UserProvider->userRegisterPlz->failure");
                 print(failure);
                 notifyListeners();
+                if(failure is GeneralFailure){
+                  print(failure.message);
+                  return failure.message;
+                }
                 return failure.toString();
             },
             (userData)  async{

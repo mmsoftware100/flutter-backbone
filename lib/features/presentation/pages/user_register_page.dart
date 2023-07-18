@@ -78,6 +78,9 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
           OurTextInput(label: "Password", placeHolder: "enter your password", textEditingController: passwordTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.password, password: true,),
 
           SizedBox(height: 8.0,),
+          OurTextInput(label: "Confirm Password", placeHolder: "enter your password again", textEditingController: passwordConfirmTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.password, password: true,),
+
+          SizedBox(height: 8.0,),
           OurTextInput(label: "Referral Code", placeHolder: "enter your referral code", textEditingController: refTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.password, password: true),
 
           SizedBox(height: 8.0,),
@@ -102,6 +105,12 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
   }
 
   void _register()async{
+
+    if(passwordTec.text != passwordConfirmTec.text){
+      // need to be same password value
+      showAlertDialog(context, "Type Same Password", "Password need to be same in both password fields", Colors.red, (){});
+      return;
+    }
     String email = emailTec.text;
     String password = passwordTec.text;
     String name = nameTec.text;
@@ -139,7 +148,8 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
       print(status);
       // show error message
       // showAlertDialog(context, "Login Fail", "Please check email , password and Try Again!", Colors.red, (){});
-      showAlertDialog(context, "Something went wrong", "Contact to facebook page for Approval!!", Colors.red, (){});
+
+      showAlertDialog(context, "Something went wrong", status, Colors.red, (){});
     }
 
     // Navigator.pop(context);

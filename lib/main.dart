@@ -182,7 +182,7 @@ void main() async{
             ChangeNotifierProvider(create: (_) =>LanguageProvider()),
           ],
         child: EasyLocalization(
-          supportedLocales: [Locale('en'), Locale('ch'), Locale('jp')],
+          supportedLocales: [Locale('en'), Locale('zh'), Locale('ja')],
           path: 'assets/translations',
           fallbackLocale: Locale('en'),
           child: MyApp(),
@@ -199,7 +199,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       localizationsDelegates: context.localizationDelegates,
-      supportedLocales: [Locale('en'), Locale('ch'), Locale('jp')],
+      supportedLocales: context.supportedLocales,
+      // supportedLocales: [Locale('en'), Locale('ch'), Locale('jp')],
       locale: context.locale,
       debugShowCheckedModeBanner: false,
       title: appName,

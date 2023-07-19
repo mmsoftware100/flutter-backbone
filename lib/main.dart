@@ -148,44 +148,44 @@ void main() async{
 
   await di.init();
   runApp(
-      EasyLocalization(
-        supportedLocales: [Locale('en', 'US'), Locale('ch', 'CH'), Locale('jp', 'JP')],
-        path: 'assets/translations',
-        fallbackLocale: Locale('en', 'US'),
-        child: MultiProvider(
-            providers: [
+      MultiProvider(
+        providers: [
 
-              ChangeNotifierProvider(create: (_) =>CryptoProvider(
-                  selectCrypto: di.sl(),
-              )),
+            ChangeNotifierProvider(create: (_) =>CryptoProvider(
+                selectCrypto: di.sl(),
+            )),
 
-              ChangeNotifierProvider(create: (_) =>UserProvider(
-                userLogin: di.sl(),
-                userRegister: di.sl(),
-                userUpdate: di.sl(),
-                localStorage: di.sl()
-              )),
+            ChangeNotifierProvider(create: (_) =>UserProvider(
+              userLogin: di.sl(),
+              userRegister: di.sl(),
+              userUpdate: di.sl(),
+              localStorage: di.sl()
+            )),
 
-              ChangeNotifierProvider(create: (_) =>DashboardProvider(
-                getDashboard: di.sl(),
-              )),
+            ChangeNotifierProvider(create: (_) =>DashboardProvider(
+              getDashboard: di.sl(),
+            )),
 
-              ChangeNotifierProvider(create: (_) =>ReferralProvider(
-                getReferralList: di.sl(),
-              )),
+            ChangeNotifierProvider(create: (_) =>ReferralProvider(
+              getReferralList: di.sl(),
+            )),
 
-              ChangeNotifierProvider(create: (_) =>WalletProvider(
-                getDepositAddressList: di.sl(),
-                getDepositTransactionList: di.sl(),
-                getWithdrawTransactionList: di.sl(),
-                requestDepositTransaction: di.sl(),
-                requestWithdrawTransaction: di.sl(),
-              )),
+            ChangeNotifierProvider(create: (_) =>WalletProvider(
+              getDepositAddressList: di.sl(),
+              getDepositTransactionList: di.sl(),
+              getWithdrawTransactionList: di.sl(),
+              requestDepositTransaction: di.sl(),
+              requestWithdrawTransaction: di.sl(),
+            )),
 
 
-              ChangeNotifierProvider(create: (_) =>LanguageProvider()),
-            ],
-            child: MyApp()
+            ChangeNotifierProvider(create: (_) =>LanguageProvider()),
+          ],
+        child: EasyLocalization(
+          supportedLocales: [Locale('en'), Locale('ch'), Locale('jp')],
+          path: 'assets/translations',
+          fallbackLocale: Locale('en'),
+          child: MyApp(),
         ),
       )
   );
@@ -199,7 +199,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
+      supportedLocales: [Locale('en'), Locale('ch'), Locale('jp')],
       locale: context.locale,
       debugShowCheckedModeBanner: false,
       title: appName,

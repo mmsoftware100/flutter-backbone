@@ -14,6 +14,7 @@ import 'package:base/features/presentation/providers/dashboard_provider.dart';
 import 'package:base/features/presentation/providers/language_provider.dart';
 import 'package:base/features/presentation/providers/referral_provider.dart';
 import 'package:base/features/presentation/providers/wallet_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 
 import 'package:flutter/material.dart';
@@ -58,6 +59,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 
 
   /*
@@ -146,40 +148,45 @@ void main() async{
 
   await di.init();
   runApp(
-      MultiProvider(
-          providers: [
+      EasyLocalization(
+        supportedLocales: [Locale('en', 'US'), Locale('ch', 'CH'), Locale('jp', 'JP')],
+        path: 'assets/translations',
+        fallbackLocale: Locale('en', 'US'),
+        child: MultiProvider(
+            providers: [
 
-            ChangeNotifierProvider(create: (_) =>CryptoProvider(
-                selectCrypto: di.sl(),
-            )),
+              ChangeNotifierProvider(create: (_) =>CryptoProvider(
+                  selectCrypto: di.sl(),
+              )),
 
-            ChangeNotifierProvider(create: (_) =>UserProvider(
-              userLogin: di.sl(),
-              userRegister: di.sl(),
-              userUpdate: di.sl(),
-              localStorage: di.sl()
-            )),
+              ChangeNotifierProvider(create: (_) =>UserProvider(
+                userLogin: di.sl(),
+                userRegister: di.sl(),
+                userUpdate: di.sl(),
+                localStorage: di.sl()
+              )),
 
-            ChangeNotifierProvider(create: (_) =>DashboardProvider(
-              getDashboard: di.sl(),
-            )),
+              ChangeNotifierProvider(create: (_) =>DashboardProvider(
+                getDashboard: di.sl(),
+              )),
 
-            ChangeNotifierProvider(create: (_) =>ReferralProvider(
-              getReferralList: di.sl(),
-            )),
+              ChangeNotifierProvider(create: (_) =>ReferralProvider(
+                getReferralList: di.sl(),
+              )),
 
-            ChangeNotifierProvider(create: (_) =>WalletProvider(
-              getDepositAddressList: di.sl(),
-              getDepositTransactionList: di.sl(),
-              getWithdrawTransactionList: di.sl(),
-              requestDepositTransaction: di.sl(),
-              requestWithdrawTransaction: di.sl(),
-            )),
+              ChangeNotifierProvider(create: (_) =>WalletProvider(
+                getDepositAddressList: di.sl(),
+                getDepositTransactionList: di.sl(),
+                getWithdrawTransactionList: di.sl(),
+                requestDepositTransaction: di.sl(),
+                requestWithdrawTransaction: di.sl(),
+              )),
 
 
-            ChangeNotifierProvider(create: (_) =>LanguageProvider()),
-          ],
-          child: MyApp()
+              ChangeNotifierProvider(create: (_) =>LanguageProvider()),
+            ],
+            child: MyApp()
+        ),
       )
   );
 }
@@ -191,6 +198,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       debugShowCheckedModeBanner: false,
       title: appName,
       theme: newsTheme,

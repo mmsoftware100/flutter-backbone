@@ -1,3 +1,4 @@
+import 'package:base/core/util/loading_dialog.dart';
 import 'package:base/features/domain/entities/deposit_address.dart';
 import 'package:base/features/presentation/providers/dashboard_provider.dart';
 import 'package:base/features/presentation/providers/user_provider.dart';
@@ -17,6 +18,102 @@ class WalletPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<WalletPage> {
+  String valueText = "";
+  TextEditingController _textFieldController = new TextEditingController();
+  bool checktext = false;
+  final _formkey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _init();
+  }
+
+  void _init()async{
+    print("_init");
+    // Navigator.pushNamed(context, TestPage.routeName);
+    String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
+
+  }
+
+  Future<void> _displayTextInputDialog(BuildContext context,DepositAddress depositAddress) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Deposit Form'),
+            content: Container(
+              width: double.infinity,
+              height: 100,
+              child: Column(
+                children: [
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      setState(() {
+                        valueText = value;
+                      });
+                      if(value != ""){
+                        if(int.parse(value) < 10){
+                          setState(() {
+                            checktext = true;
+                          });
+                        }
+                        else{
+                          setState(() {
+                            checktext = false;
+                          });
+                        }
+                      }
+                    },
+                    controller: _textFieldController,
+                    decoration: InputDecoration(hintText: "Deposit Amount"),
+                  ),
+                  checktext == true ? Text("Amount must contain more than 10\$",style: TextStyle(color: Colors.red),) : Text("")
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              MaterialButton(
+                color: Colors.green,
+                textColor: Colors.white,
+                child: Text('Deposit'),
+                onPressed: () {
+                  setState(() {
+                    //codeDialog = valueText;
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              MaterialButton(
+                color: Colors.red,
+                textColor: Colors.white,
+                child: Text('Close'),
+                onPressed: () {
+                  setState(() {
+                    //codeDialog = valueText;
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+            ],
+          );
+        });
+  }
+
+  String validatePassword(String value) {
+    if(value != ""){
+      if (!(int.parse(value) < 10 ) && value.isNotEmpty) {
+        return "Deposit Amount  should contain more than 10\$";
+      }
+      return value;
+    }
+    else
+      return value;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -418,16 +515,91 @@ class _AccountPageState extends State<WalletPage> {
             child: Center(child: Text(depositAddress.name)),
           ),
         ),
-        Container(
-          // width: MediaQuery.of(context).size.width * 0.95,
-          // height: MediaQuery.of(context).size.height * 0.25,
-          width: 80,
-          height: 80,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            image: DecorationImage(
-                fit: BoxFit.contain,
-                image: AssetImage('assets/images/qrimage.png')
+        InkWell(
+          onTap: ()async{
+            //_displayTextInputDialog(context,depositAddress);
+            showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    content: Stack(
+                      children: <Widget>[
+                        Positioned(
+                          right: -40.0,
+                          top: -40.0,
+                          child: InkResponse(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: CircleAvatar(
+                              child: Icon(Icons.close),
+                              backgroundColor: Colors.red,
+                            ),
+                          ),
+                        ),
+                        Form(
+                          key: _formkey,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: _textFieldController,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    labelText: 'Enter Deposit Amount',
+                                    icon: Icon(Icons.monetization_on)
+                                  ),
+                                  validator: (value){
+                                    if(value != ""){
+                                      if(int.parse(value.toString()) < 10){
+                                        return "Amount must morethan 10\$";
+                                      }
+                                      return null;
+                                    }
+                                  },
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: MaterialButton(
+                                  color: Colors.green,
+                                  child: Text("Deposit",style: TextStyle(color: Colors.white),),
+                                  onPressed: ()async {
+                                    if (_formkey.currentState!.validate()) {
+                                      _formkey.currentState!.save();
+                                      print('State is valid');
+                                      String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
+                                      _DepositTransaction(accessToken,depositAddress.address,_textFieldController.text);
+                                      Navigator.of(context).pop();
+                                    }
+                                    else{
+                                      print('State is no valid');
+                                    }
+                                  },
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                });
+          },
+          child: Container(
+            // width: MediaQuery.of(context).size.width * 0.95,
+            // height: MediaQuery.of(context).size.height * 0.25,
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              image: DecorationImage(
+                  fit: BoxFit.contain,
+                  image: AssetImage('assets/images/qrimage.png')
+              ),
             ),
           ),
         ),
@@ -435,4 +607,34 @@ class _AccountPageState extends State<WalletPage> {
       ],
     );
   }
+
+  void _DepositTransaction(String token,String link,String depositamount)async{
+    print('Deposit data --->');
+    print( link + " , " + depositamount );
+
+
+    // create user
+    // call register method in User Provider
+    // User user = User(id: id, name: name, email: email, password: password, referCode: referCode, phone: phone, img: img, address: address, remark: remark, accessToken: accessToken, createdAt: createdAt, modifiedAt: modifiedAt)
+    LoadingDialog.show(context);
+    String status = await Provider.of<WalletProvider>(context, listen:false).requestDepositTransactionPlz(accessToken: token, link: link, depositAmount: double.parse(depositamount));
+    // close loading dialog
+    LoadingDialog.hide(context);
+    if(status == "success"){
+      // Navigator.pushNamed(context, HomePage.routeName);
+
+      //showAlertDialog(context, "Verify Email", "Check your email inbox and click on verification link", Colors.red, (){});
+    }
+    else{
+      print('Status is -->');
+      print(status);
+      // show error message
+      // showAlertDialog(context, "Login Fail", "Please check email , password and Try Again!", Colors.red, (){});
+      //showAlertDialog(context, "Something went wrong", "Contact to facebook page for Approval!!", Colors.red, (){});
+    }
+
+    // Navigator.pop(context);
+  }
 }
+
+

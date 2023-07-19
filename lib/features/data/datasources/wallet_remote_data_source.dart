@@ -214,7 +214,7 @@ class WalletRemoteDataSourceImpl implements WalletRemoteDataSource{
 
         Map<String,dynamic> data = {
           "link" : link,
-          "depositAmount" : depositAmount.toString(),
+          "deposit_amount" : depositAmount.toString(),
         };
 
         final dataResponse = await networkCall.postRequest( data: data, url: endPoint, bearerToken: accessToken);

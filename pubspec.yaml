@@ -63,7 +63,7 @@ dependencies:
   # spin kit
   flutter_spinkit: ^5.1.0
   google_mobile_ads: ^1.2.0
-  intl: ^0.18.0
+  intl: ^0.17.0
   # file picker
   # file_picker: ^4.5.1
   # flutter web view
@@ -117,6 +117,7 @@ dependencies:
   fluttertoast: ^8.2.1
   persistent_bottom_nav_bar: ^5.0.2
   webview_flutter: ^4.2.2
+  easy_localization: ^3.0.2
 
 dependency_overrides:
   firebase_core_platform_interface: 4.5.1
@@ -164,6 +165,7 @@ flutter:
     - assets/icons/
     - assets/logo/
     - assets/images/
+    - assets/translations/
   fonts:
     - family: MyanmarPhetsot
       fonts:

@@ -1,5 +1,35 @@
 # FUMO
 
+## 2023-07-19
+
+
+```bash
+══╡ EXCEPTION CAUGHT BY WIDGETS ╞═══════════════════════════════════════════════════════════════════
+The following message was thrown:
+Warning: This application's locale, ch, is not supported by all of its localization delegates.
+
+• A MaterialLocalizations delegate that supports the ch locale was not found.
+• A CupertinoLocalizations delegate that supports the ch locale was not found.
+
+The declared supported locales for this app are: en, ch, jp
+
+See https://flutter.dev/tutorials/internationalization/ for more information about configuring an
+app's locale, supportedLocales, and localizationsDelegates parameters.
+════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 4481): [🌎 Easy Localization] [DEBUG] Load Localization Delegate
+I/flutter ( 4481): [🌎 Easy Localization] [DEBUG] Load asset from assets/translations
+
+Another exception was thrown: No MaterialLocalizations found.
+
+Another exception was thrown: No MaterialLocalizations found.
+
+Another exception was thrown: A RenderFlex overflowed by 199447 pixels on the bottom.
+I/Gralloc4( 4481): mapper 4.x is not supported
+W/Gralloc3( 4481): mapper 3.x is not supported
+The Flutter DevTools debugger and profiler on Pixel 2 XL is available at: http://127.0.0.1:9100?uri=http://127.0.0.1:52673/0L1yighh8Ok=/
+
+```
+
 ## 2023-07-18 To Do List
 
 

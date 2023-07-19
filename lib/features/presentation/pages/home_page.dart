@@ -13,6 +13,7 @@ import 'package:base/features/presentation/providers/language_provider.dart';
 import 'package:base/features/presentation/providers/referral_provider.dart';
 import 'package:base/features/presentation/providers/user_provider.dart';
 import 'package:base/features/presentation/providers/wallet_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -83,12 +84,15 @@ class _HomePageState extends State<HomePage> {
         switch (value) {
           case 'en':
             Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "English", code: "en", flag: "https://fumoinvest.org/img/eng_flag.png"));
+            context.setLocale(Locale('en'));
             break;
           case 'ch':
             Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "China", code: "ch", flag: "https://fumoinvest.org/img/ch_flag.png"));
+            context.setLocale(Locale('zh'));
             break;
           case 'jp':
             Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "Japan", code: "jp", flag: "https://fumoinvest.org/img/jp_flag.png"));
+            context.setLocale(Locale('ja'));
             break;
           default:
 
@@ -171,34 +175,34 @@ class _HomePageState extends State<HomePage> {
     return [
       PersistentBottomNavBarItem(
         icon: Icon(Icons.home),
-        title: ("Home"),
+        title: ("Home").tr(),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.person_add),
-        title: ("Referral"),
+        title: ("Referral").tr(),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
 
       PersistentBottomNavBarItem(
         icon: Icon(Icons.currency_exchange,), //, color: Colors.white
-        title: ("Earn"),
+        title: ("Earn").tr(),
         //activeColorPrimary: CupertinoColors.activeGreen,
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.calculate),
-        title: ("Calculator"),
+        title: ("Calculator").tr(),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
 
       PersistentBottomNavBarItem(
         icon: Icon(Icons.wallet),
-        title: ("Wallet"),
+        title: ("Wallet").tr(),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),

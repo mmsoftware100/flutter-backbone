@@ -165,6 +165,7 @@ flutter:
     - assets/icons/
     - assets/logo/
     - assets/images/
+    - assets/translations/
   fonts:
     - family: MyanmarPhetsot
       fonts:

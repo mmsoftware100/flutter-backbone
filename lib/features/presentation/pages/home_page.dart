@@ -97,44 +97,6 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-  Widget _languageDropdown(){
-    return DropdownButton<String>(
-      value: Provider.of<LanguageProvider>(context, listen: true).appLanguage.code,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
-      onChanged: (String? value) {
-        // This is called when the user selects an item.
-        switch (value) {
-          case 'en':
-            Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "English", code: "en", flag: "https://fumoinvest.org/img/eng_flag.png"));
-            context.setLocale(Locale('en'));
-            break;
-          case 'ch':
-            Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "China", code: "zh", flag: "https://fumoinvest.org/img/ch_flag.png"));
-            context.setLocale(Locale('zh'));
-            break;
-          case 'jp':
-            Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "Japan", code: "ja", flag: "https://fumoinvest.org/img/jp_flag.png"));
-            context.setLocale(Locale('ja'));
-            break;
-          default:
-
-        }
-
-      },
-      items: Provider.of<LanguageProvider>(context, listen: true).appLanguageList.map<DropdownMenuItem<String>>((AppLanguage appLanguage) {
-        return DropdownMenuItem<String>(
-          value: appLanguage.code,
-          child: Text(appLanguage.name,style: TextStyle(color: Colors.black),),
-        );
-      }).toList(),
-    );
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -201,31 +163,40 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.red,
         type: BottomNavigationBarType.shifting,
         selectedFontSize: 20,
         selectedIconTheme: IconThemeData(color: Colors.amberAccent),
         selectedItemColor: Colors.amberAccent,
         selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+        unselectedLabelStyle: TextStyle(color: Colors.white),
+        unselectedItemColor: Colors.white,
         items:  <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: ('Home').tr(),
+            backgroundColor: Colors.red,
+
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_add),
             label: ("Referral").tr(),
+            backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.currency_exchange,), //, color: Colors.white
             label: ("Earn").tr(),
+            backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calculate),
             label: ("Calculator").tr(),
+            backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.wallet),
             label: ("Wallet").tr(),
+            backgroundColor: Colors.red,
           ), //New
 
         ],

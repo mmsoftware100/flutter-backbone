@@ -58,9 +58,10 @@ class _CalculatorPageState extends State<CalculatorPage> {
         LinearProgressIndicator(
           key: _progressKey,
           value: _progressValue,
-          backgroundColor: Colors.grey[200],
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+          backgroundColor: Colors.green,
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
         ),
+        _progressValue < 1.0 ? Expanded(child: Center(child: CircularProgressIndicator(),)) :
         Expanded(
           child: WebView(
             key: _webViewKey,

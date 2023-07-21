@@ -7,6 +7,7 @@
 - [x] Drawer မှာ Header ထည့်မယ်။
 - [x] User Login မှာ hard coding ဖြုတ်ရန်
 - [x] APK Release
+- [ ] Button Navigation Bar အရောင်ပြောင်းရန်
 
 ## 2023-07-19
 

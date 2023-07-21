@@ -151,28 +151,53 @@ class _HomePageState extends State<HomePage> {
       body: currentIndex == 0 ?  _mainWidget() : currentIndex == 1 ? MyTeamPage() : currentIndex == 2 ? PaymentPage() : currentIndex == 3 ? CalculatorPage() : currentIndex == 4 ? WalletPage() : Container() ,
       //bottomNavigationBar: _bottomNavigation(),
       drawer: Drawer(
-        child: Container(
-          child: ListView.builder(
-            padding: EdgeInsets.all(10.0),
-            itemCount: _listViewData.length,
-            itemBuilder: (context, index) {
-              return Container(
-                color: currentIndex == index ? Colors.grey : Colors.white,
-                child: ListTile(
-                  leading: index == 0 ? Icon(Icons.home) : index == 1 ? Icon(Icons.person_add): index == 2 ? Icon(Icons.currency_exchange):index == 3 ? Icon(Icons.calculate): index == 4 ? Icon(Icons.wallet) : Icon(Icons.settings),
-                  title: Text(_listViewData[index]).tr(),
-                  onTap: () {
-                    setState(() {
-                      currentIndex = index;
-                      print('Current Index is '+currentIndex.toString());
-                      _onDrawerChange(currentIndex);
-                    });
 
-                  },
+        child: Column(
+          children: [
+            DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue
                 ),
-              );
-            },
-          ),
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Container(width: double.infinity,),
+                      Material(
+                        borderRadius: BorderRadius.all(Radius.circular(70.0)),
+                        // elevation: 10,
+                        child: Padding(padding: EdgeInsets.all(8.0),
+                          child: Image.asset("assets/logo/logo-trans.png", height: 90, width: 90),
+                        ),
+                      ),
+                      Text('FUMO', style: TextStyle(color: Colors.white, fontSize: 25.0),)
+                    ],
+                  ),
+                )
+            ),
+            Expanded(
+              child: ListView.builder(
+                padding: EdgeInsets.all(10.0),
+                itemCount: _listViewData.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    color: currentIndex == index ? Colors.grey : Colors.white,
+                    child: ListTile(
+                      leading: index == 0 ? Icon(Icons.home) : index == 1 ? Icon(Icons.person_add): index == 2 ? Icon(Icons.currency_exchange):index == 3 ? Icon(Icons.calculate): index == 4 ? Icon(Icons.wallet) : Icon(Icons.settings),
+                      title: Text(_listViewData[index]).tr(),
+                      onTap: () {
+                        setState(() {
+                          currentIndex = index;
+                          print('Current Index is '+currentIndex.toString());
+                          _onDrawerChange(currentIndex);
+                        });
+
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(

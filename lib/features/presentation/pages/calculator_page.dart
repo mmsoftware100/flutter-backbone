@@ -41,14 +41,18 @@ class _CalculatorPageState extends State<CalculatorPage> {
   }
 
   Widget _mainWidget(){
-    String url = "https://fumoinvest.org/profit_calculator";
+    String lang = "en";
+    String url = "https://fumoinvest.org/profit_calculator/mobile?lang=$lang";
     String code = Provider.of<LanguageProvider>(context, listen:false).appLanguage.code;
     if(code != "en"){
       url += "/"+code;
     }
     final WebViewController controller = WebViewController();
     controller.loadRequest(Uri.parse(url));
-    return WebViewWidget(controller: controller);
+
+    return WebViewWidget(
+        controller: controller,
+    );
     /*
     return InAppWebView(
       initialUrlRequest: URLRequest(url: Uri.parse(url)),

@@ -1,5 +1,10 @@
+import 'package:base/features/presentation/providers/user_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../core/util/loading_dialog.dart';
+import '../../domain/entities/user.dart';
 
 class ChangePassword extends StatefulWidget {
  // const ChangePassword({super.key});
@@ -119,7 +124,29 @@ class _ChangePasswordState extends State<ChangePassword> {
         onPressed: () async {
         if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
+            User user = Provider.of<UserProvider>(context, listen: false).user;
+            user.password = _changePasswordController.text;
+            if(user.password != _confirmPasswordController.text){
+              showAlertDialog(context, "Match Password!", "you need to enter same passowrd", Colors.red, () { });
+              return;
+            }
 
+            LoadingDialog.show(context);
+            String status = await Provider.of<UserProvider>(context, listen: false).userUpdatePlz(
+                username: user.username,
+                email: user.email,
+                phone: user.phone,
+                profile_picture: user.profile_picture,
+                address: user.address,
+                remark: user.remark,
+                password: user.password,
+                level: user.level,
+                accessToken: user.accessToken,
+                wallet_address: user.wallet_address,
+                deposit_address: user.deposit_address,
+                referCode: user.referCode
+            );
+            LoadingDialog.hide(context);
         }
         },
         child: Text(
@@ -130,5 +157,33 @@ class _ChangePasswordState extends State<ChangePassword> {
       ),
     );
   }
+
+
+  showAlertDialog(BuildContext context,String title, String info, Color color, VoidCallback callback) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("OK",style: TextStyle(color: color)),
+      onPressed: () {
+        Navigator.pop(context);
+        callback();
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(title),
+      content: Text(info, style: TextStyle(color: color),),
+      actions: [
+        okButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
 }
 

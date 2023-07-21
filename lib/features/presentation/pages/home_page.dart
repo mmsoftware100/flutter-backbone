@@ -115,11 +115,11 @@ class _HomePageState extends State<HomePage> {
             context.setLocale(Locale('en'));
             break;
           case 'ch':
-            Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "China", code: "ch", flag: "https://fumoinvest.org/img/ch_flag.png"));
+            Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "China", code: "zh", flag: "https://fumoinvest.org/img/ch_flag.png"));
             context.setLocale(Locale('zh'));
             break;
           case 'jp':
-            Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "Japan", code: "jp", flag: "https://fumoinvest.org/img/jp_flag.png"));
+            Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "Japan", code: "ja", flag: "https://fumoinvest.org/img/jp_flag.png"));
             context.setLocale(Locale('ja'));
             break;
           default:

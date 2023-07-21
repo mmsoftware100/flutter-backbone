@@ -1,8 +1,7 @@
 import 'package:base/features/presentation/providers/language_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:provider/provider.dart';
 
 class CalculatorPage extends StatefulWidget {
   static String routeName = "/CalculatorPage";
@@ -13,6 +12,11 @@ class CalculatorPage extends StatefulWidget {
 }
 
 class _CalculatorPageState extends State<CalculatorPage> {
+
+  final _webViewKey = UniqueKey();
+  final _progressKey = UniqueKey();
+  double _progressValue = 0.0;
+
   String paymentTypeSelected = "";
 
 
@@ -41,18 +45,50 @@ class _CalculatorPageState extends State<CalculatorPage> {
   }
 
   Widget _mainWidget(){
-    String lang = "en";
+    String lang = Provider.of<LanguageProvider>(context, listen:false).appLanguage.code;
+    if(lang == "ch") lang  = "zh";
+    if(lang == "jp") lang  = "ja";
     String url = "https://fumoinvest.org/profit_calculator/mobile?lang=$lang";
-    String code = Provider.of<LanguageProvider>(context, listen:false).appLanguage.code;
-    if(code != "en"){
-      url += "/"+code;
-    }
+
+
+    print("url is $url");
+
+    return Column(
+      children: [
+        LinearProgressIndicator(
+          key: _progressKey,
+          value: _progressValue,
+          backgroundColor: Colors.grey[200],
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+        ),
+        Expanded(
+          child: WebView(
+            key: _webViewKey,
+            initialUrl: url, // Replace with your URL
+            javascriptMode: JavascriptMode.unrestricted,
+            onProgress: (progress) {
+              setState(() {
+                _progressValue = progress / 100;
+              });
+            },
+            onPageFinished: (url) {
+              setState(() {
+                _progressValue = 0.0;
+              });
+            },
+          ),
+        ),
+      ],
+    );
+    /*
     final WebViewController controller = WebViewController();
     controller.loadRequest(Uri.parse(url));
 
     return WebViewWidget(
         controller: controller,
     );
+
+     */
     /*
     return InAppWebView(
       initialUrlRequest: URLRequest(url: Uri.parse(url)),

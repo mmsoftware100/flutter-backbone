@@ -1,12 +1,12 @@
 # FUMO
 
 ## 2023-07-21 
-- [ ] Webview Progress
+- [x] Webview Progress
 - [x] Webview URL
 - [x] Change Password API Integration
 - [x] Drawer မှာ Header ထည့်မယ်။
-- [ ] User Login မှာ hard coding ဖြုတ်ရန်
-- [ ] APK Release
+- [x] User Login မှာ hard coding ဖြုတ်ရန်
+- [x] APK Release
 
 ## 2023-07-19
 

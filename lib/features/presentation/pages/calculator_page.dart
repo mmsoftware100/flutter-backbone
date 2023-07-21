@@ -61,7 +61,8 @@ class _CalculatorPageState extends State<CalculatorPage> {
           backgroundColor: Colors.green,
           valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
         ),
-        _progressValue < 1.0 ? Expanded(child: Center(child: CircularProgressIndicator(),)) :
+        // Text(_progressValue.toString()),
+        _progressValue < 1.0 ?  CircularProgressIndicator() : Container(),
         Expanded(
           child: WebView(
             key: _webViewKey,
@@ -70,11 +71,13 @@ class _CalculatorPageState extends State<CalculatorPage> {
             onProgress: (progress) {
               setState(() {
                 _progressValue = progress / 100;
+                print("_progressValue $_progressValue");
               });
             },
             onPageFinished: (url) {
+              print("onPageFinished");
               setState(() {
-                _progressValue = 0.0;
+                _progressValue = 1.0;
               });
             },
           ),

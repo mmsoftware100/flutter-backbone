@@ -125,6 +125,10 @@ class WalletProvider extends ChangeNotifier {
           print("WalletProvider->requestDepositTransactionPlz->failure");
           print(failure);
           notifyListeners();
+          if(failure is GeneralFailure){
+            print(failure.message);
+            return failure.message;
+          }
           return failure.toString();
         },
             (depositTransactionData)  async{
@@ -132,6 +136,7 @@ class WalletProvider extends ChangeNotifier {
           print(depositTransactionData);
           depositTransaction = depositTransactionData;
           notifyListeners();
+
           return  "success";
         }
     );
@@ -153,6 +158,10 @@ class WalletProvider extends ChangeNotifier {
           print("WalletProvider->requestWithdrawTransactionPlz->failure");
           print(failure);
           notifyListeners();
+          if(failure is GeneralFailure){
+            print(failure.message);
+            return failure.message;
+          }
           return failure.toString();
         },
             (withdrawTransactionData)  async{

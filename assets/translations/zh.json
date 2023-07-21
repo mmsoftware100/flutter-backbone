@@ -3,5 +3,16 @@
   "Referral":"推荐",
   "Earn":"赚取",
   "Calculator":"计算器",
-  "Wallet":"钱包"
+  "Wallet":"钱包",
+  "Setting": "環境",
+  "Revenue": "收入",
+  "Earning": "收益",
+  "Total Amount": "總金額",
+  "MyTeam": "我的團隊",
+  "Team acceleration": "團隊加速",
+  "Earning System": "收益系統",
+  "Withdraw Amount": "取款數量",
+  "Deposit": "訂金",
+  "Withdraw": "提取",
+  "Logout": "登出"
 }

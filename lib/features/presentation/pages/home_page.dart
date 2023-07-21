@@ -1,10 +1,12 @@
 
 
+import 'package:base/features/data/const/data.dart';
 import 'package:base/features/domain/entities/crypto.dart';
 import 'package:base/features/presentation/components/form_elements/our_drawer.dart';
 import 'package:base/features/presentation/pages/friend_page.dart';
 import 'package:base/features/presentation/pages/myteam_page.dart';
 import 'package:base/features/presentation/pages/payment_page.dart';
+import 'package:base/features/presentation/pages/setting_page.dart';
 import 'package:base/features/presentation/pages/test_page.dart';
 import 'package:base/features/presentation/pages/wallet_page.dart';
 import 'package:base/features/presentation/providers/crpyto_provider.dart';
@@ -36,16 +38,42 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   PersistentTabController _controller = PersistentTabController(initialIndex: 0);
+  int currentIndex = 0;
+  int drawerChoice = 0;
+  int retWidget = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  final List<String> _listViewData = [
+    "Home",
+    "Referral",
+    "Earn",
+    "Calculator",
+    "Wallet"
+  ];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _init();
+
   }
 
-
+ _onDrawerChange(int i){
+    Navigator.of(context).pop();
+    print(i);
+    setState(() {
+       currentIndex = i;
+    });
+    _checkDrawer();
+ }
+ _checkDrawer(){
+    if(currentIndex == 0){
+      setState(() {
+        retWidget = 0;
+      });
+    }
+ }
 
 
   void _init()async{
@@ -102,7 +130,7 @@ class _HomePageState extends State<HomePage> {
       items: Provider.of<LanguageProvider>(context, listen: true).appLanguageList.map<DropdownMenuItem<String>>((AppLanguage appLanguage) {
         return DropdownMenuItem<String>(
           value: appLanguage.code,
-          child: Text(appLanguage.name),
+          child: Text(appLanguage.name,style: TextStyle(color: Colors.black),),
         );
       }).toList(),
     );
@@ -113,15 +141,132 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("FUMO"),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.notifications)),
-          _languageDropdown()
+          IconButton(onPressed: (){
+            Navigator.pushNamed(context, SettingPage.routeName);
+          }, icon: Icon(Icons.settings)),
+          //_languageDropdown()
           // language drop down in action
         ],
       ),
-      body: _bottomNavigation(),
-      drawer: OurDrawer(),
+      body: currentIndex == 0 ?  _mainWidget() : currentIndex == 1 ? MyTeamPage() : currentIndex == 2 ? PaymentPage() : currentIndex == 3 ? CalculatorPage() : currentIndex == 4 ? WalletPage() : Container() ,
+      //bottomNavigationBar: _bottomNavigation(),
+      drawer: Drawer(
+        child: Container(
+          child: ListView.builder(
+            padding: EdgeInsets.all(10.0),
+            itemCount: _listViewData.length,
+            itemBuilder: (context, index) {
+              return Container(
+                color: currentIndex == index ? Colors.grey : Colors.white,
+                child: ListTile(
+                  leading: index == 0 ? Icon(Icons.home) : index == 1 ? Icon(Icons.person_add): index == 2 ? Icon(Icons.currency_exchange):index == 3 ? Icon(Icons.calculate): index == 4 ? Icon(Icons.wallet) : Icon(Icons.settings),
+                  title: Text(_listViewData[index]).tr(),
+                  onTap: () {
+                    setState(() {
+                      currentIndex = index;
+                      print('Current Index is '+currentIndex.toString());
+                      _onDrawerChange(currentIndex);
+                    });
+
+                  },
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
+        selectedFontSize: 20,
+        selectedIconTheme: IconThemeData(color: Colors.amberAccent),
+        selectedItemColor: Colors.amberAccent,
+        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+        items:  <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: ('Home').tr(),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_add),
+            label: ("Referral").tr(),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.currency_exchange,), //, color: Colors.white
+            label: ("Earn").tr(),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calculate),
+            label: ("Calculator").tr(),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.wallet),
+            label: ("Wallet").tr(),
+          ), //New
+
+        ],
+        currentIndex: currentIndex,
+        onTap: _onItemTapped,
+      )
+
+      // drawer: Drawer(
+      //   child: Container(
+      //     child: ListView.builder(
+      //       padding: EdgeInsets.all(10.0),
+      //       itemCount: _listViewData.length,
+      //       itemBuilder: (context, index) {
+      //         return Container(
+      //           color: _currentSelected == index ? Colors.deepPurple : Colors.white,
+      //           child: ListTile(
+      //             leading: _currentSelected == 0 ? Icon(Icons.home) : _currentSelected == 1 ? Icon(Icons.payment): _currentSelected == 2 ? Icon(Icons.account_circle):_currentSelected == 3 ? Icon(Icons.help):Icon(Icons.settings),
+      //             title: Text(_listViewData[index]).tr(),
+      //             onTap: () {
+      //               setState(() {
+      //                 _currentSelected = index;
+      //               });
+      //               if(_currentSelected == 0){
+      //                 _onDrawerChange(homesubmenu);
+      //                 _controller = PersistentTabController(initialIndex: 0);
+      //               }
+      //               else if(_currentSelected == 1){
+      //                 _onDrawerChange(referralsubmenu);
+      //                 _controller = PersistentTabController(initialIndex: 1);
+      //               }
+      //               else if(_currentSelected == 2){
+      //                 _onDrawerChange(earnsubmenu);
+      //                 _controller = PersistentTabController(initialIndex: 2);
+      //               }
+      //               else if(_currentSelected == 3){
+      //                 _onDrawerChange(calculatorsubmenu);
+      //                 _controller = PersistentTabController(initialIndex: 3);
+      //               }
+      //               else if(_currentSelected == 4){
+      //                 _onDrawerChange(walletsubmenu);
+      //                 _controller = PersistentTabController(initialIndex: 4);
+      //               }
+      //               else if(_currentSelected == 5){
+      //                 _onDrawerChange(settingsubmenu);
+      //               }
+      //             },
+      //           ),
+      //         );
+      //       },
+      //     ),
+      //   ),
+      // ),
       // floatingActionButton: _fab(),
     );
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      print('Current index is' + index.toString());
+      currentIndex = index;
+    });
+    if(index != menudrawer){
+      if(index == 0){
+
+      }
+    }
   }
 
   Widget _fab(){
@@ -131,7 +276,7 @@ class _HomePageState extends State<HomePage> {
   Widget _bottomNavigation(){
     return PersistentTabView(
       context,
-      controller: _controller,
+      controller:  _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
@@ -155,6 +300,13 @@ class _HomePageState extends State<HomePage> {
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),
       ),
+      onItemSelected: (index){
+        setState(() {
+          _controller.index = index;
+        });
+      },
+
+       // selectedIndex: _controller.index,
       // navBarStyle: NavBarStyle.style15, // Choose the nav bar style with this property.
       navBarStyle: NavBarStyle.style6,
     );
@@ -292,7 +444,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Icon(Icons.home),
           SizedBox(width: 8.0,),
-          Text("Home")
+          Text(("Home").tr())
         ],
       ),
     );
@@ -496,9 +648,9 @@ class _HomePageState extends State<HomePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _revenueCard(title: "Revenue", amount: dashboard.deposit_amount),
-        _revenueCard(title: "Earning", amount: dashboard.deposit_profit_balance),
-        _revenueCard(title: "Total Amount", amount: dashboard.total_net_profit),
+        _revenueCard(title:  ("Revenue").tr() , amount: dashboard.deposit_amount),
+        _revenueCard(title: ("Earning").tr() , amount: dashboard.deposit_profit_balance),
+        _revenueCard(title: ("Total Amount").tr() , amount: dashboard.total_net_profit),
       ],
     );
   }
@@ -516,7 +668,7 @@ class _HomePageState extends State<HomePage> {
       ),
       child: Column(
         children: [
-          Text(title, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange),),
+          Text(title.tr(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange),),
           SizedBox(height: 8.0,),
           Container(color: Colors.orange, width: 50, height: 2,),
           Padding(

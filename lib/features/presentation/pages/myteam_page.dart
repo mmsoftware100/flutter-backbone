@@ -1,4 +1,5 @@
 import 'package:base/features/domain/entities/referral.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -47,13 +48,13 @@ class _MyTeamState extends State<MyTeamPage> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8),
-                    child: Text("MyTeam",style: TextStyle(fontSize: 20,color: Colors.white),),
+                    child: Text("MyTeam",style: TextStyle(fontSize: 20,color: Colors.white),).tr(),
                   ),
                 )
               ],
             ),
             SizedBox(height: 20,),
-            Text("Team acceleration",style: TextStyle(fontSize: 23,color: Colors.amber,),textAlign: TextAlign.left,),
+            Text("Team acceleration",style: TextStyle(fontSize: 23,color: Colors.amber,),textAlign: TextAlign.left,).tr(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

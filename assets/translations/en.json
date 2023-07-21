@@ -3,5 +3,16 @@
   "Referral":"Referral",
   "Earn":"Earn",
   "Calculator":"Calculator",
-  "Wallet":"Wallet"
+  "Wallet":"Wallet",
+  "Setting": "Setting",
+  "Revenue": "Revenue",
+  "Earning": "Earning",
+  "Total Amount": "Total Amount",
+  "MyTeam": "MyTeam",
+  "Team acceleration": "Team acceleration",
+  "Earning System": "Earning System",
+  "Withdraw Amount": "Withdraw Amount",
+  "Deposit": "Deposit",
+  "Withdraw": "Withdraw",
+  "Logout": "Logout"
 }

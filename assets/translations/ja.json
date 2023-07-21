@@ -3,5 +3,16 @@
   "Referral":"紹介",
   "Earn":"獲得",
   "Calculator":"電卓",
-  "Wallet":"ウォレット"
+  "Wallet":"ウォレット",
+  "Setting":"設定",
+  "Revenue": "収益",
+  "Earning": "収入を得る",
+  "Total Amount": "合計金額",
+  "MyTeam": "私のチーム",
+  "Team acceleration": "チームの加速",
+  "Earning System": "収益システム",
+  "Withdraw Amount": "金額を撤回",
+  "Deposit": "デポジット",
+  "Withdraw": "撤退",
+  "Logout": "ログアウト"
 }

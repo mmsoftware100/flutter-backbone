@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class PaymentPage extends StatefulWidget {
@@ -31,7 +32,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Icon(Icons.payment_rounded,size: 50.0,),
-                  Text('Earning System',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                  Text('Earning System',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),).tr(),
                 ],
               ),
             ),

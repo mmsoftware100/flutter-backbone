@@ -31,3 +31,14 @@ String image10AssetUrl = "assets/icons/Untitled-1-05.png";
 String pointBackgroundAssetUrl = "assets/icons/Untitled-1-03.png";
 String claimBackgroundAssetUrl = "assets/icons/Untitled-1-04.png";
 String friendImageAssetUrl = "assets/icons/Untitled-1-06.png";
+
+
+const homesubmenu = 1;
+const referralsubmenu = 2;
+const earnsubmenu = 3;
+const calculatorsubmenu = 4;
+const walletsubmenu = 5;
+const settingsubmenu = 6;
+int menudrawer = 0;
+
+

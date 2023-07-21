@@ -1,4 +1,9 @@
+import 'package:base/features/data/models/user_model.dart';
+import 'package:base/features/domain/entities/user.dart';
+import 'package:base/features/presentation/providers/user_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SettingPage extends StatefulWidget {
   static String routeName = "/SettingPage";
@@ -9,8 +14,19 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+
+  User user = User.sample();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    user = Provider.of<UserProvider>(context, listen: false).user;
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(title: Text("FUMO",style: TextStyle(color: Colors.white),),),
@@ -31,7 +47,7 @@ class _SettingPageState extends State<SettingPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Icon(Icons.settings,size: 50.0,),
-                Text('Setting',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                Text('Setting',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),).tr(),
               ],
             ),
           ),
@@ -47,7 +63,7 @@ class _SettingPageState extends State<SettingPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 30,),
-                    Text("Zayar Min",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+                    Text(user.username,style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
                     Text("Online",style: TextStyle(fontSize: 10),)
                   ],
                 )
@@ -64,7 +80,7 @@ class _SettingPageState extends State<SettingPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("zayyarmin1557@gmail.com",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                  Text(user.email,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
                   Text("Email",style: TextStyle(fontSize: 10,fontStyle: FontStyle.italic),)
                 ],
               ),
@@ -79,7 +95,11 @@ class _SettingPageState extends State<SettingPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Change Password",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                  InkWell(
+                    onTap: (){
+
+                    },
+                      child: Text("Change Password",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
 
                 ],
               ),

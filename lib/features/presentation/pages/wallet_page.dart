@@ -1,9 +1,13 @@
 import 'package:base/core/util/loading_dialog.dart';
 import 'package:base/features/domain/entities/deposit_address.dart';
+import 'package:base/features/presentation/pages/user_login_test_page.dart';
 import 'package:base/features/presentation/providers/dashboard_provider.dart';
 import 'package:base/features/presentation/providers/user_provider.dart';
 import 'package:base/features/presentation/providers/wallet_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../../domain/entities/dashboard.dart';
@@ -144,14 +148,23 @@ class _AccountPageState extends State<WalletPage> {
                 Row(
                   children: [
                     Icon(Icons.wallet_outlined,size: 30.0,),
-                    Text('Wallet',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                    Text('Wallet',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),).tr(),
                   ],
                 ),
-                Row(
-                  children: [
-                    Icon(Icons.logout_sharp,size: 30.0,color: Colors.red,),
-                    Text('Logout',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.red),),
-                  ],
+                InkWell(
+                  onTap: ()async{
+                    LoadingDialog.show(context);
+                    await Provider.of<UserProvider>(context, listen: false).logout;
+                    // hide loading screen
+                    LoadingDialog.hide(context);
+                    Navigator.pushNamed(context, UserLoginPage.routeName);
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.logout_sharp,size: 30.0,color: Colors.red,),
+                      Text('Logout',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.red),).tr(),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -241,7 +254,7 @@ class _AccountPageState extends State<WalletPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Total Amount",style: TextStyle(fontSize: 15,color: Colors.white),),
+                        Text("Total Amount",style: TextStyle(fontSize: 15,color: Colors.white),).tr(),
                         SizedBox(height: 10.0,),
                         Text("\$ ${dashboard.total_net_profit}",style: TextStyle(fontSize: 40,color: Colors.white),)
                       ],
@@ -257,7 +270,7 @@ class _AccountPageState extends State<WalletPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Withdraw Amount",style: TextStyle(fontSize: 15,color: Colors.white),),
+                        Text("Withdraw Amount",style: TextStyle(fontSize: 15,color: Colors.white),).tr(),
                         SizedBox(height: 10.0,),
                         Text("\$ ${dashboard.withdraw_balance}",style: TextStyle(fontSize: 40,color: Colors.white),)
                       ],
@@ -276,7 +289,7 @@ class _AccountPageState extends State<WalletPage> {
                   // Navigator.pushNamedAndRemoveUntil(context, PaymentPage.routeName, (route) => false);
                 },
                 icon: Icon(Icons.account_balance_wallet,color: Colors.amber,),  //icon data for elevated button
-                label: Text("Deposit",style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold),), //label text
+                label: Text("Deposit",style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold),).tr(), //label text
                 // style: ElevatedButton.styleFrom(shape: StadiumBorder(),backgroundColor: Colors.white, foregroundColor: Colors.white, ),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white, foregroundColor: Colors.white, ),
 
@@ -418,7 +431,7 @@ class _AccountPageState extends State<WalletPage> {
                   // Navigator.pushNamedAndRemoveUntil(context, PaymentPage.routeName, (route) => false);
                 },
                 icon: Icon(Icons.account_balance_wallet,color: Colors.amber,),  //icon data for elevated button
-                label: Text("Withdraw",style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold),), //label text
+                label: Text("Withdraw",style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold),).tr(), //label text
                 // style: ElevatedButton.styleFrom(shape: StadiumBorder(),backgroundColor: Colors.white, foregroundColor: Colors.white, ),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white, foregroundColor: Colors.white, ),
 
@@ -430,23 +443,112 @@ class _AccountPageState extends State<WalletPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 20.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  // height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey,
-                    boxShadow: [
-                      BoxShadow(color: Colors.grey, spreadRadius: 3),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text("Wallet Address",style: TextStyle(fontSize: 13),textAlign: TextAlign.left,),
-                      Text(user.wallet_address,style: TextStyle(fontSize: 12),textAlign: TextAlign.left,)
-                    ],
+                child: InkWell(
+                  onLongPress: (){
+                    Clipboard.setData(ClipboardData(text: user.wallet_address));
+                    Fluttertoast.showToast(
+                        msg: "Withdraw Address Copied Successfully",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.black,
+                        textColor: Colors.white,
+                        fontSize: 16.0
+                    );
+                  },
+                  onTap: ()async{
+                    setState(() {
+                      _textFieldController.text = "";
+                    });
+                    showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            content: Stack(
+                              children: <Widget>[
+                                Positioned(
+                                  right: -40.0,
+                                  top: -40.0,
+                                  child: InkResponse(
+                                    onTap: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: CircleAvatar(
+                                      child: Icon(Icons.close),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  ),
+                                ),
+                                Form(
+                                  key: _formkey,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: TextFormField(
+                                          controller: _textFieldController,
+                                          keyboardType: TextInputType.number,
+                                          decoration: InputDecoration(
+                                              labelText: 'Enter Withdraw Amount',
+                                              icon: Icon(Icons.monetization_on)
+                                          ),
+                                          validator: (value){
+                                            if(value != ""){
+                                              if(int.parse(value.toString()) < 10){
+                                                return "Amount must morethan 10\$";
+                                              }
+                                              return null;
+                                            }
+                                          },
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: MaterialButton(
+                                          color: Colors.green,
+                                          child: Text("Withdraw",style: TextStyle(color: Colors.white),),
+                                          onPressed: ()async {
+                                            if (_formkey.currentState!.validate()) {
+                                              _formkey.currentState!.save();
+                                              print('State is valid');
+                                              String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
+                                              _WithdrawTransaction(accessToken,user.wallet_address,_textFieldController.text);
+                                              Navigator.of(context).pop();
+                                            }
+                                            else{
+                                              print('State is no valid');
+                                            }
+                                          },
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        });
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    // height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.grey,
+                      boxShadow: [
+                        BoxShadow(color: Colors.grey, spreadRadius: 3),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("Wallet Address",style: TextStyle(fontSize: 13),textAlign: TextAlign.left,),
+                        Text(user.wallet_address,style: TextStyle(fontSize: 12),textAlign: TextAlign.left,)
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -516,7 +618,22 @@ class _AccountPageState extends State<WalletPage> {
           ),
         ),
         InkWell(
+          onLongPress: (){
+            Clipboard.setData(ClipboardData(text: depositAddress.address));
+            Fluttertoast.showToast(
+                msg: "Deposit Address Copied Successfully",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.black,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
+          },
           onTap: ()async{
+            setState(() {
+              _textFieldController.text = "";
+            });
             //_displayTextInputDialog(context,depositAddress);
             showDialog(
                 context: context,
@@ -622,12 +739,69 @@ class _AccountPageState extends State<WalletPage> {
     LoadingDialog.hide(context);
     if(status == "success"){
       // Navigator.pushNamed(context, HomePage.routeName);
-
+      Fluttertoast.showToast(
+          msg: "Successfully Created New Deposit!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
       //showAlertDialog(context, "Verify Email", "Check your email inbox and click on verification link", Colors.red, (){});
     }
     else{
       print('Status is -->');
       print(status);
+      Fluttertoast.showToast(
+          msg: status,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+      // show error message
+      // showAlertDialog(context, "Login Fail", "Please check email , password and Try Again!", Colors.red, (){});
+      //showAlertDialog(context, "Something went wrong", "Contact to facebook page for Approval!!", Colors.red, (){});
+    }
+
+    // Navigator.pop(context);
+  }
+
+  void _WithdrawTransaction(String token,String address,String withdrawamount)async{
+    print('Withdraw data --->');
+    print( address + " , " + withdrawamount );
+    LoadingDialog.show(context);
+    String status = await Provider.of<WalletProvider>(context, listen:false).requestWithdrawTransactionPlz(accessToken: token, withdrawAddress: address, withdrawAmount: double.parse(withdrawamount));
+    // close loading dialog
+    LoadingDialog.hide(context);
+    if(status == "success"){
+      // Navigator.pushNamed(context, HomePage.routeName);
+      Fluttertoast.showToast(
+          msg: "Successfully Created New Withdraw!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+      //showAlertDialog(context, "Verify Email", "Check your email inbox and click on verification link", Colors.red, (){});
+    }
+    else{
+      print('Status is -->');
+      print(status);
+      Fluttertoast.showToast(
+          msg: status,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
       // show error message
       // showAlertDialog(context, "Login Fail", "Please check email , password and Try Again!", Colors.red, (){});
       //showAlertDialog(context, "Something went wrong", "Contact to facebook page for Approval!!", Colors.red, (){});

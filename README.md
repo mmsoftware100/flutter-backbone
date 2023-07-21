@@ -3,7 +3,10 @@
 ## 2023-07-21 
 - [ ] Webview Progress
 - [ ] Webview URL
-- [ ] Chage Password API Integration
+- [ ] Change Password API Integration
+- [ ] Drawer မှာ Header ထည့်မယ်။
+- [ ] User Login မှာ hard coding ဖြုတ်ရန်
+- [ ] APK Release
 
 ## 2023-07-19
 

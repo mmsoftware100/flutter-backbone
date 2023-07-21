@@ -4,6 +4,7 @@
 import 'package:base/features/presentation/pages/aboutus_page.dart';
 import 'package:base/features/presentation/pages/account_page.dart';
 import 'package:base/features/presentation/pages/calculator_page.dart';
+import 'package:base/features/presentation/pages/changepassword_page.dart';
 import 'package:base/features/presentation/pages/myteam_page.dart';
 import 'package:base/features/presentation/pages/setting_page.dart';
 import 'package:base/features/presentation/pages/user_account_page.dart';
@@ -244,7 +245,8 @@ class MyApp extends StatelessWidget {
         UserLoginPage.routeName:(context) => UserLoginPage(),
         WalletPage.routeName:(context) => WalletPage(),
         AboutUsPage.routeName:(context) => AboutUsPage(),
-        WalletPage.routeName:(context) => WalletPage()
+        WalletPage.routeName:(context) => WalletPage(),
+        ChangePassword.routeName:(context) => ChangePassword()
       },
     );
   }

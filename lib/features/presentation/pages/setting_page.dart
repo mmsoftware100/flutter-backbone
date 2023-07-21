@@ -1,5 +1,9 @@
 import 'package:base/features/data/models/user_model.dart';
+import 'package:base/features/domain/entities/app_language.dart';
 import 'package:base/features/domain/entities/user.dart';
+import 'package:base/features/presentation/pages/aboutus_page.dart';
+import 'package:base/features/presentation/pages/changepassword_page.dart';
+import 'package:base/features/presentation/providers/language_provider.dart';
 import 'package:base/features/presentation/providers/user_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +37,45 @@ class _SettingPageState extends State<SettingPage> {
       body: SafeArea(
         child: _mainWidget(),
       ),
+    );
+  }
+
+  Widget _languageDropdown(){
+    return DropdownButton<String>(
+      value: Provider.of<LanguageProvider>(context, listen: true).appLanguage.code,
+      icon: const Icon(Icons.arrow_downward),
+      elevation: 16,
+      style: const TextStyle(color: Colors.deepPurple),
+      underline: Container(
+        height: 2,
+        color: Colors.deepPurpleAccent,
+      ),
+      onChanged: (String? value) {
+        // This is called when the user selects an item.
+        switch (value) {
+          case 'en':
+            Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "English", code: "en", flag: "https://fumoinvest.org/img/eng_flag.png"));
+            context.setLocale(Locale('en'));
+            break;
+          case 'ch':
+            Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "China", code: "ch", flag: "https://fumoinvest.org/img/ch_flag.png"));
+            context.setLocale(Locale('zh'));
+            break;
+          case 'jp':
+            Provider.of<LanguageProvider>(context, listen: false).setAppLanguage(AppLanguage(name: "Japan", code: "jp", flag: "https://fumoinvest.org/img/jp_flag.png"));
+            context.setLocale(Locale('ja'));
+            break;
+          default:
+
+        }
+
+      },
+      items: Provider.of<LanguageProvider>(context, listen: true).appLanguageList.map<DropdownMenuItem<String>>((AppLanguage appLanguage) {
+        return DropdownMenuItem<String>(
+          value: appLanguage.code,
+          child: Text(appLanguage.name,style: TextStyle(color: Colors.black),),
+        );
+      }).toList(),
     );
   }
 
@@ -97,9 +140,30 @@ class _SettingPageState extends State<SettingPage> {
                 children: [
                   InkWell(
                     onTap: (){
-
+                      Navigator.pushNamed(context, ChangePassword.routeName);
                     },
                       child: Text("Change Password",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
+
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 60.0,right: 15.0,top: 30.0),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 80,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  InkWell(
+                      onTap: (){
+                        //Navigator.pushNamed(context, ChangePassword.routeName);
+                      },
+                      child: Text("Language",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
+                  SizedBox(height: 10.0,),
+                  Center(child: _languageDropdown())
 
                 ],
               ),
@@ -111,36 +175,36 @@ class _SettingPageState extends State<SettingPage> {
             child: Divider(thickness: 1,),
           ),
           SizedBox(height: 30.0,),
-          Padding(
-            padding: const EdgeInsets.only(left: 60.0,right: 15.0),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: 20,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Notification and Sounds",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 60.0,right: 15.0,top:20),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: 20,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Language",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-
-                ],
-              ),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 60.0,right: 15.0),
+          //   child: Container(
+          //     width: MediaQuery.of(context).size.width,
+          //     height: 20,
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.start,
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+          //       children: [
+          //         Text("Notification and Sounds",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+          //
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 60.0,right: 15.0,top:20),
+          //   child: Container(
+          //     width: MediaQuery.of(context).size.width,
+          //     height: 20,
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.start,
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+          //       children: [
+          //         Text("Language",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+          //
+          //       ],
+          //     ),
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(left: 60.0,right: 15.0,top:20),
             child: Container(
@@ -158,16 +222,21 @@ class _SettingPageState extends State<SettingPage> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 60.0,right: 15.0,top:20),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: 20,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("About Us",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+            child: InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, AboutUsPage.routeName);
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 20,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("About Us",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
 
-                ],
+                  ],
+                ),
               ),
             ),
           ),

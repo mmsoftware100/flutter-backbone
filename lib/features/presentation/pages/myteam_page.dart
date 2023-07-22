@@ -118,6 +118,16 @@ class _MyTeamState extends State<MyTeamPage> {
                           DataColumn(label: Text('Revenue') )
                         ],
                         rows: [
+                          DataRow(
+                              cells: [
+                                DataCell(Container(width:10,child: Text("#")),),
+                                DataCell(Text("Name",style: TextStyle(color: Colors.green),)),
+                                DataCell(Text("Email",style: TextStyle(color: Colors.green),)),
+                                DataCell(Text("Deposit",style: TextStyle(color: Colors.green),)),
+                                DataCell(Text("%",style: TextStyle(color: Colors.green),)),
+                                DataCell(Text("Revenue",style: TextStyle(color: Colors.green),))
+                              ]),
+
                           ...referralList.map((e) => _getReferralRow(referral: e)),
                           // DataRow( cells: [ DataCell(Container(width:20,child: Icon(Icons.account_circle,color: Colors.green,)),),DataCell(Text('Myowin99',style: TextStyle(color: Colors.green),)),DataCell(Text('Level-1',style: TextStyle(color: Colors.green),)),DataCell(Text('myowin98@gmail.com',style: TextStyle(color: Colors.green),)),DataCell(Text('+5%',style: TextStyle(color: Colors.green),)),DataCell(Text('\$ xxx',style: TextStyle(color: Colors.green),))]),
                           // DataRow( cells: [ DataCell(Container(width:20,child: Icon(Icons.account_circle,color: Colors.green,))),DataCell(Text('Myowin99',style: TextStyle(color: Colors.green),)),DataCell(Text('Level-1',style: TextStyle(color: Colors.green),)),DataCell(Text('myowin98@gmail.com',style: TextStyle(color: Colors.green),)),DataCell(Text('+5%',style: TextStyle(color: Colors.green),)),DataCell(Text('\$ xxx',style: TextStyle(color: Colors.green),))]),

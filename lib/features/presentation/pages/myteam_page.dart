@@ -37,6 +37,7 @@ class _MyTeamState extends State<MyTeamPage> {
             Row(
               children: [
                 Container(
+                  margin: EdgeInsets.all(24.0),
                   width: 200,
                   height: 40,
                   decoration: BoxDecoration(

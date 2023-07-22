@@ -1,6 +1,10 @@
 import 'package:base/features/domain/entities/referral.dart';
+import 'package:base/features/domain/entities/user.dart';
+import 'package:base/features/presentation/providers/user_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/referral_provider.dart';
@@ -16,6 +20,14 @@ class MyTeamPage extends StatefulWidget {
 class _MyTeamState extends State<MyTeamPage> {
 
   bool isSwitched = false;
+  User user = User.sample();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    user = Provider.of<UserProvider>(context, listen: false).user;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +85,8 @@ class _MyTeamState extends State<MyTeamPage> {
               ],
             ),
             SizedBox(height: 20,),
+            if(referralList.isEmpty) Container(),
+            Center(child: Text("Friend Details",style: TextStyle(color: Colors.amber),)),
             /*
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -106,7 +120,7 @@ class _MyTeamState extends State<MyTeamPage> {
                 scrollDirection: Axis.horizontal,
                 child: Column(
                   children: [
-                    DataTable(
+                     DataTable(
                         headingRowHeight: 0,
                         columns: [
                           // 3. title ထည့်ပြီးဖြစ်
@@ -147,6 +161,17 @@ class _MyTeamState extends State<MyTeamPage> {
                 child: ElevatedButton.icon(
                   onPressed: () {
                     debugPrint('ElevatedButton Clicked');
+                    Clipboard.setData(ClipboardData(text: user.referCode));
+                    Fluttertoast.showToast(
+                        msg: "Refer Code Copied Successfully",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.black,
+                        textColor: Colors.white,
+                        fontSize: 16.0
+                    );
+                    showAlertDialog(context,"Refer Code for Invite Friends",user.referCode,Colors.green,(){});
                     // Navigator.pushNamedAndRemoveUntil(context, PaymentPage.routeName, (route) => false);
                   },
                   icon: Icon(Icons.add,color: Colors.amber,),  //icon data for elevated button
@@ -174,4 +199,31 @@ class _MyTeamState extends State<MyTeamPage> {
         ])
     ;
   }
+
+  showAlertDialog(BuildContext context,String title, String info, Color color, VoidCallback callback) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("OK",style: TextStyle(color: color)),
+      onPressed: () {
+        Navigator.pop(context);
+        callback();
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(title),
+      content: Text(info, style: TextStyle(color: color),),
+      actions: [
+        okButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
 }

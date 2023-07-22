@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:base/core/util/loading_dialog.dart';
 import 'package:base/features/domain/entities/deposit_address.dart';
 import 'package:base/features/presentation/pages/user_login_test_page.dart';
@@ -8,8 +10,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-
+import 'package:path/path.dart' as p;
+import 'package:permission_handler/permission_handler.dart';
 import '../../domain/entities/dashboard.dart';
 import '../../domain/entities/user.dart';
 
@@ -32,6 +36,115 @@ class _AccountPageState extends State<WalletPage> {
     // TODO: implement initState
     super.initState();
     _init();
+
+  }
+
+  Future<File> getImageFileFromAssets(String path) async {
+    final byteData = await rootBundle.load('assets/$path');
+
+    Directory appDocDir = await getApplicationDocumentsDirectory();
+    String imagesAppDirectory = appDocDir.path;
+    final file =
+    await File('$imagesAppDirectory/$path').create(recursive: true);
+
+    await file.writeAsBytes(byteData.buffer
+        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
+    return file;
+  }
+
+  Future<void> saveImageF(String ImagDetails,String imagelinkInAssets) async {
+    final permissionStatus = await Permission.storage.status;
+    if (permissionStatus.isDenied) {
+      // Here just ask for the permission for the first time
+      await Permission.storage.request();
+
+      // I noticed that sometimes popup won't show after user press deny
+      // so I do the check once again but now go straight to appSettings
+      if (permissionStatus.isDenied) {
+        await openAppSettings();
+      }
+    } else if (permissionStatus.isPermanentlyDenied) {
+      // Here open app settings for user to manually enable permission in case
+      // where permission was permanently denied
+      await openAppSettings();
+    } else {
+      // Do stuff that require permission here
+      String imgPath = imagelinkInAssets;
+      print(imagelinkInAssets);
+      print(imgPath);
+      late File image;
+      await getImageFileFromAssets(imgPath).then((file) => image = file);
+      print(image);
+      print('File Check');
+      final result = await _checkFileExists(image.path);
+      print(result);
+      // final extDir = await getExternalStorageDirectory();
+      //final extDir = await getTemporaryDirectory();
+      // Directory extDir = await getApplicationDocumentsDirectory();
+      // print(extDir.path);
+      print('My Path');
+      Directory? directory = Directory('/storage/emulated/0/Download');
+      // Put file in global download folder, if for an unknown reason it didn't exist, we fallback
+      // ignore: avoid_slow_async_io
+      if (!await directory.exists()) directory = await getExternalStorageDirectory();
+      print(directory?.path);
+      // final externalStorageFolder = await getExternalStorageDirectory();
+      // if (externalStorageFolder != null) {
+      //   downloadDirectory = p.join(externalStorageFolder.path, "Downloads");
+      // }
+      //print(downloadDirectory);
+      // Path of file in android data files
+      //final myImagePath = '${extDir!.path}';
+      final myImagePath = directory?.path;
+      print('This is extDir');
+      final result2 = await _checkDirectoryExists(myImagePath.toString());
+      print(result2);
+      print(myImagePath);
+
+      // create the base name
+      //String basename = (ImagDetails).substring(20);
+      String basename = ImagDetails+".png";
+
+      // File copied to ext directory.
+      File newImage = await image.copy("$myImagePath/${basename}");
+
+      print(newImage.path);
+      Fluttertoast.showToast(
+          msg: "QR Image Saved in Download Folder",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+    }
+    // String imgPath = imagelinkInAssets.substring(7);
+
+  }
+  Future<String?> getDownloadPath() async {
+    Directory? directory;
+    try {
+      if (Platform.isIOS) {
+        directory = await getApplicationDocumentsDirectory();
+      } else {
+        directory = Directory('/storage/emulated/0/Download');
+        // Put file in global download folder, if for an unknown reason it didn't exist, we fallback
+        // ignore: avoid_slow_async_io
+        if (!await directory.exists()) directory = await getExternalStorageDirectory();
+      }
+    } catch (err, stack) {
+      print("Cannot get download folder path");
+    }
+    return directory?.path;
+  }
+  Future<bool> _checkFileExists(String path) {
+    return File(path).exists();
+  }
+
+  Future<bool> _checkDirectoryExists(String path) {
+    return Directory(path).exists();
   }
 
   void _init()async{
@@ -664,6 +777,21 @@ class _AccountPageState extends State<WalletPage> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
+                              Padding(padding: EdgeInsets.all(8.0),
+                                child: Container(
+                                  // width: MediaQuery.of(context).size.width * 0.95,
+                                  // height: MediaQuery.of(context).size.height * 0.25,
+                                  width: 80,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    image: DecorationImage(
+                                        fit: BoxFit.contain,
+                                        image: depositAddress.name == "MATIC" ? AssetImage('assets/images/MATIC.png') : depositAddress.name == "BNB" ? AssetImage('assets/images/BNB.png') : AssetImage('assets/images/TRX.png')
+                                    ),
+                                  ),
+                                ),
+                              ),
                               Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: TextFormField(
@@ -683,24 +811,49 @@ class _AccountPageState extends State<WalletPage> {
                                   },
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: MaterialButton(
-                                  color: Colors.green,
-                                  child: Text("Deposit",style: TextStyle(color: Colors.white),),
-                                  onPressed: ()async {
-                                    if (_formkey.currentState!.validate()) {
-                                      _formkey.currentState!.save();
-                                      print('State is valid');
-                                      String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
-                                      _DepositTransaction(accessToken,depositAddress.address,_textFieldController.text);
-                                      Navigator.of(context).pop();
-                                    }
-                                    else{
-                                      print('State is no valid');
-                                    }
-                                  },
-                                ),
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: MaterialButton(
+                                      color: Colors.green,
+                                      child: Text("Save QR",style: TextStyle(color: Colors.white),),
+                                      onPressed: ()async {
+                                        print('Save QR');
+                                        if(depositAddress.name == "MATIC"){
+                                          saveImageF(depositAddress.name,"images/MATIC.png");
+                                        }else if(depositAddress.name == "BNB"){
+                                          saveImageF(depositAddress.name, "images/BNB.png");
+                                        }
+                                        else{
+                                          saveImageF(depositAddress.name,"images/TRX.png");
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: MaterialButton(
+                                      color: Colors.green,
+                                      child: Text("Deposit",style: TextStyle(color: Colors.white),),
+                                      onPressed: ()async {
+                                        if (_formkey.currentState!.validate()) {
+                                          _formkey.currentState!.save();
+                                          print('State is valid');
+                                          String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
+
+                                          if(_textFieldController.text != "" && depositAddress.address != ""){
+                                            _DepositTransaction(accessToken,depositAddress.address,_textFieldController.text);
+                                          }
+                                          Navigator.of(context).pop();
+                                        }
+                                        else{
+                                          print('State is no valid');
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ],
                               )
                             ],
                           ),
@@ -732,44 +885,46 @@ class _AccountPageState extends State<WalletPage> {
   void _DepositTransaction(String token,String link,String depositamount)async{
     print('Deposit data --->');
     print( link + " , " + depositamount );
-
+    if(link != "" && depositamount != ""){
+      LoadingDialog.show(context);
+      String status = await Provider.of<WalletProvider>(context, listen:false).requestDepositTransactionPlz(accessToken: token, link: link, depositAmount: double.parse(depositamount));
+      // close loading dialog
+      LoadingDialog.hide(context);
+      if(status == "success"){
+        // Navigator.pushNamed(context, HomePage.routeName);
+        Fluttertoast.showToast(
+            msg: "Successfully Created New Deposit!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.black,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+        //showAlertDialog(context, "Verify Email", "Check your email inbox and click on verification link", Colors.red, (){});
+      }
+      else{
+        print('Status is -->');
+        print(status);
+        Fluttertoast.showToast(
+            msg: status,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.black,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+        // show error message
+        // showAlertDialog(context, "Login Fail", "Please check email , password and Try Again!", Colors.red, (){});
+        //showAlertDialog(context, "Something went wrong", "Contact to facebook page for Approval!!", Colors.red, (){});
+      }
+    }
 
     // create user
     // call register method in User Provider
     // User user = User(id: id, name: name, email: email, password: password, referCode: referCode, phone: phone, img: img, address: address, remark: remark, accessToken: accessToken, createdAt: createdAt, modifiedAt: modifiedAt)
-    LoadingDialog.show(context);
-    String status = await Provider.of<WalletProvider>(context, listen:false).requestDepositTransactionPlz(accessToken: token, link: link, depositAmount: double.parse(depositamount));
-    // close loading dialog
-    LoadingDialog.hide(context);
-    if(status == "success"){
-      // Navigator.pushNamed(context, HomePage.routeName);
-      Fluttertoast.showToast(
-          msg: "Successfully Created New Deposit!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.black,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
-      //showAlertDialog(context, "Verify Email", "Check your email inbox and click on verification link", Colors.red, (){});
-    }
-    else{
-      print('Status is -->');
-      print(status);
-      Fluttertoast.showToast(
-          msg: status,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.black,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
-      // show error message
-      // showAlertDialog(context, "Login Fail", "Please check email , password and Try Again!", Colors.red, (){});
-      //showAlertDialog(context, "Something went wrong", "Contact to facebook page for Approval!!", Colors.red, (){});
-    }
+
 
     // Navigator.pop(context);
   }

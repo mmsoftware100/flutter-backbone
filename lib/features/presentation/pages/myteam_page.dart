@@ -47,7 +47,7 @@ class _MyTeamState extends State<MyTeamPage> {
                       ]
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 8),
+                    padding: const EdgeInsets.all(8.0), // 1. ညာဘက် တိုးလိုက်ပါပြီ။
                     child: Text("MyTeam",style: TextStyle(fontSize: 20,color: Colors.white),).tr(),
                   ),
                 )

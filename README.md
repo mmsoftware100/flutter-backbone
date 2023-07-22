@@ -23,8 +23,7 @@ Warning: This application's locale, ch, is not supported by all of its localizat
 The declared supported locales for this app are: en, ch, jp
 
 See https://flutter.dev/tutorials/internationalization/ for more information about configuring an
-app's locale, supportedLocales, and localizationsDelegates parameters.
-════════════════════════════════════════════════════════════════════════════════════════════════════
+app's locale, supportedLocales, and localizationsDelegates parameters. 
 I/flutter ( 4481): [🌎 Easy Localization] [DEBUG] Load Localization Delegate
 I/flutter ( 4481): [🌎 Easy Localization] [DEBUG] Load asset from assets/translations
 

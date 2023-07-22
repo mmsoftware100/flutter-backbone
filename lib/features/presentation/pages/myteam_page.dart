@@ -108,12 +108,13 @@ class _MyTeamState extends State<MyTeamPage> {
                     DataTable(
                         headingRowHeight: 0,
                         columns: [
-                          DataColumn(label: Text('') ),
-                          DataColumn(label: Text('') ),
-                          DataColumn(label: Text('') ),
-                          DataColumn(label: Text('') ),
-                          DataColumn(label: Text('') ),
-                          DataColumn(label: Text('') )
+                          // 3. title ထည့်ပြီးဖြစ်
+                          DataColumn(label: Text('#') ),
+                          DataColumn(label: Text('Name') ),
+                          DataColumn(label: Text('Email') ),
+                          DataColumn(label: Text('Deposit') ),
+                          DataColumn(label: Text('%') ),
+                          DataColumn(label: Text('Revenue') )
                         ],
                         rows: [
                           ...referralList.map((e) => _getReferralRow(referral: e)),
@@ -151,6 +152,15 @@ class _MyTeamState extends State<MyTeamPage> {
   }
 
   DataRow _getReferralRow({required Referral referral}){
-    return DataRow( cells: [ DataCell(Container(width:10,child: Icon(Icons.account_circle,color: Colors.green,)),),DataCell(Text(referral.name,style: TextStyle(color: Colors.green),)),DataCell(Text(referral.email,style: TextStyle(color: Colors.green),)),DataCell(Text(referral.deposit.toString(),style: TextStyle(color: Colors.green),)),DataCell(Text(referral.percentage.toString(),style: TextStyle(color: Colors.green),)),DataCell(Text('\$ ${referral.revenue}',style: TextStyle(color: Colors.green),))]);
+    return DataRow(
+        cells: [
+          DataCell(Container(width:10,child: Icon(Icons.account_circle,color: Colors.green,)),),
+          DataCell(Text(referral.name,style: TextStyle(color: Colors.green),)),
+          DataCell(Text(referral.email,style: TextStyle(color: Colors.green),)),
+          DataCell(Text(referral.deposit.toString(),style: TextStyle(color: Colors.green),)),
+          DataCell(Text(referral.percentage.toString(),style: TextStyle(color: Colors.green),)),
+          DataCell(Text('\$ ${referral.revenue}',style: TextStyle(color: Colors.green),))
+        ])
+    ;
   }
 }

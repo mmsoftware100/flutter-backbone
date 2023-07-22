@@ -116,26 +116,7 @@ class _HomePageState extends State<HomePage> {
 
         child: Column(
           children: [
-            DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue
-                ),
-                child: Container(
-                  child: Column(
-                    children: <Widget>[
-                      Container(width: double.infinity,),
-                      Material(
-                        borderRadius: BorderRadius.all(Radius.circular(70.0)),
-                        // elevation: 10,
-                        child: Padding(padding: EdgeInsets.all(8.0),
-                          child: Image.asset("assets/logo/logo-trans.png", height: 90, width: 90),
-                        ),
-                      ),
-                      Text('FUMO', style: TextStyle(color: Colors.white, fontSize: 25.0),)
-                    ],
-                  ),
-                )
-            ),
+            Image.asset("assets/logo/logo-trans.png"),
             Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.all(10.0),

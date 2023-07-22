@@ -124,7 +124,7 @@ class _MyTeamState extends State<MyTeamPage> {
                           // DataRow( cells: [ DataCell(Icon(Icons.account_circle,color: Colors.green,)),DataCell(Text('Myowin99',style: TextStyle(color: Colors.green),)),DataCell(Text('Level-1',style: TextStyle(color: Colors.green),)),DataCell(Text('myowin98@gmail.com',style: TextStyle(color: Colors.green),)),DataCell(Text('+5%',style: TextStyle(color: Colors.green),)),DataCell(Text('\$ xxx',style: TextStyle(color: Colors.green),))]),
                           // DataRow( cells: [ DataCell(Icon(Icons.account_circle,color: Colors.green,)),DataCell(Text('Myowin99',style: TextStyle(color: Colors.green),)),DataCell(Text('Level-1',style: TextStyle(color: Colors.green),)),DataCell(Text('myowin98@gmail.com',style: TextStyle(color: Colors.green),)),DataCell(Text('+5%',style: TextStyle(color: Colors.green),)),DataCell(Text('\$ xxx',style: TextStyle(color: Colors.green),))]),
                           // DataRow( cells: [ DataCell(Icon(Icons.account_circle,color: Colors.green,)),DataCell(Text('Myowin99',style: TextStyle(color: Colors.green),)),DataCell(Text('Level-1',style: TextStyle(color: Colors.green),)),DataCell(Text('myowin98@gmail.com',style: TextStyle(color: Colors.green),)),DataCell(Text('+5%',style: TextStyle(color: Colors.green),)),DataCell(Text('\$ xxx',style: TextStyle(color: Colors.green),))]),
-                          //
+
                         ]
                     )
                   ],

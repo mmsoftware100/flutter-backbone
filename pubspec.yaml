@@ -63,7 +63,7 @@ dependencies:
   # spin kit
   flutter_spinkit: ^5.1.0
   google_mobile_ads: ^1.2.0
-  intl: ^0.17.0
+  intl: ^0.18.0
   # file picker
   # file_picker: ^4.5.1
   # flutter web view
@@ -103,7 +103,7 @@ dependencies:
   # sqlite db
   # sqflite: ^2.0.2+1
   # path
-  # path: ^1.8.0
+  path: ^1.8.0
   # flutter_inappwebview: ^5.4.3+7
   flutter_inappwebview: ^5.4.3+8
   # flutter_inappwebview: ^6.0.0-beta.22
@@ -119,6 +119,8 @@ dependencies:
   # webview_flutter: ^4.2.2
   easy_localization: ^3.0.2
   webview_flutter: ^2.0.0
+  path_provider: ^2.0.2
+  permission_handler: ^8.2.2
 
 dependency_overrides:
   firebase_core_platform_interface: 4.5.1

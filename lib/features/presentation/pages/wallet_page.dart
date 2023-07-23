@@ -39,6 +39,12 @@ class _AccountPageState extends State<WalletPage> {
 
   }
 
+  @override
+  void didChangeDependencies() {
+    // Provider.of<>(context)
+    super.didChangeDependencies();
+  }
+
   Future<File> getImageFileFromAssets(String path) async {
     final byteData = await rootBundle.load('assets/$path');
 
@@ -631,8 +637,11 @@ class _AccountPageState extends State<WalletPage> {
                                               _formkey.currentState!.save();
                                               print('State is valid');
                                               String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
-                                              _WithdrawTransaction(accessToken,user.wallet_address,_textFieldController.text);
                                               Navigator.of(context).pop();
+                                              LoadingDialog.show(context);
+                                              _WithdrawTransaction(context,accessToken,user.wallet_address,_textFieldController.text);
+                                              LoadingDialog.hide(context);
+                                              //Navigator.of(context).pop();
                                             }
                                             else{
                                               print('State is no valid');
@@ -893,8 +902,8 @@ class _AccountPageState extends State<WalletPage> {
       if(status == "success"){
         // Navigator.pushNamed(context, HomePage.routeName);
         Fluttertoast.showToast(
-            msg: "Successfully Created New Deposit!",
-            toastLength: Toast.LENGTH_SHORT,
+            msg: "Successfully Created New Deposit! Please Wait 24 hours.. We will check your Deposit...",
+            toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
             backgroundColor: Colors.black,
@@ -908,7 +917,7 @@ class _AccountPageState extends State<WalletPage> {
         print(status);
         Fluttertoast.showToast(
             msg: status,
-            toastLength: Toast.LENGTH_SHORT,
+            toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
             backgroundColor: Colors.black,
@@ -929,18 +938,19 @@ class _AccountPageState extends State<WalletPage> {
     // Navigator.pop(context);
   }
 
-  void _WithdrawTransaction(String token,String address,String withdrawamount)async{
+  void _WithdrawTransaction(BuildContext context,String token,String address,String withdrawamount)async{
     print('Withdraw data --->');
     print( address + " , " + withdrawamount );
-    LoadingDialog.show(context);
+    //Navigator.pop(context);
+
     String status = await Provider.of<WalletProvider>(context, listen:false).requestWithdrawTransactionPlz(accessToken: token, withdrawAddress: address, withdrawAmount: double.parse(withdrawamount));
     // close loading dialog
-    LoadingDialog.hide(context);
+    //LoadingDialog.hide(context);
     if(status == "success"){
       // Navigator.pushNamed(context, HomePage.routeName);
       Fluttertoast.showToast(
-          msg: "Successfully Created New Withdraw!",
-          toastLength: Toast.LENGTH_SHORT,
+          msg: "Successfully Withdraw Transition!, Please Wait 24 hours.. We will check your Withdraw...",
+          toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.black,
@@ -954,7 +964,7 @@ class _AccountPageState extends State<WalletPage> {
       print(status);
       Fluttertoast.showToast(
           msg: status,
-          toastLength: Toast.LENGTH_SHORT,
+          toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.black,

@@ -78,7 +78,7 @@ class _MyTeamState extends State<MyTeamPage> {
                     color: Colors.white,
                     image: DecorationImage(
                         fit: BoxFit.contain,
-                        image: AssetImage('assets/icons/Untitled-1-29.jpg')
+                        image: AssetImage('assets/images/Artboard.png')
                     ),
                   ),
                 ),

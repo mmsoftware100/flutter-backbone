@@ -169,7 +169,7 @@ class WalletProvider extends ChangeNotifier {
           print(withdrawTransactionData);
           withdrawTransaction = withdrawTransactionData;
           notifyListeners();
-          return  "success";
+          return  withdrawTransaction.remark;
         }
     );
   }

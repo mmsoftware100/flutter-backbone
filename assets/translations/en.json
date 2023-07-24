@@ -15,5 +15,7 @@
   "Deposit": "Deposit",
   "Withdraw": "Withdraw",
   "Logout": "Logout",
-  "Change Password": "Change Password"
+  "Change Password": "Change Password",
+  "Deposit rate": "Deposit rate",
+  "Team rate": "Team rate"
 }

@@ -239,6 +239,7 @@ class _HomePageState extends State<HomePage> {
       print('Current index is' + index.toString());
       currentIndex = index;
     });
+    _init();
     if(index != menudrawer){
       if(index == 0){
 
@@ -625,8 +626,8 @@ class _HomePageState extends State<HomePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _revenueCard(title:  ("Revenue").tr() , amount: dashboard.deposit_amount),
-        _revenueCard(title: ("Earning").tr() , amount: dashboard.deposit_profit_balance),
+        _revenueCard(title:  ("Deposit rate").tr() , amount: dashboard.deposit_profit_balance),
+        _revenueCard(title: ("Team rate").tr() , amount: dashboard.referral_balance),
         _revenueCard(title: ("Total Amount").tr() , amount: dashboard.total_net_profit),
       ],
     );

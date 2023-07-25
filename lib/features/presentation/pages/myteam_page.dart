@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
+import '../components/page_title.dart';
 import '../providers/referral_provider.dart';
 
 class MyTeamPage extends StatefulWidget {
@@ -46,6 +47,8 @@ class _MyTeamState extends State<MyTeamPage> {
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 10,),
+            PageTitle(title: "MyTeam", iconData: Icons.person_search),
+            /*
             Row(
               children: [
                 Container(
@@ -66,6 +69,8 @@ class _MyTeamState extends State<MyTeamPage> {
                 )
               ],
             ),
+
+             */
             SizedBox(height: 20,),
             Text("Team acceleration",style: TextStyle(fontSize: 23,color: Colors.amber,),textAlign: TextAlign.left,).tr(),
             Row(

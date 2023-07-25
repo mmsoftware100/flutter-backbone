@@ -3,6 +3,7 @@
 import 'package:base/features/data/const/data.dart';
 import 'package:base/features/domain/entities/crypto.dart';
 import 'package:base/features/presentation/components/form_elements/our_drawer.dart';
+import 'package:base/features/presentation/components/page_title.dart';
 import 'package:base/features/presentation/pages/friend_page.dart';
 import 'package:base/features/presentation/pages/myteam_page.dart';
 import 'package:base/features/presentation/pages/payment_page.dart';
@@ -416,6 +417,37 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _pageTitle(){
+    return PageTitle(title: "Home", iconData: Icons.home);
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0,right: 15.0),
+      child: Container(
+        padding: EdgeInsets.all(24.0),
+        margin: EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          color: Colors.red,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.red,
+              blurRadius: 10.0, // soften the shadow
+              spreadRadius: 0.0, //extend the shadow
+              offset: Offset(
+                0.0, // Move to right 10  horizontally
+                0.0, // Move to bottom 10 Vertically
+              ),
+            )
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(Icons.home,size: 30.0, color: Colors.white,),
+            SizedBox(width: 24.0,),
+            Text('Home',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.white),).tr(),
+          ],
+        ),
+      ),
+    );
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(

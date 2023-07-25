@@ -24,7 +24,9 @@ class _PaymentPageState extends State<PaymentPage> {
     return Container(
       color: Colors.white,
       child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
+
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             PageTitle(title: "Earning System", iconData: Icons.payments_rounded),
@@ -125,6 +127,8 @@ class _PaymentPageState extends State<PaymentPage> {
 For those who are going to start using it, I recommend using Trust wallet. Trust wallet is easy to use. The expert can use whatever he likes. The deposit address and the withdrawal address must be the same. Non-unique addresses will not be considered. If there are any errors, you can report it.""",style: TextStyle(fontSize: 15,),textAlign: TextAlign.justify,),
               ),
             ),
+
+            SizedBox(height: 10.0,),
 //             Padding(
 //               padding: EdgeInsets.only(left: 0.0,right: 5,top: 10),
 //               child: Container(

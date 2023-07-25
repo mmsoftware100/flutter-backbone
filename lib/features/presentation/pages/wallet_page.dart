@@ -595,6 +595,7 @@ class _AccountPageState extends State<WalletPage> {
                 ),
               ],
             ),
+            SizedBox(height: 10.0,),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -692,21 +693,38 @@ class _AccountPageState extends State<WalletPage> {
                           });
                     },
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.7,
+                      padding: EdgeInsets.all(24.0),
+                      width: MediaQuery.of(context).size.width * 0.8,
                       // height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey,
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.teal,
+                            blurRadius: 10.0, // soften the shadow
+                            spreadRadius: 0.0, //extend the shadow
+                            offset: Offset(
+                              5.0, // Move to right 10  horizontally
+                              5.0, // Move to bottom 10 Vertically
+                            ),
+                          )
+                        ],
+
+                        /*
                         boxShadow: [
                           BoxShadow(color: Colors.grey, spreadRadius: 3),
                         ],
+
+                         */
                       ),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Wallet Address",style: TextStyle(fontSize: 13),textAlign: TextAlign.left,),
-                          Text(user.wallet_address,style: TextStyle(fontSize: 12),textAlign: TextAlign.left,)
+                          Text("Wallet Address",style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),textAlign: TextAlign.center),
+                          SizedBox(height: 24,),
+                          Text(user.wallet_address,style: TextStyle(fontSize: 12),textAlign: TextAlign.center,)
                         ],
                       ),
                     ),

@@ -303,8 +303,9 @@ class _AccountPageState extends State<WalletPage> {
               child: InkWell(
                 onTap: ()async{
                   LoadingDialog.show(context);
-                  await Provider.of<UserProvider>(context, listen: false).logout;
+                  await Provider.of<UserProvider>(context, listen: false).logout();
                   // hide loading screen
+
                   LoadingDialog.hide(context);
                   Navigator.pushNamed(context, UserLoginPage.routeName);
                 },

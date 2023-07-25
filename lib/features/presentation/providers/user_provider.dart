@@ -6,10 +6,15 @@ import 'package:base/features/domain/usecases/user_register.dart';
 import 'package:base/features/domain/usecases/user_update.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/const/data.dart';
 import '../../data/datasources/local_storage.dart';
 import '../../domain/usecases/user_login.dart';
+
+const String EMAIL_KEY = "email";
+const String PASSWORD_KEY = "email";
+
 class UserProvider extends ChangeNotifier {
     final UserRegister userRegister;
     final UserLogin userLogin;
@@ -29,9 +34,12 @@ class UserProvider extends ChangeNotifier {
     });
 
 
-    void logout()async{
+    Future<void> logout()async{
       user = User.sample();
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
       //await localStorage.setString(string: user.accessToken, key: "accessTokenKey");
+      await prefs.setString(EMAIL_KEY, "");
+      await prefs.setString(PASSWORD_KEY, "");
       notifyListeners();
     }
     bool isLogin(){
@@ -72,6 +80,14 @@ class UserProvider extends ChangeNotifier {
     }
 
 
+    Future<String> autoLogin()async{
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      String email = prefs.getString(EMAIL_KEY) ?? "";
+      String password = prefs.getString(PASSWORD_KEY) ?? "";
+      return userLoginPlz(email: email, password: password);
+    }
+
+
     Future<String> userLoginPlz({
         required String email,
         required String password
@@ -98,6 +114,10 @@ class UserProvider extends ChangeNotifier {
 
                 user = userData;
                 // TODO: stored in shared preference
+                // Obtain shared preferences.
+                final SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.setString(EMAIL_KEY, email);
+                await prefs.setString(PASSWORD_KEY, password);
 
                 //await localStorage.setString(string: user.accessToken, key: "accessTokenKey");
                 notifyListeners();

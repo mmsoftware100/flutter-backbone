@@ -22,6 +22,25 @@ class UserLoginPage extends StatefulWidget {
 class _UserLoginPageState extends State<UserLoginPage> {
   TextEditingController emailTec = TextEditingController();
   TextEditingController passwordTec = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      _autoLogin();
+    });
+  }
+
+  void _autoLogin()async{
+    LoadingDialog.show(context);
+    String status = await Provider.of<UserProvider>(context, listen: false).autoLogin();
+    LoadingDialog.hide(context);
+    if(status == "success"){
+      Navigator.pushNamed(context, HomePage.routeName);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:base/core/util/loading_dialog.dart';
 import 'package:base/features/domain/entities/deposit_address.dart';
+import 'package:base/features/presentation/components/page_title.dart';
 import 'package:base/features/presentation/pages/user_login_test_page.dart';
 import 'package:base/features/presentation/providers/dashboard_provider.dart';
 import 'package:base/features/presentation/providers/user_provider.dart';
@@ -262,6 +263,8 @@ class _AccountPageState extends State<WalletPage> {
       color: Colors.white,
       child: Column(
         children: [
+          PageTitle(title: "Wallet", iconData: Icons.wallet_outlined),
+          /*
           Padding(
             padding: EdgeInsets.only(left: 10,right: 10),
             child: Row(
@@ -289,6 +292,30 @@ class _AccountPageState extends State<WalletPage> {
                   ),
                 ),
               ],
+            ),
+          ),
+
+           */
+          Center(
+            child: InkWell(
+              onTap: ()async{
+                LoadingDialog.show(context);
+                await Provider.of<UserProvider>(context, listen: false).logout;
+                // hide loading screen
+                LoadingDialog.hide(context);
+                Navigator.pushNamed(context, UserLoginPage.routeName);
+              },
+              child: Container(
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    Expanded(child: Container()),
+                    Icon(Icons.logout_sharp,size: 30.0,color: Colors.red,),
+                    Text('Logout',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.red),).tr(),
+                    SizedBox(width: 24.0,)
+                  ],
+                ),
+              ),
             ),
           ),
           Stack(

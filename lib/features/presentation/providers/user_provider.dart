@@ -84,6 +84,10 @@ class UserProvider extends ChangeNotifier {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       String email = prefs.getString(EMAIL_KEY) ?? "";
       String password = prefs.getString(PASSWORD_KEY) ?? "";
+
+      print("auto Login");
+      print(email);
+      print(password);
       return userLoginPlz(email: email, password: password);
     }
 

@@ -15,5 +15,7 @@
   "Deposit": "訂金",
   "Withdraw": "提取",
   "Logout": "登出",
-  "Change Password": "更改密碼"
+  "Change Password": "更改密碼",
+  "Deposit rate": "存款利率",
+  "Team rate": "團隊率"
 }

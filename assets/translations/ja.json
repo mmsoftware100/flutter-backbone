@@ -15,5 +15,7 @@
   "Deposit": "デポジット",
   "Withdraw": "撤退",
   "Logout": "ログアウト",
-  "Change Password": "パスワードを変更する"
+  "Change Password": "パスワードを変更する",
+  "Deposit rate": "預金金利",
+  "Team rate": "チームレート"
 }

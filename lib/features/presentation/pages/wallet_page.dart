@@ -16,6 +16,7 @@ import 'package:path/path.dart' as p;
 import 'package:permission_handler/permission_handler.dart';
 import '../../domain/entities/dashboard.dart';
 import '../../domain/entities/user.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 
 class WalletPage extends StatefulWidget {
   static String routeName = "/WalletPage";
@@ -85,24 +86,24 @@ class _AccountPageState extends State<WalletPage> {
       print('File Check');
       final result = await _checkFileExists(image.path);
       print(result);
-      // final extDir = await getExternalStorageDirectory();
+      final extDir = await getExternalStorageDirectory();
       //final extDir = await getTemporaryDirectory();
       // Directory extDir = await getApplicationDocumentsDirectory();
       // print(extDir.path);
       print('My Path');
-      Directory? directory = Directory('/storage/emulated/0/Download');
+      //Directory? directory = Directory('/storage/emulated/0/DCIM/Camera');
       // Put file in global download folder, if for an unknown reason it didn't exist, we fallback
       // ignore: avoid_slow_async_io
-      if (!await directory.exists()) directory = await getExternalStorageDirectory();
-      print(directory?.path);
+      // if (!await directory.exists()) directory = await getExternalStorageDirectory();
+      // print(directory?.path);
       // final externalStorageFolder = await getExternalStorageDirectory();
       // if (externalStorageFolder != null) {
       //   downloadDirectory = p.join(externalStorageFolder.path, "Downloads");
       // }
       //print(downloadDirectory);
       // Path of file in android data files
-      //final myImagePath = '${extDir!.path}';
-      final myImagePath = directory?.path;
+      final myImagePath = '${extDir!.path}';
+      //final myImagePath = directory?.path;
       print('This is extDir');
       final result2 = await _checkDirectoryExists(myImagePath.toString());
       print(result2);
@@ -116,8 +117,10 @@ class _AccountPageState extends State<WalletPage> {
       File newImage = await image.copy("$myImagePath/${basename}");
 
       print(newImage.path);
+      GallerySaver.saveImage(newImage.path).then((bool? success) {
+      });
       Fluttertoast.showToast(
-          msg: "QR Image Saved in Download Folder",
+          msg: "QR Image Saved in Gallery",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
@@ -639,7 +642,7 @@ class _AccountPageState extends State<WalletPage> {
                                               String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
                                               Navigator.of(context).pop();
                                               LoadingDialog.show(context);
-                                              _WithdrawTransaction(context,accessToken,user.wallet_address,_textFieldController.text);
+                                              _WithdrawTransaction(accessToken,user.wallet_address,_textFieldController.text);
                                               LoadingDialog.hide(context);
                                               //Navigator.of(context).pop();
                                             }
@@ -904,7 +907,7 @@ class _AccountPageState extends State<WalletPage> {
         Fluttertoast.showToast(
             msg: "Successfully Created New Deposit! Please Wait 24 hours.. We will check your Deposit...",
             toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.BOTTOM,
+            gravity: ToastGravity.CENTER,
             timeInSecForIosWeb: 1,
             backgroundColor: Colors.black,
             textColor: Colors.white,
@@ -918,7 +921,7 @@ class _AccountPageState extends State<WalletPage> {
         Fluttertoast.showToast(
             msg: status,
             toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.BOTTOM,
+            gravity: ToastGravity.CENTER,
             timeInSecForIosWeb: 1,
             backgroundColor: Colors.black,
             textColor: Colors.white,
@@ -938,7 +941,7 @@ class _AccountPageState extends State<WalletPage> {
     // Navigator.pop(context);
   }
 
-  void _WithdrawTransaction(BuildContext context,String token,String address,String withdrawamount)async{
+  void _WithdrawTransaction(String token,String address,String withdrawamount)async{
     print('Withdraw data --->');
     print( address + " , " + withdrawamount );
     //Navigator.pop(context);
@@ -951,7 +954,7 @@ class _AccountPageState extends State<WalletPage> {
       Fluttertoast.showToast(
           msg: "Successfully Withdraw Transition!, Please Wait 24 hours.. We will check your Withdraw...",
           toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.BOTTOM,
+          gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.black,
           textColor: Colors.white,
@@ -965,7 +968,7 @@ class _AccountPageState extends State<WalletPage> {
       Fluttertoast.showToast(
           msg: status,
           toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.BOTTOM,
+          gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.black,
           textColor: Colors.white,

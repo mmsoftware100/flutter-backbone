@@ -1,3 +1,4 @@
+import 'package:base/features/presentation/components/page_title.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +27,8 @@ class _PaymentPageState extends State<PaymentPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            PageTitle(title: "Earning System", iconData: Icons.payments_rounded),
+            /*
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Row(
@@ -36,6 +39,8 @@ class _PaymentPageState extends State<PaymentPage> {
                 ],
               ),
             ),
+
+             */
             Padding(
               padding: EdgeInsets.only(left: 5.0,right: 5,top: 10),
               child: Container(

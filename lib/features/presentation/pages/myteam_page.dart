@@ -119,7 +119,7 @@ class _MyTeamState extends State<MyTeamPage> {
              */
             if(referralList.isEmpty) Text("No Referral Data"),
             Container(
-              height: 300,
+              // height: 300,
               color: Colors.white,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,

@@ -153,9 +153,9 @@ flutter_icons:
   # adaptive_icon_foreground: "assets/images/logo.png"
   remove_alpha_ios: true
 flutter_native_splash:
-  android: false
-  color: "#0B8EE9"
-  image: "assets/logo/Investment Logo-02.png"
+  android: true
+  color: "#FFFFFF"
+  image: "assets/logo/logo-trans.png"
 # The following section is specific to Flutter.
 flutter:
 

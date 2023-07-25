@@ -37,7 +37,8 @@ class _UserLoginPageState extends State<UserLoginPage> {
     String status = await Provider.of<UserProvider>(context, listen: false).autoLogin();
     LoadingDialog.hide(context);
     if(status == "success"){
-      Navigator.pushNamed(context, HomePage.routeName);
+      //Navigator.pushNamed(context, HomePage.routeName);
+      Navigator.pushReplacementNamed(context, HomePage.routeName);
     }
   }
 
@@ -140,7 +141,8 @@ class _UserLoginPageState extends State<UserLoginPage> {
     print("str $str");
 
     if(str == "success"){
-      Navigator.pushNamed(context, HomePage.routeName);
+      //Navigator.pushNamed(context, HomePage.routeName);
+      Navigator.pushReplacementNamed(context, HomePage.routeName);
     }
     else{
       // show error message

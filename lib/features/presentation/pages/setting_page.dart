@@ -87,14 +87,14 @@ class _SettingPageState extends State<SettingPage> {
           Padding(
             padding: const EdgeInsets.only(left: 15.0,right: 15.0),
             child: Container(
-              padding: EdgeInsets.all(24.0),
-              margin: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(10.0),
+              margin: EdgeInsets.all(10.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
-                color: Colors.red,
+                color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.red,
+                    color: Colors.blueAccent,
                     blurRadius: 10.0, // soften the shadow
                     spreadRadius: 0.0, //extend the shadow
                     offset: Offset(
@@ -105,11 +105,11 @@ class _SettingPageState extends State<SettingPage> {
                 ],
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.settings,size: 30.0, color: Colors.white,),
-                  SizedBox(width: 24.0,),
-                  Text('Setting',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.white),).tr(),
+                  Icon(Icons.settings,size: 30.0, color: Colors.blueAccent,),
+                  SizedBox(width: 10.0,),
+                  Text('Setting',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.blueAccent),).tr(),
                 ],
               ),
             ),
@@ -174,7 +174,7 @@ class _SettingPageState extends State<SettingPage> {
               width: MediaQuery.of(context).size.width,
               height: 80,
               child: Row(
-                //mainAxisAlignment: MainAxisAlignment.start,
+                //mainAxisAlignment: MainAxisAlignment.spaceAround,
                 //crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   InkWell(
@@ -182,7 +182,8 @@ class _SettingPageState extends State<SettingPage> {
                         //Navigator.pushNamed(context, ChangePassword.routeName);
                       },
                       child: Text("Language",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
-                  Expanded(child: Container()),
+                  // Expanded(child: Container()),
+                  SizedBox(width: 100.0,),
                   Center(child: _languageDropdown())
 
                 ],

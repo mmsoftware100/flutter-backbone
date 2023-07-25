@@ -299,29 +299,29 @@ class _AccountPageState extends State<WalletPage> {
             ),
 
              */
-            Center(
-              child: InkWell(
-                onTap: ()async{
-                  LoadingDialog.show(context);
-                  await Provider.of<UserProvider>(context, listen: false).logout();
-                  // hide loading screen
-
-                  LoadingDialog.hide(context);
-                  Navigator.pushNamed(context, UserLoginPage.routeName);
-                },
-                child: Container(
-                  width: double.infinity,
-                  child: Row(
-                    children: [
-                      Expanded(child: Container()),
-                      Icon(Icons.logout_sharp,size: 30.0,color: Colors.red,),
-                      Text('Logout',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.red),).tr(),
-                      SizedBox(width: 24.0,)
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            // Center(
+            //   child: InkWell(
+            //     onTap: ()async{
+            //       LoadingDialog.show(context);
+            //       await Provider.of<UserProvider>(context, listen: false).logout();
+            //       // hide loading screen
+            //
+            //       LoadingDialog.hide(context);
+            //       Navigator.pushNamed(context, UserLoginPage.routeName);
+            //     },
+            //     child: Container(
+            //       width: double.infinity,
+            //       child: Row(
+            //         children: [
+            //           Expanded(child: Container()),
+            //           Icon(Icons.logout_sharp,size: 30.0,color: Colors.red,),
+            //           Text('Logout',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.red),).tr(),
+            //           SizedBox(width: 24.0,)
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
             Stack(
               alignment: Alignment.topCenter,
               children: [

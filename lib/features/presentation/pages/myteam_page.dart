@@ -47,7 +47,7 @@ class _MyTeamState extends State<MyTeamPage> {
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 10,),
-            PageTitle(title: "MyTeam", iconData: Icons.person_search),
+            PageTitle(title: "MyTeam", iconData: Icons.person_add),
             /*
             Row(
               children: [

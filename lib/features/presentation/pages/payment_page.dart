@@ -29,7 +29,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            PageTitle(title: "Earning System", iconData: Icons.payments_rounded),
+            PageTitle(title: "Earning System", iconData: Icons.currency_exchange),
             /*
             Padding(
               padding: const EdgeInsets.all(15.0),

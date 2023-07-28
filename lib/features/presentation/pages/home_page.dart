@@ -1,5 +1,6 @@
 
 
+import 'package:base/core/util/loading_dialog.dart';
 import 'package:base/features/data/const/data.dart';
 import 'package:base/features/domain/entities/crypto.dart';
 import 'package:base/features/presentation/components/form_elements/our_drawer.dart';
@@ -9,6 +10,7 @@ import 'package:base/features/presentation/pages/myteam_page.dart';
 import 'package:base/features/presentation/pages/payment_page.dart';
 import 'package:base/features/presentation/pages/setting_page.dart';
 import 'package:base/features/presentation/pages/test_page.dart';
+import 'package:base/features/presentation/pages/user_login_test_page.dart';
 import 'package:base/features/presentation/pages/wallet_page.dart';
 import 'package:base/features/presentation/providers/crpyto_provider.dart';
 import 'package:base/features/presentation/providers/dashboard_provider.dart';
@@ -107,6 +109,12 @@ class _HomePageState extends State<HomePage> {
           IconButton(onPressed: (){
             Navigator.pushNamed(context, SettingPage.routeName);
           }, icon: Icon(Icons.settings)),
+          IconButton(onPressed: ()async{
+            LoadingDialog.show(context);
+            await Provider.of<UserProvider>(context, listen: false).logout();
+            LoadingDialog.hide(context);
+            Navigator.pushNamed(context, UserLoginPage.routeName);
+          }, icon: Icon(Icons.logout)),
           //_languageDropdown()
           // language drop down in action
         ],
@@ -145,40 +153,40 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.white10,
         type: BottomNavigationBarType.shifting,
         selectedFontSize: 20,
-        selectedIconTheme: IconThemeData(color: Colors.amberAccent),
-        selectedItemColor: Colors.amberAccent,
+        selectedIconTheme: IconThemeData(color: Colors.blueAccent),
+        selectedItemColor: Colors.blueAccent,
         selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-        unselectedLabelStyle: TextStyle(color: Colors.white),
-        unselectedItemColor: Colors.white,
+        unselectedLabelStyle: TextStyle(color: Colors.black),
+        unselectedItemColor: Colors.black,
         items:  <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: ('Home').tr(),
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.white10,
 
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_add),
             label: ("Referral").tr(),
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.white10,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.currency_exchange,), //, color: Colors.white
             label: ("Earn").tr(),
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.white10,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calculate),
             label: ("Calculator").tr(),
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.white10,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.wallet),
             label: ("Wallet").tr(),
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.white10,
           ), //New
 
         ],

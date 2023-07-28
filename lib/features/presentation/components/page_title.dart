@@ -16,14 +16,14 @@ class PageTitle extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 15.0,right: 15.0),
       child: Container(
-        padding: EdgeInsets.all(24.0),
-        margin: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(5.0),
+        margin: EdgeInsets.all(15.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
-          color: Colors.red,
+          color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.red,
+              color: Colors.blueAccent,
               blurRadius: 10.0, // soften the shadow
               spreadRadius: 0.0, //extend the shadow
               offset: Offset(
@@ -34,11 +34,11 @@ class PageTitle extends StatelessWidget {
           ],
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(iconData,size: 30.0, color: Colors.white,),
-            SizedBox(width: 24.0,),
-            Text(title,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.white),).tr(),
+            Icon(iconData,size: 30.0, color: Colors.blueAccent,),
+            SizedBox(width: 10.0,),
+            Text(title,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.blueAccent),).tr(),
           ],
         ),
       ),

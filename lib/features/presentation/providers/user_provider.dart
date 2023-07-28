@@ -13,7 +13,7 @@ import '../../data/datasources/local_storage.dart';
 import '../../domain/usecases/user_login.dart';
 
 const String EMAIL_KEY = "email";
-const String PASSWORD_KEY = "email";
+const String PASSWORD_KEY = "password";
 
 class UserProvider extends ChangeNotifier {
     final UserRegister userRegister;

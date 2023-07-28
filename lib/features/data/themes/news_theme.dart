@@ -18,9 +18,9 @@ const errorColor = Colors.red;
 // Color(0xffFFC773);
 
 
-Color primaryColor =  Colors.red; //Color(0xfff2eb91); //Color(0xff4d784e);
-Color secondaryColor = Colors.redAccent; //Color(0xffffffff); // Color(0xff6ea171);
-Color surfaceColor = Colors.red; //Color(0xffffffff);
+Color primaryColor =  Colors.black54; //Color(0xfff2eb91); //Color(0xff4d784e);
+Color secondaryColor = Colors.black54; //Color(0xffffffff); // Color(0xff6ea171);
+Color surfaceColor = Colors.black54; //Color(0xffffffff);
 Color backgroundColor = Color(0xff000000); // Color(0xfff5b700);
 Color errorColor = Color(0xfff80000);
 Color textColor = Color(0xff000000);

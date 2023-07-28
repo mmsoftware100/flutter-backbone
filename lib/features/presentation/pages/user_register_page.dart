@@ -111,10 +111,27 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
       showAlertDialog(context, "Type Same Password", "Password need to be same in both password fields", Colors.red, (){});
       return;
     }
+
+
     String email = emailTec.text;
     String password = passwordTec.text;
     String name = nameTec.text;
     String ref = refTec.text;
+
+    if(email.isEmpty){
+      showAlertDialog(context, "Email ရိုက်ထည့်ပါ", "Email ထည့်ရန် လိုအပ်ပါသည်။", Colors.red, (){});
+      return;
+    }
+
+    if(name.isEmpty){
+      showAlertDialog(context, "Name ရိုက်ထည့်ပါ", "Name ထည့်ရန် လိုအပ်ပါသည်။", Colors.red, (){});
+      return;
+    }
+
+    if(password.isEmpty){
+      showAlertDialog(context, "Password ရိုက်ထည့်ပါ", "Password ထည့်ရန် လိုအပ်ပါသည်။", Colors.red, (){});
+      return;
+    }
 
     print(email + " , " + password + " , " + name + " , " + ref);
 

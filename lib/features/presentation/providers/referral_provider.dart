@@ -26,6 +26,11 @@ class ReferralProvider extends ChangeNotifier {
 
   List<Referral> referralList = [];
 
+  Future<void> Clear()async{
+    referralList = [];
+    notifyListeners();
+  }
+
   Future<String> getReferralListPlz({
     required String accessToken
   })async{

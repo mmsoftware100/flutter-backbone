@@ -91,7 +91,7 @@ class _MyTeamState extends State<MyTeamPage> {
             ),
             SizedBox(height: 20,),
             if(referralList.isEmpty) Container(),
-            Center(child: Text("Friend Details",style: TextStyle(color: Colors.amber),)),
+            !referralList.isEmpty ? Center(child: Text("Friend Details",style: TextStyle(color: Colors.amber),)):Container(),
             /*
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -118,6 +118,7 @@ class _MyTeamState extends State<MyTeamPage> {
 
              */
             if(referralList.isEmpty) Text("No Referral Data"),
+            SizedBox(height: 20.0,),
             Container(
               // height: 300,
               color: Colors.white,
@@ -161,6 +162,7 @@ class _MyTeamState extends State<MyTeamPage> {
                 ),
               ),
             ),
+            referralList.isEmpty ? SizedBox(height: 100.0,) : Container(),
             Padding(
                 padding: EdgeInsets.only(bottom: 20.0),
                 child: ElevatedButton.icon(

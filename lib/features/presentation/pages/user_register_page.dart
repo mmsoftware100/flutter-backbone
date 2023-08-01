@@ -148,7 +148,9 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
       print(status);
       // show error message
       // showAlertDialog(context, "Login Fail", "Please check email , password and Try Again!", Colors.red, (){});
-
+      if(status == "null"){
+        status = "No Internet Connection";
+      }
       showAlertDialog(context, "Something went wrong", status, Colors.red, (){});
     }
 

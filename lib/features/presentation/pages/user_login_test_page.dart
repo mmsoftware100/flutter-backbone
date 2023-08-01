@@ -38,6 +38,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
     LoadingDialog.hide(context);
     if(status == "success"){
       //Navigator.pushNamed(context, HomePage.routeName);
+      await Future.delayed(Duration(milliseconds: 10));
       Navigator.pushReplacementNamed(context, HomePage.routeName);
     }
   }
@@ -108,6 +109,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
     });
 
      */
+    await Future.delayed(Duration(milliseconds: 10));
     Navigator.pushNamedAndRemoveUntil(context, UserRegisterPage.routeName, (route) => false);
   }
 
@@ -142,6 +144,10 @@ class _UserLoginPageState extends State<UserLoginPage> {
 
     if(str == "success"){
       //Navigator.pushNamed(context, HomePage.routeName);
+      // WidgetsBinding.instance.addPostFrameCallback((_) {
+      //
+      // });
+      await Future.delayed(Duration(milliseconds: 10));
       Navigator.pushReplacementNamed(context, HomePage.routeName);
     }
     else{

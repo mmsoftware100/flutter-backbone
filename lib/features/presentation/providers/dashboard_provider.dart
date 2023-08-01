@@ -31,6 +31,10 @@ class DashboardProvider extends ChangeNotifier {
   // bool isLogin(){
   //   return user.accessToken != User.sample().accessToken;
   // }
+  Future<void> Clear()async{
+    dashboard = Dashboard.sample();
+    notifyListeners();
+  }
   void setDashboard(Dashboard dashboardUpdate){
     dashboard = dashboardUpdate;
     notifyListeners();

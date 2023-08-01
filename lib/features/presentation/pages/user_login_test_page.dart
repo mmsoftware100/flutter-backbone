@@ -132,6 +132,17 @@ class _UserLoginPageState extends State<UserLoginPage> {
 
     // String email = "thihathuzar1995@gmail.com";
     // String password = "Thiha123!@#";
+    // input validation
+    if(email.isEmpty){
+
+      showAlertDialog(context, "Email ရိုက်ထည့်ပါ", "Email ထည့်ရန် လိုအပ်ပါသည်။", Colors.red, (){});
+      return;
+    }
+    if(password.isEmpty){
+
+      showAlertDialog(context, "Password ရိုက်ထည့်ပါ", "Password ထည့်ရန် လိုအပ်ပါသည်။", Colors.red, (){});
+      return;
+    }
 
     print("$email and $password");
     // show loading screen
@@ -212,6 +223,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
       },
     );
   }
+
 
 }
 

@@ -156,7 +156,8 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
         print(exp.response);
         print("response runtime type is ");
         print(exp.response.runtimeType);
-        throw GeneralException(message: exp.response.toString());
+        // throw GeneralException(message: exp.response.toString());
+        throw GeneralException(message: "Something Wrong!!! Please Check Network and Try Again");
       }
       print(exp);
       print(stackTrace);

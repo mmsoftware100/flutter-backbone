@@ -30,6 +30,7 @@ class WalletPage extends StatefulWidget {
 class _AccountPageState extends State<WalletPage> {
   String valueText = "";
   TextEditingController _textFieldController = new TextEditingController();
+  TextEditingController _walletaddressController = new TextEditingController();
   bool checktext = false;
   final _formkey = GlobalKey<FormState>();
 
@@ -596,7 +597,61 @@ class _AccountPageState extends State<WalletPage> {
               ],
             ),
             SizedBox(height: 10.0,),
-            Row(
+            user.wallet_address == "wallet_address" ? Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: TextFormField(
+                    controller: _walletaddressController,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.wallet),
+                      labelText: "Enter Your Wallet Address",
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                          width: 1.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10.0,),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(150, 50), backgroundColor: Colors.indigoAccent),
+                  onPressed: () async {
+                      if(_walletaddressController.text == ""){
+                        showAlertDialog(context, "Wallet Address!", "you need to enter your wallet address", Colors.red, () { });
+                        return;
+                      }
+                      User user = Provider.of<UserProvider>(context, listen: false).user;
+                      user.wallet_address = _walletaddressController.text;
+                      LoadingDialog.show(context);
+                      String status = await Provider.of<UserProvider>(context, listen: false).userUpdatePlz(
+                          username: user.username,
+                          email: user.email,
+                          phone: user.phone,
+                          profile_picture: user.profile_picture,
+                          address: user.address,
+                          remark: user.remark,
+                          password: user.password,
+                          level: user.level,
+                          accessToken: user.accessToken,
+                          wallet_address: user.wallet_address,
+                          deposit_address: user.deposit_address,
+                          referCode: user.referCode
+                      );
+                      user = Provider.of<UserProvider>(context, listen: false).user;
+                      LoadingDialog.hide(context);
+                    },
+                  child: Text(
+                    "Add",
+                  ),
+                )
+              ],
+            )
+            : Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Padding(
@@ -718,7 +773,7 @@ class _AccountPageState extends State<WalletPage> {
 
                          */
                       ),
-                      child: Column(
+                      child:  Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -933,6 +988,11 @@ class _AccountPageState extends State<WalletPage> {
             height: 80,
             decoration: BoxDecoration(
               color: Colors.white,
+              borderRadius: BorderRadius.circular(5.0),
+              border: Border.all(
+              color: depositAddress.name == "MATIC" ? Colors.amber : depositAddress.name == "BNB" ? Colors.teal : Colors.blueAccent,
+              width: 5,
+              ),
               image: DecorationImage(
                   fit: BoxFit.contain,
                   image: AssetImage('assets/images/qrimage.png')
@@ -1031,6 +1091,32 @@ class _AccountPageState extends State<WalletPage> {
     }
 
     // Navigator.pop(context);
+  }
+
+  showAlertDialog(BuildContext context,String title, String info, Color color, VoidCallback callback) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("OK",style: TextStyle(color: color)),
+      onPressed: () {
+        Navigator.pop(context);
+        callback();
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(title),
+      content: Text(info, style: TextStyle(color: color),),
+      actions: [
+        okButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }
 

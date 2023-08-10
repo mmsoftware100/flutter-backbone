@@ -112,6 +112,8 @@ class _HomePageState extends State<HomePage> {
           IconButton(onPressed: ()async{
             LoadingDialog.show(context);
             await Provider.of<UserProvider>(context, listen: false).logout();
+            await Provider.of<ReferralProvider>(context, listen: false).Clear();
+            await Provider.of<DashboardProvider>(context, listen: false).Clear();
             LoadingDialog.hide(context);
             Navigator.pushNamed(context, UserLoginPage.routeName);
           }, icon: Icon(Icons.logout)),

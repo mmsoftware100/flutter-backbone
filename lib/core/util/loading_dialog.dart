@@ -40,6 +40,7 @@ class LoadingDialog{
    */
   static void hide(BuildContext context){
     //Navigator.pop(context);
+    Future.delayed(Duration(milliseconds: 10));
     Navigator.of(context, rootNavigator: true).pop();
   }
 }

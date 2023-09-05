@@ -1,4 +1,4 @@
-package com.iadx.coffer
+package com.mmsoftware100.fumo
 
 import com.codelab.flutter.admobinlineads.ListTileNativeAdFactory
 import io.flutter.embedding.android.FlutterActivity

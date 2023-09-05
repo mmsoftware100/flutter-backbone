@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
-import com.iadx.coffer.R
+import com.mmsoftware100.fumoinvest.R
 import io.flutter.plugins.googlemobileads.GoogleMobileAdsPlugin
 
 class ListTileNativeAdFactory(val context: Context) : GoogleMobileAdsPlugin.NativeAdFactory {

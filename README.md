@@ -1,4 +1,33 @@
 # FUMO
+
+## 2023-08-10 Playstore မှာ သင်တင့်လျောက်ပတ်တဲ့ ပုံနဲ့ စာ တင်ပေးရန်
+
+Dear Investor...
+We are excited to inform you that our online investment platform is now open and ready for you to start investing your money. Our platform offers a variety of investment options, including stocks, bonds, mutual funds, and ETFs, all of which are designed to help you grow your wealth and achieve your financial goals.
+Our platform is user-friendly and easy to navigate, making it simple for you to open an investment account and start investing today. You can choose from a variety of investment options that are tailored to your investment goals and risk tolerance, and our team of experienced professionals is always available to provide guidance and answer any questions you may have.""",style: TextStyle(fontSize: 15,),textAlign: TextAlign.justify,
+With our online investment platform, you can start investing with as little as a few dollars, and you can monitor your investments online from anywhere, at any time. We believe in transparency and strive to provide you with all the information you need to make informed investment decisions
+We understand that investing can be a daunting process, especially for those who are new to the world of investing. That's why we are committed to providing our investors with the tools and resources they need to succeed. Our platform offers a wealth of educational materials, including articles, tutorials, and videos, to help you learn more about investing and make the most of your investment portfolio.
+We believe that everyone deserves access to quality investment opportunities, and we are committed to making investing simple and accessible for all. We look forward to helping you achieve your investment goals and grow your wealth with our online investment platform.
+Sincerely
+FUMO Online Investment Team
+
+
+ကိုကြီး App မှာ ပါတဲ့ Keyword တွေက ဒိန်းဂျားတွေနော်
+
+Screenshots တွေမှာ Wallet တို့  Withdraw တို့ 
+
+နောက် App Description မှာလည်း investment တို့ဘာတို့ လှိုင်လှိုင်သုံထားတာ။
+
+ပြဿနာ တက်ကောင်းတက်နိုင်တယ်ဆိုတာလေး ကြိုပြောထားပေးပါဉီး။
+တက်ချင်မှလည်း တက်မှာပါ။
+တကယ်လို့ တက်ခဲ့ရင် သူတို့လုပ်ခိုင်းတဲ့အတိုင်း လုပ်ထားတာဆိုတာ ကြိုပြီး အသိပေးထားရအောင်လို့။
+တော်ကြာ မင်းတို့တင်ပေးထားတာ မင်းတို့ရအောင်ပြန်လုပ်ဆို 
+
+ကျွန်တော်တော့ ကိုကြီးပြောတဲ့အတိုင်း Screenshots နဲ့ App Description တွေ ပြောင်းတင်ပေးထားလိုက်ပြီ။
+
+
+သူတို့က 
+
 ## 2023-07-55 API Error Handling
 ကျေးဇူးပြုပြီး  နာမည်၊ အီးမေးလ် နှင့် စကားဝှက်များကို ပြန်လည်စီစစ်ပြီး ပြောင်းလဲဖြည့်သွင်းပါ
 

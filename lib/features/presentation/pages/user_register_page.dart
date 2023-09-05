@@ -81,7 +81,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
           OurTextInput(label: "Confirm Password", placeHolder: "enter your password again", textEditingController: passwordConfirmTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.password, password: true,),
 
           SizedBox(height: 8.0,),
-          OurTextInput(label: "Referral Code", placeHolder: "enter your referral code", textEditingController: refTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.password, password: true),
+          OurTextInput(label: "Referral Code", placeHolder: "enter your referral code", textEditingController: refTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.add_circle_outline, password: false),
 
           SizedBox(height: 8.0,),
           OurSubmitButton(text:"Register", callback: _register, width: 0.8,),

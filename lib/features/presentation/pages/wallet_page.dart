@@ -161,6 +161,7 @@ class _AccountPageState extends State<WalletPage> {
   void _init()async{
     print("_init");
     // Navigator.pushNamed(context, TestPage.routeName);
+    print(Provider.of<UserProvider>(context, listen: false).user.wallet_address);
     String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
 
   }

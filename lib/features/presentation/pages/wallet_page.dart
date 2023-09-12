@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:base/core/util/loading_dialog.dart';
+import 'package:base/features/data/const/data.dart';
+import 'package:base/features/data/models/user_model.dart';
 import 'package:base/features/domain/entities/deposit_address.dart';
 import 'package:base/features/presentation/components/page_title.dart';
 import 'package:base/features/presentation/pages/user_login_test_page.dart';
@@ -18,6 +21,7 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../domain/entities/dashboard.dart';
 import '../../domain/entities/user.dart';
 import 'package:gallery_saver/gallery_saver.dart';
+import 'package:http/http.dart' as http;
 
 class WalletPage extends StatefulWidget {
   static String routeName = "/WalletPage";
@@ -30,6 +34,7 @@ class WalletPage extends StatefulWidget {
 class _AccountPageState extends State<WalletPage> {
   String valueText = "";
   TextEditingController _textFieldController = new TextEditingController();
+  TextEditingController _DepositAddressController = new TextEditingController();
   TextEditingController _walletaddressController = new TextEditingController();
   bool checktext = false;
   final _formkey = GlobalKey<FormState>();
@@ -156,6 +161,33 @@ class _AccountPageState extends State<WalletPage> {
 
   Future<bool> _checkDirectoryExists(String path) {
     return Directory(path).exists();
+  }
+
+  Future<String> UpdateWalletAddress(String walletaddress)async{
+    User user = Provider.of<UserProvider>(context, listen: false).user;
+    String accesstoken = user.accessToken;
+    String url = "https://fumoinvest.org/api/invester_payment";
+    String result = "";
+    Map<String,dynamic> body = {
+      'payment_account': walletaddress,
+    };
+    http.Response response = await http.post(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $accesstoken',
+      },
+      body: jsonEncode(body),
+    );
+    print("response.body");
+    print(response.body);
+
+    if (response.statusCode == 201 || response.statusCode == 200) {
+      result = "success";
+    } else {
+      result = "error";
+    }
+    return result;
   }
 
   void _init()async{
@@ -628,23 +660,29 @@ class _AccountPageState extends State<WalletPage> {
                       }
                       User user = Provider.of<UserProvider>(context, listen: false).user;
                       user.wallet_address = _walletaddressController.text;
+                      print('UserName Field');
+                      print(user.username);
+                      print(user.wallet_address);
                       LoadingDialog.show(context);
-                      String status = await Provider.of<UserProvider>(context, listen: false).userUpdatePlz(
-                          username: user.username,
-                          email: user.email,
-                          phone: user.phone,
-                          profile_picture: user.profile_picture,
-                          address: user.address,
-                          remark: user.remark,
-                          password: user.password,
-                          level: user.level,
-                          accessToken: user.accessToken,
-                          wallet_address: user.wallet_address,
-                          deposit_address: user.deposit_address,
-                          referCode: user.referCode
-                      );
-                      user = Provider.of<UserProvider>(context, listen: false).user;
-                      LoadingDialog.hide(context);
+                      String status = await UpdateWalletAddress(user.wallet_address);
+                      // String status = await Provider.of<UserProvider>(context, listen: false).userUpdatePlz(
+                      //     username: user.username,
+                      //     email: user.email,
+                      //     phone: user.phone,
+                      //     profile_picture: user.profile_picture,
+                      //     address: user.address,
+                      //     remark: user.remark,
+                      //     password: "",
+                      //     level: user.level,
+                      //     accessToken: user.accessToken,
+                      //     wallet_address: user.wallet_address,
+                      //     deposit_address: user.deposit_address,
+                      //     referCode: user.referCode
+                      // );
+                      if(status == "success"){
+                        user = Provider.of<UserProvider>(context, listen: false).user;
+                        LoadingDialog.hide(context);
+                      }
                     },
                   child: Text(
                     "Add",
@@ -869,6 +907,7 @@ class _AccountPageState extends State<WalletPage> {
           onTap: ()async{
             setState(() {
               _textFieldController.text = "";
+              _DepositAddressController.text = "";
             });
             //_displayTextInputDialog(context,depositAddress);
             showDialog(
@@ -914,6 +953,25 @@ class _AccountPageState extends State<WalletPage> {
                               Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: TextFormField(
+                                  controller: _DepositAddressController,
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                      labelText: 'Enter Deposit Address/Link',
+                                      icon: Icon(Icons.add_circle)
+                                  ),
+                                  validator: (value){
+                                    if(value != ""){
+                                      return null;
+                                    }
+                                    else{
+                                        return "Deposit Address must not null";
+                                    }
+                                  },
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: TextFormField(
                                   controller: _textFieldController,
                                   keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
@@ -926,6 +984,9 @@ class _AccountPageState extends State<WalletPage> {
                                         return "Amount must morethan 10\$";
                                       }
                                       return null;
+                                    }
+                                    else{
+                                      return "Amount must not null";
                                     }
                                   },
                                 ),
@@ -962,7 +1023,7 @@ class _AccountPageState extends State<WalletPage> {
                                           String accessToken = Provider.of<UserProvider>(context, listen: false).user.accessToken;
 
                                           if(_textFieldController.text != "" && depositAddress.address != ""){
-                                            _DepositTransaction(accessToken,depositAddress.address,_textFieldController.text);
+                                            _DepositTransaction(accessToken,_DepositAddressController.text,_textFieldController.text);
                                           }
                                           Navigator.of(context).pop();
                                         }

@@ -84,7 +84,7 @@ class UserProvider extends ChangeNotifier {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       String email = prefs.getString(EMAIL_KEY) ?? "";
       String password = prefs.getString(PASSWORD_KEY) ?? "";
-
+      userpa = password;
       print("auto Login");
       print(email);
       print(password);
@@ -130,6 +130,7 @@ class UserProvider extends ChangeNotifier {
         );
 
     }
+
 
 
 

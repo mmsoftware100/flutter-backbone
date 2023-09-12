@@ -23,6 +23,7 @@ class UserRegisterPage extends StatefulWidget {
 class _UserRegisterPageState extends State<UserRegisterPage> {
   TextEditingController nameTec = TextEditingController();
   TextEditingController emailTec = TextEditingController();
+  TextEditingController walletaddress = TextEditingController();
   TextEditingController passwordTec = TextEditingController();
   TextEditingController passwordConfirmTec = TextEditingController();
   TextEditingController refTec = TextEditingController();
@@ -63,16 +64,19 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(width: double.infinity,),
+          //Container(width: double.infinity,),
 
           Image.asset(image10AssetUrl),
-          Text("FUMO", style: Theme.of(context).textTheme.bodyLarge,),
-          Text("Welcome Back", style: Theme.of(context).textTheme.headlineLarge,),
-          SizedBox(height: 8.0,),
+          Text(" FUMO Account Creation", style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+          //Text("FUMO", style: Theme.of(context).textTheme.bodyLarge,),
+        //  Text("Welcome Back", style: Theme.of(context).textTheme.headlineLarge,),
+          SizedBox(height: 3.0,),
           OurTextInput(label: "Name", placeHolder: "enter your name", textEditingController: nameTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.person,),
 
           SizedBox(height: 8.0,),
           OurTextInput(label: "Email", placeHolder: "enter your email", textEditingController: emailTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.email,),
+          // SizedBox(height: 8.0,),
+          // OurTextInput(label: "Wallet", placeHolder: "enter your wallet address", textEditingController: walletaddress, callback: (String? str){}, submit: (String? str){}, icon: Icons.email,),
 
           SizedBox(height: 8.0,),
           OurTextInput(label: "Password", placeHolder: "enter your password", textEditingController: passwordTec, callback: (String? str){}, submit: (String? str){}, icon: Icons.password, password: true,),
@@ -117,11 +121,16 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
     String password = passwordTec.text;
     String name = nameTec.text;
     String ref = refTec.text;
+    //String wallet = walletaddress.text;
 
     if(email.isEmpty){
       showAlertDialog(context, "Email ရိုက်ထည့်ပါ", "Email ထည့်ရန် လိုအပ်ပါသည်။", Colors.red, (){});
       return;
     }
+    // if(wallet.isEmpty){
+    //   showAlertDialog(context, "Wallet Address ရိုက်ထည့်ပါ", "Wallet Address  ထည့်ရန် လိုအပ်ပါသည်။", Colors.red, (){});
+    //   return;
+    // }
 
     if(name.isEmpty){
       showAlertDialog(context, "Name ရိုက်ထည့်ပါ", "Name ထည့်ရန် လိုအပ်ပါသည်။", Colors.red, (){});
@@ -138,13 +147,14 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
     User user = User(
         username: name,
         email: email,
+        wallet_address:"",
         password: password,
         referCode: ref,
         phone: "",
         profile_picture: "",
         address: "",
         remark: "",
-        accessToken: "", level: '', wallet_address: '', deposit_address: ''
+        accessToken: "", level: '', deposit_address: ''
     );
 
 

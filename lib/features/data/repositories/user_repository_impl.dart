@@ -74,6 +74,8 @@ class UserRepositoryImpl implements UserRepository{
   @override
   Future<Either<Failure, User>> Update({required User user}) async{
     try{
+      print('Fucking wallet address');
+      print(user.wallet_address);
       User registredUser =  await userRemoteDataSource.Update(user: user);
       return Right(registredUser);
     }

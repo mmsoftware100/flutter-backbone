@@ -40,5 +40,6 @@ const calculatorsubmenu = 4;
 const walletsubmenu = 5;
 const settingsubmenu = 6;
 int menudrawer = 0;
+String userpa = "";
 
 

@@ -47,6 +47,8 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
       try{
         UserModel userModel = UserModel.fromJson(dataResponse["data"]);
         userModel.accessToken = dataResponse["data"]["access_token"];
+        print('Wallet address is--->');
+        print(dataResponse["data"]["wallet_address"]);
         return userModel.toEntity();
       }catch(innerExp, stackTrace){
         print('UserRemoteDataSourceImpl->login   serialization exception $innerExp');
@@ -172,6 +174,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
       String endPoint =  updateEndpoint;
       print("UserRemoteDataSourceImpl->update");
       print("endpoint is $endPoint");
+      print(user.wallet_address);
       // var data = {
       //   "name" : user.username,
       //   "email" : user.email,

@@ -159,6 +159,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
       //
       // });
       await Future.delayed(Duration(milliseconds: 10));
+      userpa = password;
       Navigator.pushReplacementNamed(context, HomePage.routeName);
     }
     else{

@@ -16,7 +16,7 @@ part 'user_model.g.dart';
 
 class UserModel {
 
-  @JsonKey(name: 'username', defaultValue: "username")
+  @JsonKey(name: 'name', defaultValue: "username")
   String username;
 
   @JsonKey(name: 'email', defaultValue: "email")
@@ -49,7 +49,7 @@ class UserModel {
   @JsonKey(name: 'deposit_address', defaultValue: "deposit_address")
   String deposit_address;
 
-  @JsonKey(name: 'refer_code', defaultValue: "referCode")
+  @JsonKey(name: 'referral_code', defaultValue: "referCode")
   String referCode;
 
   UserModel({

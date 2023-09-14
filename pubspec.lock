@@ -361,14 +361,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.4"
-  firebase_core_platform_interface:
-    dependency: "direct overridden"
-    description:
-      name: firebase_core_platform_interface
-      sha256: b51257a8b4388565cd66062d727d3e60067b5f5cc3390eb0ecd20b8f97741bdb
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.5.1"
   fixnum:
     dependency: transitive
     description:

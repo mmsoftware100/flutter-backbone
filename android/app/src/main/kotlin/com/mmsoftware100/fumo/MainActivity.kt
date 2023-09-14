@@ -1,11 +1,8 @@
 package com.mmsoftware100.fumo
 
-import com.codelab.flutter.admobinlineads.ListTileNativeAdFactory
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
-import io.flutter.plugins.googlemobileads.GoogleMobileAdsPlugin
-import com.iadx.coffer.NativeViewFactory as NativeViewFactory
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
@@ -34,18 +31,14 @@ class MainActivity: FlutterActivity() {
         super.configureFlutterEngine(flutterEngine)
 
         // TODO: Register the ListTileNativeAdFactory
-        GoogleMobileAdsPlugin.registerNativeAdFactory(
-            flutterEngine, "listTile", ListTileNativeAdFactory(context)
-        )
+
+
 
         // platfrom method channel
 
         var dartChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL);
         // native view
-        flutterEngine
-            .platformViewsController
-            .registry
-            .registerViewFactory("<platform-view-type>", NativeViewFactory(dartChannel))
+
 
         // platform method channel
 
@@ -82,7 +75,5 @@ class MainActivity: FlutterActivity() {
     override fun cleanUpFlutterEngine(flutterEngine: FlutterEngine) {
         super.cleanUpFlutterEngine(flutterEngine)
 
-        // TODO: Unregister the ListTileNativeAdFactory
-        GoogleMobileAdsPlugin.unregisterNativeAdFactory(flutterEngine, "listTile")
     }
 }

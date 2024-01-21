@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'package:base/core/error/exceptions.dart';
 import 'package:base/features/data/const/data.dart';
 import 'package:dio/dio.dart';
@@ -18,6 +20,55 @@ abstract class UserRemoteDataSource {
   Future<User> Update({required User user});
 }
 
+class UserRemoteDataSourceImpl implements UserRemoteDataSource {
+  final NetworkCall networkCall;
+
+  UserRemoteDataSourceImpl({required this.networkCall});
+
+  @override
+  Future<User> Update({required User user}) {
+    // TODO: implement Update
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<User> login({required String email, required String password}) async{
+    Map<String, dynamic> body = {
+      "email": email,
+      "password": password
+    };
+    try{
+      dynamic responseData = await networkCall.postRequest(url: "url", data: body);
+      String responseString = responseData.body;
+      Map<String, dynamic> responseObj = jsonDecode(responseString);
+      Map<String, dynamic> userObj =  responseObj["data"];
+      UserModel userModel = UserModel.fromJson(userObj);
+      User user = userModel.toEntity();
+      return user;
+    }
+    catch(exp){
+      rethrow;
+    }
+
+
+
+  }
+
+  @override
+  Future<User> me({required String accessToken}) {
+    // TODO: implement me
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<User> register({required User user}) {
+    // TODO: implement register
+    throw UnimplementedError();
+  }
+
+}
+
+/*
 class UserRemoteDataSourceImpl implements UserRemoteDataSource{
   // final Dio client;
   final NetworkCall networkCall;
@@ -219,3 +270,5 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource{
   }
 
 }
+
+ */

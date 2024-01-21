@@ -26,6 +26,10 @@ class UserProvider extends ChangeNotifier {
     User user = User.sample();
 
 
+
+
+
+
     UserProvider({
         required this.userRegister,
         required this.userLogin,
@@ -96,6 +100,7 @@ class UserProvider extends ChangeNotifier {
         required String email,
         required String password
     })async{
+
 
 
         final Either<Failure, User> userEither = await userLogin(UserLoginParams(

@@ -42,6 +42,9 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   /* Factory ဆိုတာက App တစ်ခုလုံးမှာမှ တစ်ခုပဲ ရှိမယ့် ဟာမျိုးကို ဆိုလိုတာလား မသိ */
+
+
+
   /// Providers
   sl.registerFactory(
           () => CryptoProvider(

@@ -8,6 +8,7 @@ import 'package:base/features/domain/entities/user.dart';
 import 'package:base/features/domain/repositories/user_repository.dart';
 import 'package:dartz/dartz.dart';
 
+
 class UserRepositoryImpl implements UserRepository{
 
   final UserRemoteDataSource userRemoteDataSource;
